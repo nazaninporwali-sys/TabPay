@@ -3,348 +3,566 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TabPay | تب‌پی</title>
 
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<title>TabPay | تب‌پی</title>
 
 <style>
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:#f4f6f8;
-  color:#222;
+    margin:0;
+    background:#f4f6f8;
+    font-family:Tahoma,Arial,sans-serif;
+    color:#111827;
 }
 
-button{
-  font-family:inherit;
-  cursor:pointer;
+.page{
+    min-height:100vh;
+    display:none;
+    padding:20px;
 }
 
-.container{
-  max-width:600px;
-  margin:auto;
-  padding:16px;
-}
-
-.screen{
-  display:none;
-  min-height:100vh;
-}
-
-.screen.active{
-  display:block;
+.page.active{
+    display:block;
 }
 
 .header{
-  background:#111827;
-  color:white;
-  padding:18px;
-  border-radius:0 0 20px 20px;
-  margin:-16px -16px 20px;
+    background:#111827;
+    color:white;
+    padding:25px 20px;
+    border-radius:0 0 25px 25px;
+    margin:-20px -20px 25px;
 }
 
 .header h1{
-  margin:0;
-  font-size:25px;
+    margin:0;
+    font-size:28px;
 }
 
 .header p{
-  margin:7px 0 0;
-  opacity:.8;
+    margin:8px 0 0;
+    opacity:.8;
 }
 
 .card{
-  background:white;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.07);
-}
-
-.btn{
-  width:100%;
-  border:0;
-  padding:14px;
-  border-radius:14px;
-  font-size:16px;
-  margin-top:10px;
-}
-
-.btn.dark{
-  background:#111827;
-  color:white;
-}
-
-.btn.green{
-  background:#16a34a;
-  color:white;
-}
-
-.btn.red{
-  background:#dc2626;
-  color:white;
-}
-
-.btn.gray{
-  background:#e5e7eb;
-  color:#111;
-}
-
-.input{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:16px;
-  margin:8px 0;
-  text-align:center;
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    margin-bottom:15px;
 }
 
 .title{
-  font-size:21px;
-  font-weight:bold;
-  margin-bottom:15px;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:15px;
 }
 
-.table-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+button{
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:16px;
+    margin-top:12px;
+    font-family:inherit;
+    font-size:16px;
+    cursor:pointer;
 }
 
-.table-btn{
-  border:0;
-  padding:18px;
-  background:#f1f5f9;
-  border-radius:15px;
-  font-size:17px;
+.dark{
+    background:#111827;
+    color:white;
 }
 
-.table-btn.selected{
-  background:#111827;
-  color:white;
+.gray{
+    background:#e5e7eb;
+    color:#111827;
 }
 
-.menu-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  border:1px solid #eee;
-  border-radius:15px;
-  padding:14px;
-  margin-bottom:10px;
+.green{
+    background:#16a34a;
+    color:white;
 }
 
-.food-info{
-  flex:1;
+.back{
+    margin-top:20px;
 }
 
-.food-name{
-  font-weight:bold;
-  font-size:17px;
+.tables{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.food-price{
-  color:#16a34a;
-  margin-top:7px;
-  font-size:14px;
+.tables button{
+    margin:0;
+    background:#f1f5f9;
 }
 
-.add-btn{
-  background:#111827;
-  color:white;
-  border:0;
-  border-radius:12px;
-  padding:11px 14px;
-}
-
-.cart-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:13px 0;
-  border-bottom:1px solid #eee;
-}
-
-.qty{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.qty button{
-  width:32px;
-  height:32px;
-  border:0;
-  border-radius:9px;
-  background:#e5e7eb;
-  font-size:18px;
-}
-
-.delete{
-  border:0;
-  background:#fee2e2;
-  color:#dc2626;
-  padding:8px;
-  border-radius:9px;
-}
-
-.total{
-  display:flex;
-  justify-content:space-between;
-  font-size:19px;
-  font-weight:bold;
-  margin-top:18px;
-}
-
-.empty{
-  text-align:center;
-  padding:35px 10px;
-  color:#777;
-}
-
-.badge{
-  display:inline-block;
-  background:#dcfce7;
-  color:#166534;
-  padding:7px 12px;
-  border-radius:20px;
-  font-size:13px;
-}
-
-.center{
-  text-align:center;
-}
-
-#reader{
-  width:100%;
-  overflow:hidden;
-  border-radius:15px;
-}
-
-#qrcode{
-  display:flex;
-  justify-content:center;
-  margin:20px 0;
-}
-
-.success-icon{
-  font-size:65px;
-  margin-bottom:10px;
+.input{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    text-align:center;
+    font-size:17px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
 
-<!-- HOME -->
-<section id="home" class="screen active">
+<!-- ================= صفحه اول ================= -->
 
-  <div class="header">
-    <h1>تب‌پی</h1>
-    <p>سیستم سفارش و پرداخت هوشمند رستوران</p>
-  </div>
+<section id="home" class="page active">
 
-  <div class="card center">
-    <div class="title">🍽️ ورود به رستوران</div>
+    <div class="header">
 
-    <button class="btn dark" type="button" onclick="openScanner()">
-      📷 شروع اسکن QR
-    </button>
+        <h1>تب‌پی</h1>
 
-    <button class="btn gray" type="button" onclick="showTableSelection()">
-      🪑 انتخاب دستی میز
-    </button>
-
-    <button class="btn gray" type="button" onclick="showQrGenerator()">
-      🔳 نمایش QR میز ۱
-    </button>
-  </div>
-
-</section>
-
-
-<!-- TABLE -->
-<section id="table" class="screen">
-
-  <div class="header">
-    <h1>انتخاب میز</h1>
-    <p>شماره میز خود را انتخاب کنید</p>
-  </div>
-
-  <div class="card">
-
-    <div class="table-grid">
-
-      <button class="table-btn" onclick="selectTable('01')">میز 01</button>
-      <button class="table-btn" onclick="selectTable('02')">میز 02</button>
-      <button class="table-btn" onclick="selectTable('03')">میز 03</button>
-      <button class="table-btn" onclick="selectTable('04')">میز 04</button>
-      <button class="table-btn" onclick="selectTable('05')">میز 05</button>
-      <button class="table-btn" onclick="selectTable('06')">میز 06</button>
-      <button class="table-btn" onclick="selectTable('07')">میز 07</button>
-      <button class="table-btn" onclick="selectTable('08')">میز 08</button>
-      <button class="table-btn" onclick="selectTable('09')">میز 09</button>
-      <button class="table-btn" onclick="selectTable('10')">میز 10</button>
+        <p>
+            سیستم سفارش و پرداخت هوشمند رستوران
+        </p>
 
     </div>
 
-    <input
-      id="manualTable"
-      class="input"
-      placeholder="مثلاً 01"
-      inputmode="numeric"
-    >
 
-    <button class="btn dark" onclick="manualTableEnter()">
-      ورود به منو
-    </button>
+    <div class="card">
 
-    <button class="btn gray" onclick="goBack()">
-      ← بازگشت
-    </button>
-
-  </div>
-
-</section>
+        <div class="title">
+            🍽️ ورود به رستوران
+        </div>
 
 
-<!-- SCANNER -->
-<section id="scanner" class="screen">
+        <button
+            class="dark"
+            type="button"
+            onclick="openTablePage()">
 
-  <div class="header">
-    <h1>اسکن QR</h1>
-    <p>QR روی میز را مقابل دوربین بگیرید</p>
-  </div>
+            🪑 انتخاب دستی میز
 
-  <div class="card">
+        </button>
 
-    <div id="reader"></div>
 
-    <button class="btn red" onclick="stopScanner()">
-      توقف اسکن
-    </button>
+        <button
+            class="dark"
+            type="button"
+            onclick="openScannerPage()">
 
-    <button class="btn gray" onclick="goBack()">
-      ← بازگشت
-    </button>
+            📷 شروع اسکن QR
 
-  </div>
+        </button>
+
+
+        <button
+            class="gray"
+            type="button"
+            onclick="openQRPage()">
+
+            🔳 نمایش QR میز 01
+
+        </button>
+
+    </div>
 
 </section>
 
 
-<!-- QR GENERATOR -->
-<section id="qr" class="screen">
 
-  <div class="header">
-    <h1>QR میز
+<!-- ================= انتخاب میز ================= -->
+
+<section id="tablePage" class="page">
+
+    <div class="header">
+
+        <h1>انتخاب میز</h1>
+
+        <p>
+            شماره میز خود را انتخاب کنید
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="tables">
+
+            <button onclick="chooseTable('01')">
+                میز 01
+            </button>
+
+            <button onclick="chooseTable('02')">
+                میز 02
+            </button>
+
+            <button onclick="chooseTable('03')">
+                میز 03
+            </button>
+
+            <button onclick="chooseTable('04')">
+                میز 04
+            </button>
+
+            <button onclick="chooseTable('05')">
+                میز 05
+            </button>
+
+            <button onclick="chooseTable('06')">
+                میز 06
+            </button>
+
+            <button onclick="chooseTable('07')">
+                میز 07
+            </button>
+
+            <button onclick="chooseTable('08')">
+                میز 08
+            </button>
+
+            <button onclick="chooseTable('09')">
+                میز 09
+            </button>
+
+            <button onclick="chooseTable('10')">
+                میز 10
+            </button>
+
+        </div>
+
+
+        <input
+            id="manualTable"
+            class="input"
+            type="number"
+            min="1"
+            max="10"
+            placeholder="شماره میز"
+        >
+
+
+        <button
+            class="green"
+            onclick="enterManualTable()">
+
+            ورود به منو
+
+        </button>
+
+
+        <button
+            class="gray back"
+            onclick="goHome()">
+
+            ← برگشت
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= اسکن QR ================= -->
+
+<section id="scannerPage" class="page">
+
+    <div class="header">
+
+        <h1>اسکن QR</h1>
+
+        <p>
+            دوربین در نسخه بعدی فعال می‌شود
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="title">
+            📷 اسکن QR میز
+        </div>
+
+        <p>
+            این قسمت را بعد از اینکه مسیر اصلی برنامه
+            کاملاً تست شد به سیستم دوربین متصل می‌کنیم.
+        </p>
+
+
+        <button
+            class="gray"
+            onclick="goHome()">
+
+            ← برگشت
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= QR ================= -->
+
+<section id="qrPage" class="page">
+
+    <div class="header">
+
+        <h1>QR میز 01</h1>
+
+        <p>
+            QR اختصاصی میز شماره 01
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div
+            style="
+            width:220px;
+            height:220px;
+            margin:auto;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#111827;
+            color:white;
+            border-radius:20px;
+            font-size:28px;
+            font-weight:bold;
+            ">
+
+            TABLE<br>01
+
+        </div>
+
+
+        <p style="text-align:center">
+            کد میز: <strong>TABLE-01</strong>
+        </p>
+
+
+        <button
+            class="gray"
+            onclick="goHome()">
+
+            ← برگشت
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= منو ================= -->
+
+<section id="menuPage" class="page">
+
+    <div class="header">
+
+        <h1>منوی رستوران</h1>
+
+        <p id="tableNumber">
+            میز 01
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="title">
+            🍔 منوی غذا
+        </div>
+
+
+        <button class="gray">
+            🍔 برگر مخصوص — ۱۸۰,۰۰۰ تومان
+        </button>
+
+
+        <button class="gray">
+            🍕 پیتزا مخصوص — ۲۵۰,۰۰۰ تومان
+        </button>
+
+
+        <button class="gray">
+            🍗 مرغ گریل — ۲۲۰,۰۰۰ تومان
+        </button>
+
+
+        <button class="gray">
+            🥤 نوشابه — ۴۰,۰۰۰ تومان
+        </button>
+
+
+        <button
+            class="dark"
+            onclick="goHome()">
+
+            ← برگشت
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+/* ===============================
+   سیستم اصلی صفحات
+================================ */
+
+function showPage(pageId){
+
+    var pages =
+        document.querySelectorAll(".page");
+
+    for(
+        var i = 0;
+        i < pages.length;
+        i++
+    ){
+
+        pages[i].classList.remove("active");
+
+    }
+
+
+    var page =
+        document.getElementById(pageId);
+
+
+    if(page){
+
+        page.classList.add("active");
+
+        window.scrollTo(0,0);
+
+    }
+
+}
+
+
+/* ===============================
+   صفحه انتخاب میز
+================================ */
+
+function openTablePage(){
+
+    showPage("tablePage");
+
+}
+
+
+/* ===============================
+   صفحه QR
+================================ */
+
+function openQRPage(){
+
+    showPage("qrPage");
+
+}
+
+
+/* ===============================
+   صفحه اسکن
+================================ */
+
+function openScannerPage(){
+
+    showPage("scannerPage");
+
+}
+
+
+/* ===============================
+   انتخاب میز
+================================ */
+
+function chooseTable(number){
+
+    localStorage.setItem(
+        "tabpay_table",
+        number
+    );
+
+
+    document.getElementById(
+        "tableNumber"
+    ).innerText =
+        "میز " + number;
+
+
+    showPage("menuPage");
+
+}
+
+
+/* ===============================
+   ورود دستی میز
+================================ */
+
+function enterManualTable(){
+
+    var value =
+        document.getElementById(
+            "manualTable"
+        ).value;
+
+
+    var number =
+        parseInt(value);
+
+
+    if(
+        isNaN(number) ||
+        number < 1 ||
+        number > 10
+    ){
+
+        alert(
+            "لطفاً شماره میز بین 1 تا 10 وارد کنید."
+        );
+
+        return;
+
+    }
+
+
+    chooseTable(
+        String(number).padStart(2,"0")
+    );
+
+}
+
+
+/* ===============================
+   برگشت خانه
+================================ */
+
+function goHome(){
+
+    showPage("home");
+
+}
+
+</script>
+
+</body>
+</html>
