@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<title>TabPay | تب‌پی</title>
-
-<script src="https://unpkg.com/html5-qrcode"
-        type="text/javascript"></script>
+<title>TabPay | سفارش غذا</title>
 
 <style>
 
@@ -20,9 +20,14 @@
 
 body{
     margin:0;
-    background:#f4f6f8;
-    color:#111827;
     font-family:Tahoma,Arial,sans-serif;
+    background:#f5f6f8;
+    color:#222;
+}
+
+button,
+input{
+    font-family:inherit;
 }
 
 .page{
@@ -38,44 +43,43 @@ body{
 .header{
     background:#111827;
     color:white;
-    padding:25px 20px;
-    border-radius:0 0 25px 25px;
-    margin:-20px -20px 25px;
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:18px;
+    text-align:center;
 }
 
-.header h1{
-    margin:0;
-    font-size:27px;
+.logo{
+    font-size:28px;
+    font-weight:bold;
 }
 
-.header p{
-    margin:8px 0 0;
-    opacity:.8;
+.subtitle{
+    margin-top:8px;
+    color:#d1d5db;
 }
 
 .card{
     background:white;
-    border-radius:20px;
     padding:20px;
+    border-radius:18px;
     margin-bottom:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 .title{
-    font-size:21px;
+    font-size:22px;
     font-weight:bold;
     margin-bottom:15px;
 }
 
 button{
-    width:100%;
     border:0;
-    border-radius:14px;
-    padding:15px;
-    margin-top:10px;
-    font-family:inherit;
+    border-radius:12px;
+    padding:14px 18px;
     font-size:16px;
     cursor:pointer;
+    margin:5px 0;
 }
 
 .dark{
@@ -98,75 +102,148 @@ button{
     color:#111827;
 }
 
-.tables{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.tables button{
-    margin:0;
+.full{
+    width:100%;
 }
 
 .input{
     width:100%;
-    padding:15px;
-    margin-top:15px;
+    padding:14px;
     border:1px solid #ddd;
     border-radius:12px;
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.tables{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.table{
+    background:#111827;
+    color:white;
+    padding:18px 5px;
+    border-radius:12px;
     text-align:center;
-    font-size:17px;
+    cursor:pointer;
+}
+
+.search{
+    position:relative;
+}
+
+.search input{
+    padding-right:45px;
+}
+
+.search-icon{
+    position:absolute;
+    right:15px;
+    top:14px;
+    font-size:20px;
+}
+
+.categories{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:5px 0 15px;
+}
+
+.category{
+    white-space:nowrap;
+    background:white;
+    border:1px solid #ddd;
+    padding:10px 16px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.category.active{
+    background:#111827;
+    color:white;
 }
 
 .food{
-    border:1px solid #eee;
-    border-radius:15px;
-    padding:15px;
-    margin-bottom:12px;
+    background:white;
+    border-radius:18px;
+    margin-bottom:14px;
+    padding:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.food-image{
+    width:100%;
+    height:180px;
+    border-radius:14px;
+    object-fit:cover;
+    background:#eee;
 }
 
 .food-top{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     gap:10px;
+    margin-top:12px;
 }
 
 .food-name{
+    font-size:19px;
     font-weight:bold;
-    font-size:17px;
 }
 
 .food-price{
+    font-weight:bold;
     color:#16a34a;
-    margin-top:7px;
+    white-space:nowrap;
+}
+
+.food-description{
+    color:#666;
     font-size:14px;
+    line-height:1.8;
+    margin:8px 0;
+}
+
+.food-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
 }
 
 .add{
-    width:auto;
-    padding:10px 16px;
-    margin:0;
     background:#111827;
     color:white;
+    padding:10px 16px;
+    margin:0;
+}
+
+.unavailable{
+    color:#dc2626;
+    font-weight:bold;
 }
 
 .cart-item{
-    padding:14px 0;
-    border-bottom:1px solid #eee;
+    background:#f8fafc;
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:10px;
 }
 
-.cart-top{
+.cart-row{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:10px;
 }
 
 .qty{
     display:flex;
     align-items:center;
     gap:8px;
-    margin-top:10px;
 }
 
 .qty button{
@@ -174,65 +251,60 @@ button{
     height:35px;
     padding:0;
     margin:0;
-    background:#e5e7eb;
-}
-
-.delete{
-    width:auto;
-    padding:8px 12px;
-    margin:0;
-    background:#fee2e2;
-    color:#dc2626;
 }
 
 .total{
-    display:flex;
-    justify-content:space-between;
-    font-size:19px;
+    font-size:22px;
     font-weight:bold;
-    margin-top:20px;
+    margin:20px 0;
 }
 
-.center{
+.empty{
     text-align:center;
-}
-
-.success{
-    font-size:60px;
-}
-
-#reader{
-    width:100%;
-    margin-top:10px;
-}
-
-#reader video{
-    width:100%;
-    border-radius:15px;
-}
-
-.small{
     color:#777;
-    font-size:13px;
+    padding:30px 10px;
 }
 
-/* پیام افزودن به سبد */
+.back{
+    margin-bottom:15px;
+}
 
 #addMessage{
-    display:none;
     position:fixed;
-    bottom:25px;
-    left:20px;
-    right:20px;
+    top:15px;
+    left:15px;
+    right:15px;
     background:#16a34a;
     color:white;
-    padding:16px;
-    border-radius:14px;
+    padding:14px;
+    border-radius:12px;
     text-align:center;
-    font-size:16px;
+    display:none;
+    z-index:9999;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+.bottom-cart{
+    position:fixed;
+    bottom:15px;
+    left:15px;
+    right:15px;
+    z-index:100;
+}
+
+.bottom-cart button{
+    width:100%;
+}
+
+.order-box{
+    text-align:center;
+    padding:25px 10px;
+}
+
+.order-id{
+    font-size:20px;
     font-weight:bold;
-    z-index:99999;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    margin:15px 0;
 }
 
 </style>
@@ -242,115 +314,143 @@ button{
 <body>
 
 
-<section id="home" class="page active">
+<div id="addMessage"></div>
+
+
+<!-- HOME -->
+
+<section
+    id="home"
+    class="page active"
+>
 
     <div class="header">
 
-        <h1>تب‌پی</h1>
+        <div class="logo">
+            🍽️ TabPay
+        </div>
+
+        <div class="subtitle">
+            سفارش غذای سریع و آسان
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="title">
+            شروع سفارش
+        </div>
 
         <p>
-            سیستم سفارش و پرداخت هوشمند رستوران
+            برای شروع، شماره میز خود را انتخاب کنید
+            یا QR میز را اسکن کنید.
         </p>
+
+        <button
+            class="dark full"
+            onclick="openTablePage()"
+        >
+            🪑 انتخاب میز
+        </button>
+
+        <button
+            class="gray full"
+            onclick="openScanner()"
+        >
+            📷 اسکن QR میز
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="title">
+            سفارش قبلی
+        </div>
+
+        <button
+            class="gray full"
+            onclick="showLastOrder()"
+        >
+            📦 مشاهده سفارش
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- TABLE -->
+
+<section
+    id="tablePage"
+    class="page"
+>
+
+    <button
+        class="gray back"
+        onclick="goBack()"
+    >
+        ← برگشت
+    </button>
+
+    <div class="header">
+
+        <div class="logo">
+            🪑 انتخاب میز
+        </div>
 
     </div>
 
     <div class="card">
 
         <div class="title">
-            🍽️ ورود به رستوران
-        </div>
-
-        <button
-            class="dark"
-            type="button"
-            onclick="openTablePage()">
-
-            🪑 انتخاب دستی میز
-
-        </button>
-
-        <button
-            class="dark"
-            type="button"
-            onclick="openScanner()">
-
-            📷 اسکن QR میز
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<section id="tablePage" class="page">
-
-    <div class="header">
-
-        <h1>انتخاب میز</h1>
-
-        <p>
             شماره میز را انتخاب کنید
-        </p>
-
-    </div>
-
-    <div class="card">
+        </div>
 
         <div class="tables">
 
-            <button onclick="selectTable('01')">میز 01</button>
-            <button onclick="selectTable('02')">میز 02</button>
-            <button onclick="selectTable('03')">میز 03</button>
-            <button onclick="selectTable('04')">میز 04</button>
-            <button onclick="selectTable('05')">میز 05</button>
-            <button onclick="selectTable('06')">میز 06</button>
-            <button onclick="selectTable('07')">میز 07</button>
-            <button onclick="selectTable('08')">میز 08</button>
-            <button onclick="selectTable('09')">میز 09</button>
-            <button onclick="selectTable('10')">میز 10</button>
+            <div class="table" onclick="selectTable(1)">میز 1</div>
+            <div class="table" onclick="selectTable(2)">میز 2</div>
+            <div class="table" onclick="selectTable(3)">میز 3</div>
+            <div class="table" onclick="selectTable(4)">میز 4</div>
+            <div class="table" onclick="selectTable(5)">میز 5</div>
+            <div class="table" onclick="selectTable(6)">میز 6</div>
+            <div class="table" onclick="selectTable(7)">میز 7</div>
+            <div class="table" onclick="selectTable(8)">میز 8</div>
+            <div class="table" onclick="selectTable(9)">میز 9</div>
 
         </div>
-
-        <input
-            id="manualTable"
-            class="input"
-            type="number"
-            min="1"
-            max="10"
-            placeholder="شماره میز"
-        >
-
-        <button
-            class="green"
-            onclick="manualTable()">
-
-            ورود به منو
-
-        </button>
-
-        <button
-            class="gray"
-            onclick="goBack()">
-
-            ← برگشت
-
-        </button>
 
     </div>
 
 </section>
 
 
-<section id="scannerPage" class="page">
+
+<!-- SCANNER -->
+
+<section
+    id="scannerPage"
+    class="page"
+>
+
+    <button
+        class="gray back"
+        onclick="goBack()"
+    >
+        ← برگشت
+    </button>
 
     <div class="header">
 
-        <h1>اسکن QR میز</h1>
-
-        <p>
-            QR روی میز را مقابل دوربین بگیرید
-        </p>
+        <div class="logo">
+            📷 اسکن QR
+        </div>
 
     </div>
 
@@ -358,191 +458,79 @@ button{
 
         <div id="reader"></div>
 
-        <p class="small">
-            اگر مرورگر اجازه خواست، دسترسی دوربین را روی
-            «Allow / اجازه» قرار دهید.
+        <p>
+            QR روی میز را مقابل دوربین قرار دهید.
         </p>
-
-        <button
-            class="red"
-            onclick="stopScanner()">
-
-            ⛔ توقف دوربین
-
-        </button>
-
-        <button
-            class="gray"
-            onclick="goBack()">
-
-            ← برگشت
-
-        </button>
 
     </div>
 
 </section>
 
 
-<section id="menuPage" class="page">
+
+<!-- MENU -->
+
+<section
+    id="menuPage"
+    class="page"
+>
+
+    <button
+        class="gray back"
+        onclick="goBack()"
+    >
+        ← برگشت
+    </button>
+
 
     <div class="header">
 
-        <h1>منوی رستوران</h1>
-
-        <p id="menuTable">
-            میز --
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <div class="title">
-            🍔 غذاها
+        <div class="logo">
+            🍽️ منوی رستوران
         </div>
 
-
-        <div class="food">
-
-            <div class="food-top">
-
-                <div>
-
-                    <div class="food-name">
-                        🍔 برگر مخصوص
-                    </div>
-
-                    <div class="food-price">
-                        ۱۸۰,۰۰۰ تومان
-                    </div>
-
-                </div>
-
-                <button
-                    class="add"
-                    type="button"
-                    onclick="addFood('برگر مخصوص',180000)">
-
-                    افزودن
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="food">
-
-            <div class="food-top">
-
-                <div>
-
-                    <div class="food-name">
-                        🍕 پیتزا مخصوص
-                    </div>
-
-                    <div class="food-price">
-                        ۲۵۰,۰۰۰ تومان
-                    </div>
-
-                </div>
-
-                <button
-                    class="add"
-                    type="button"
-                    onclick="addFood('پیتزا مخصوص',250000)">
-
-                    افزودن
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="food">
-
-            <div class="food-top">
-
-                <div>
-
-                    <div class="food-name">
-                        🍗 مرغ گریل
-                    </div>
-
-                    <div class="food-price">
-                        ۲۲۰,۰۰۰ تومان
-                    </div>
-
-                </div>
-
-                <button
-                    class="add"
-                    type="button"
-                    onclick="addFood('مرغ گریل',220000)">
-
-                    افزودن
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="food">
-
-            <div class="food-top">
-
-                <div>
-
-                    <div class="food-name">
-                        🥤 نوشابه
-                    </div>
-
-                    <div class="food-price">
-                        ۴۰,۰۰۰ تومان
-                    </div>
-
-                </div>
-
-                <button
-                    class="add"
-                    type="button"
-                    onclick="addFood('نوشابه',40000)">
-
-                    افزودن
-
-                </button>
-
-            </div>
-
+        <div class="subtitle">
+            میز <span id="selectedTableText">-</span>
         </div>
 
     </div>
 
 
-    <div class="card">
+    <div class="search">
+
+        <span class="search-icon">
+            🔎
+        </span>
+
+        <input
+            id="searchInput"
+            class="input"
+            placeholder="جستجوی غذا..."
+            oninput="renderMenu()"
+        >
+
+    </div>
+
+
+    <div
+        id="categories"
+        class="categories"
+    ></div>
+
+
+    <div id="menuList"></div>
+
+
+    <div class="bottom-cart">
 
         <button
             class="dark"
-            type="button"
-            onclick="openCart()">
-
+            onclick="openCart()"
+        >
             🛒 مشاهده سبد خرید
-
-        </button>
-
-        <button
-            class="gray"
-            type="button"
-            onclick="goBack()">
-
-            ← برگشت
-
+            <span id="cartCount">
+                0
+            </span>
         </button>
 
     </div>
@@ -550,68 +538,57 @@ button{
 </section>
 
 
-<section id="cartPage" class="page">
+
+<!-- CART -->
+
+<section
+    id="cartPage"
+    class="page"
+>
+
+    <button
+        class="gray back"
+        onclick="goBack()"
+    >
+        ← برگشت
+    </button>
 
     <div class="header">
 
-        <h1>سبد خرید</h1>
-
-        <p id="cartTable">
-            میز --
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <div id="cartList"></div>
-
-        <div class="total">
-
-            <span>مجموع</span>
-
-            <span id="cartTotal">۰ تومان</span>
-
+        <div class="logo">
+            🛒 سبد خرید
         </div>
 
-        <button
-            class="green"
-            onclick="openBill()">
-
-            ادامه و مشاهده فاکتور
-
-        </button>
-
-        <button
-            class="red"
-            onclick="clearCart()">
-
-            🗑️ حذف همه
-
-        </button>
-
-        <button
-            class="gray"
-            onclick="goBack()">
-
-            ← برگشت به منو
-
-        </button>
-
     </div>
+
+    <div
+        id="cartList"
+        class="card"
+    ></div>
 
 </section>
 
 
-<section id="billPage" class="page">
+
+<!-- BILL -->
+
+<section
+    id="billPage"
+    class="page"
+>
+
+    <button
+        class="gray back"
+        onclick="goBack()"
+    >
+        ← برگشت
+    </button>
 
     <div class="header">
 
-        <h1>فاکتور</h1>
-
-        <p>
-            بررسی نهایی سفارش
-        </p>
+        <div class="logo">
+            🧾 صورتحساب
+        </div>
 
     </div>
 
@@ -619,20 +596,16 @@ button{
 
         <div id="billList"></div>
 
-        <button
-            class="green"
-            onclick="submitOrder()">
-
-            ✅ ثبت سفارش
-
-        </button>
+        <div
+            id="billTotal"
+            class="total"
+        ></div>
 
         <button
-            class="gray"
-            onclick="goBack()">
-
-            ← برگشت
-
+            class="green full"
+            onclick="submitOrder()"
+        >
+            📦 ثبت سفارش
         </button>
 
     </div>
@@ -640,93 +613,49 @@ button{
 </section>
 
 
-<section id="successPage" class="page">
+
+<!-- SUCCESS -->
+
+<section
+    id="successPage"
+    class="page"
+>
 
     <div class="header">
 
-        <h1>سفارش ثبت شد</h1>
+        <div class="logo">
+            ✅ سفارش ثبت شد
+        </div>
 
     </div>
 
-    <div class="card center">
+    <div class="card order-box">
 
-        <div class="success">
-            ✅
-        </div>
-
-        <div class="title">
+        <h2>
             سفارش شما با موفقیت ثبت شد
-        </div>
-
-        <p id="orderId"></p>
-
-        <p>
-            وضعیت:
-            <strong>جدید</strong>
-        </p>
-
-        <button
-            class="green"
-            onclick="openPayment()">
-
-            💳 پرداخت
-
-        </button>
-
-        <button
-            class="gray"
-            onclick="goHome()">
-
-            🏠 بازگشت به خانه
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<section id="paymentPage" class="page">
-
-    <div class="header">
-
-        <h1>پرداخت</h1>
-
-        <p>
-            پرداخت آزمایشی
-        </p>
-
-    </div>
-
-    <div class="card center">
-
-        <div class="title">
-            مبلغ قابل پرداخت
-        </div>
+        </h2>
 
         <div
-            id="paymentAmount"
-            style="
-            font-size:25px;
-            font-weight:bold;
-            margin:20px 0;
-            ">
-        </div>
+            id="orderId"
+            class="order-id"
+        ></div>
+
+        <p>
+            سفارش شما برای رستوران ارسال شد.
+        </p>
 
         <button
-            class="green"
-            onclick="fakePayment()">
-
+            class="green full"
+            onclick="openPayment()"
+        >
             💳 پرداخت
-
         </button>
 
         <button
-            class="gray"
-            onclick="goBack()">
-
-            ← برگشت
-
+            class="gray full"
+            onclick="goHome()"
+        >
+            🏠 صفحه اصلی
         </button>
 
     </div>
@@ -734,80 +663,248 @@ button{
 </section>
 
 
-<!-- پیام افزودن غذا -->
 
-<div id="addMessage"></div>
+<!-- PAYMENT -->
 
+<section
+    id="paymentPage"
+    class="page"
+>
+
+    <button
+        class="gray back"
+        onclick="goBack()"
+    >
+        ← برگشت
+    </button>
+
+    <div class="header">
+
+        <div class="logo">
+            💳 پرداخت
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="title">
+            پرداخت آنلاین
+        </div>
+
+        <p>
+            مبلغ سفارش:
+        </p>
+
+        <div
+            id="paymentTotal"
+            class="total"
+        ></div>
+
+        <button
+            class="green full"
+            onclick="fakePayment()"
+        >
+            پرداخت آنلاین
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<script src="https://unpkg.com/html5-qrcode"></script>
 
 <script>
+
+
+/* =========================
+   DATA
+========================= */
+
+
+var foods = [
+
+    {
+        name:"برگر مخصوص",
+        price:180000,
+        category:"برگر",
+        image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+        description:"برگر گوشت مخصوص با پنیر، کاهو و سس مخصوص",
+        available:true
+    },
+
+    {
+        name:"چیزبرگر",
+        price:200000,
+        category:"برگر",
+        image:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+        description:"چیزبرگر با گوشت تازه و پنیر",
+        available:true
+    },
+
+    {
+        name:"پیتزا مخصوص",
+        price:250000,
+        category:"پیتزا",
+        image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80",
+        description:"پیتزا مخصوص با گوشت، قارچ، فلفل دلمه و پنیر",
+        available:true
+    },
+
+    {
+        name:"پیتزا مرغ",
+        price:230000,
+        category:"پیتزا",
+        image:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80",
+        description:"پیتزا مرغ با پنیر و قارچ",
+        available:true
+    },
+
+    {
+        name:"مرغ گریل",
+        price:220000,
+        category:"غذای اصلی",
+        image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80",
+        description:"سینه مرغ گریل شده با دورچین",
+        available:true
+    },
+
+    {
+        name:"استیک مرغ",
+        price:260000,
+        category:"غذای اصلی",
+        image:"https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80",
+        description:"استیک مرغ با سبزیجات تازه",
+        available:true
+    },
+
+    {
+        name:"نوشابه",
+        price:40000,
+        category:"نوشیدنی",
+        image:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=800&q=80",
+        description:"نوشابه خنک",
+        available:true
+    },
+
+    {
+        name:"دوغ",
+        price:35000,
+        category:"نوشیدنی",
+        image:"https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=800&q=80",
+        description:"دوغ خنک",
+        available:true
+    }
+
+];
+
+
+var cart = [];
+
+var selectedCategory = "همه";
+
+var selectedTable =
+    localStorage.getItem("tabpay_table");
 
 var currentPage = "home";
 
 var pageHistory = ["home"];
 
-var selectedTable =
-    localStorage.getItem("tabpay_table") || "";
 
-var cart =
-    JSON.parse(
-        localStorage.getItem("tabpay_cart") || "[]"
+
+/* =========================
+   STORAGE
+========================= */
+
+
+function saveCart(){
+
+    localStorage.setItem(
+        "tabpay_cart",
+        JSON.stringify(cart)
     );
 
-var lastOrder =
-    JSON.parse(
-        localStorage.getItem("tabpay_order") || "null"
-    );
-
-var qrScanner = null;
+}
 
 
-function showPage(id){
+function loadCart(){
 
-    var pages =
-        document.querySelectorAll(".page");
+    var saved =
+        localStorage.getItem(
+            "tabpay_cart"
+        );
 
-    for(
-        var i = 0;
-        i < pages.length;
-        i++
-    ){
+    if(saved){
 
-        pages[i].classList.remove("active");
+        try{
 
-    }
+            cart =
+                JSON.parse(saved);
 
-    var page =
-        document.getElementById(id);
+        }catch(e){
 
-    if(page){
+            cart = [];
 
-        page.classList.add("active");
-
-        currentPage = id;
-
-        window.scrollTo(0,0);
+        }
 
     }
 
 }
 
 
-function navigate(id){
 
-    if(currentPage !== id){
+/* =========================
+   NAVIGATION
+========================= */
 
-        pageHistory.push(id);
+
+function navigate(page){
+
+    if(
+        currentPage !== page
+    ){
+
+        pageHistory.push(page);
 
     }
 
-    showPage(id);
+    document
+        .querySelectorAll(".page")
+        .forEach(function(p){
+
+            p.classList.remove("active");
+
+        });
+
+
+    var target =
+        document.getElementById(page);
+
+    if(target){
+
+        target.classList.add("active");
+
+    }
+
+
+    currentPage = page;
+
+
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
 
 
 function goBack(){
 
-    if(pageHistory.length > 1){
+    if(
+        pageHistory.length > 1
+    ){
 
         pageHistory.pop();
 
@@ -816,13 +913,25 @@ function goBack(){
                 pageHistory.length - 1
             ];
 
-        if(previous !== "scannerPage"){
+        currentPage =
+            previous;
 
-            stopScanner();
+        document
+            .querySelectorAll(".page")
+            .forEach(function(p){
 
-        }
+                p.classList.remove("active");
 
-        showPage(previous);
+            });
+
+        document
+            .getElementById(previous)
+            .classList.add("active");
+
+        window.scrollTo(
+            0,
+            0
+        );
 
     }else{
 
@@ -835,287 +944,417 @@ function goBack(){
 
 function goHome(){
 
-    stopScanner();
+    pageHistory =
+        ["home"];
 
-    pageHistory = ["home"];
+    currentPage =
+        "home";
 
-    showPage("home");
+    document
+        .querySelectorAll(".page")
+        .forEach(function(p){
+
+            p.classList.remove("active");
+
+        });
+
+    document
+        .getElementById("home")
+        .classList.add("active");
 
 }
 
 
+
+/* =========================
+   TABLE
+========================= */
+
+
 function openTablePage(){
 
-    navigate("tablePage");
+    navigate(
+        "tablePage"
+    );
 
 }
 
 
 function selectTable(number){
 
-    selectedTable = number;
+    selectedTable =
+        number;
 
     localStorage.setItem(
         "tabpay_table",
-        selectedTable
+        number
     );
 
     document.getElementById(
-        "menuTable"
+        "selectedTableText"
     ).innerText =
-        "میز " + selectedTable;
+        number;
 
-    navigate("menuPage");
-
-}
-
-
-function manualTable(){
-
-    var value =
-        document.getElementById(
-            "manualTable"
-        ).value;
-
-    var number =
-        parseInt(value);
-
-    if(
-        isNaN(number) ||
-        number < 1 ||
-        number > 10
-    ){
-
-        alert(
-            "شماره میز باید بین 1 تا 10 باشد."
-        );
-
-        return;
-
-    }
-
-    selectTable(
-        String(number).padStart(2,"0")
+    navigate(
+        "menuPage"
     );
 
+    renderCategories();
+
+    renderMenu();
+
 }
+
+
+
+/* =========================
+   SCANNER
+========================= */
 
 
 function openScanner(){
 
-    navigate("scannerPage");
+    navigate(
+        "scannerPage"
+    );
 
-    setTimeout(function(){
-
-        startScanner();
-
-    },700);
+    setTimeout(
+        startScanner,
+        300
+    );
 
 }
 
 
 function startScanner(){
 
-    var reader =
-        document.getElementById("reader");
+    try{
 
-    if(!reader){
-
-        alert(
-            "صفحه اسکن پیدا نشد."
-        );
-
-        return;
-
-    }
-
-    reader.innerHTML = "";
-
-    if(
-        typeof Html5Qrcode ===
-        "undefined"
-    ){
-
-        alert(
-            "سیستم QR بارگذاری نشده است. اینترنت را بررسی کنید."
-        );
-
-        return;
-
-    }
-
-    qrScanner =
-        new Html5Qrcode("reader");
-
-    Html5Qrcode.getCameras()
-
-    .then(function(cameras){
-
-        if(
-            !cameras ||
-            cameras.length === 0
-        ){
-
-            alert(
-                "هیچ دوربینی پیدا نشد."
+        var scanner =
+            new Html5Qrcode(
+                "reader"
             );
 
-            return;
+        scanner.start(
 
-        }
-
-        var cameraId =
-            cameras[
-                cameras.length - 1
-            ].id;
-
-        for(
-            var i = 0;
-            i < cameras.length;
-            i++
-        ){
-
-            var label =
-                (
-                    cameras[i].label || ""
-                ).toLowerCase();
-
-            if(
-                label.indexOf("back") !== -1 ||
-                label.indexOf("rear") !== -1 ||
-                label.indexOf("environment") !== -1
-            ){
-
-                cameraId =
-                    cameras[i].id;
-
-                break;
-
-            }
-
-        }
-
-        qrScanner.start(
-
-            cameraId,
+            {
+                facingMode:"environment"
+            },
 
             {
                 fps:10,
-
-                qrbox:{
-                    width:250,
-                    height:250
-                }
+                qrbox:250
             },
 
             function(decodedText){
 
-                qrSuccess(decodedText);
+                scanner.stop();
+
+                try{
+
+                    var data =
+                        JSON.parse(
+                            decodedText
+                        );
+
+                    if(
+                        data.table
+                    ){
+
+                        selectTable(
+                            data.table
+                        );
+
+                    }else{
+
+                        alert(
+                            "QR معتبر است ولی شماره میز پیدا نشد."
+                        );
+
+                    }
+
+                }catch(e){
+
+                    var match =
+                        decodedText.match(
+                            /table[=:\/](\d+)/i
+                        );
+
+                    if(match){
+
+                        selectTable(
+                            match[1]
+                        );
+
+                    }else{
+
+                        alert(
+                            "QR معتبر نیست."
+                        );
+
+                    }
+
+                }
 
             },
 
-            function(errorMessage){
+            function(errorMessage){}
+
+        ).catch(
+            function(error){
+
+                alert(
+                    "دسترسی به دوربین امکان‌پذیر نیست."
+                );
 
             }
-
-        )
-
-        .catch(function(error){
-
-            console.log(error);
-
-            alert(
-                "دوربین باز نشد. اجازه دسترسی به دوربین را فعال کنید."
-            );
-
-        });
-
-    })
-
-    .catch(function(error){
-
-        console.log(error);
-
-        alert(
-            "دسترسی به دوربین امکان‌پذیر نیست."
         );
 
-    });
+    }catch(e){
+
+        alert(
+            "اسکنر در دسترس نیست."
+        );
+
+    }
 
 }
 
 
-function qrSuccess(text){
 
-    var result =
-        String(text)
-        .trim()
-        .toUpperCase();
+/* =========================
+   MENU
+========================= */
 
-    var match =
-        result.match(
-            /^TABLE[-_ ]?0?([1-9]|10)$/
+
+function renderCategories(){
+
+    var categories =
+        [
+            "همه",
+            "برگر",
+            "پیتزا",
+            "غذای اصلی",
+            "نوشیدنی"
+        ];
+
+    var box =
+        document.getElementById(
+            "categories"
         );
 
-    if(!match){
+    box.innerHTML = "";
 
-        alert(
-            "QR میز معتبر نیست."
-        );
 
-        return;
+    categories.forEach(
+        function(category){
 
-    }
+            var button =
+                document.createElement(
+                    "button"
+                );
 
-    var number =
-        parseInt(
-            match[1],
-            10
-        );
+            button.className =
+                "category " +
+                (
+                    selectedCategory === category
+                    ? "active"
+                    : ""
+                );
 
-    stopScanner();
+            button.innerText =
+                category;
 
-    selectTable(
-        String(number).padStart(2,"0")
+            button.onclick =
+                function(){
+
+                    selectedCategory =
+                        category;
+
+                    renderCategories();
+
+                    renderMenu();
+
+                };
+
+            box.appendChild(
+                button
+            );
+
+        }
     );
 
 }
 
 
-function stopScanner(){
+function renderMenu(){
 
-    if(!qrScanner){
+    var list =
+        document.getElementById(
+            "menuList"
+        );
+
+    var search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    list.innerHTML = "";
+
+
+    var filtered =
+        foods.filter(
+            function(food){
+
+                var categoryOK =
+                    selectedCategory === "همه"
+                    ||
+                    food.category ===
+                    selectedCategory;
+
+
+                var searchOK =
+                    food.name
+                        .toLowerCase()
+                        .includes(search)
+                    ||
+                    food.description
+                        .toLowerCase()
+                        .includes(search);
+
+
+                return (
+                    categoryOK &&
+                    searchOK
+                );
+
+            }
+        );
+
+
+    if(
+        filtered.length === 0
+    ){
+
+        list.innerHTML =
+            '<div class="card empty">' +
+            'غذایی پیدا نشد 😕' +
+            '</div>';
 
         return;
 
     }
 
-    qrScanner.stop()
 
-    .then(function(){
+    filtered.forEach(
+        function(food){
 
-        qrScanner.clear();
+            var div =
+                document.createElement(
+                    "div"
+                );
 
-        qrScanner = null;
+            div.className =
+                "food";
 
-    })
 
-    .catch(function(){
+            var buttonHTML =
+                food.available
 
-        qrScanner = null;
+                ?
 
-    });
+                '<button class="add" ' +
+                'onclick="addFood(\'' +
+                escapeQuotes(food.name) +
+                '\',' +
+                food.price +
+                ')">' +
+                '➕ افزودن' +
+                '</button>'
+
+                :
+
+                '<span class="unavailable">' +
+                '🔴 ناموجود' +
+                '</span>';
+
+
+            div.innerHTML =
+
+                '<img class="food-image" ' +
+                'src="' +
+                food.image +
+                '" ' +
+                'alt="' +
+                food.name +
+                '">'
+
+                +
+
+                '<div class="food-top">' +
+
+                    '<div class="food-name">' +
+                        food.name +
+                    '</div>' +
+
+                    '<div class="food-price">' +
+                        formatPrice(food.price) +
+                        ' تومان' +
+                    '</div>' +
+
+                '</div>'
+
+                +
+
+                '<div class="food-description">' +
+                    food.description +
+                '</div>'
+
+                +
+
+                '<div class="food-bottom">' +
+                    buttonHTML +
+                '</div>';
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+
+    updateCartCount();
 
 }
 
 
-/* ==================================================
-   افزودن غذا
-================================================== */
+function escapeQuotes(text){
 
-function addFood(name,price){
+    return text
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'");
+
+}
+
+
+
+/* =========================
+   CART
+========================= */
+
+
+function addFood(
+    name,
+    price
+){
 
     var found = null;
+
 
     for(
         var i = 0;
@@ -1127,13 +1366,15 @@ function addFood(name,price){
             cart[i].name === name
         ){
 
-            found = cart[i];
+            found =
+                cart[i];
 
             break;
 
         }
 
     }
+
 
     if(found){
 
@@ -1151,42 +1392,66 @@ function addFood(name,price){
 
     }
 
+
     saveCart();
+
+    updateCartCount();
+
 
     var message =
         document.getElementById(
             "addMessage"
         );
 
+
     message.innerText =
         "✅ " +
         name +
         " به سبد خرید اضافه شد";
 
+
     message.style.display =
         "block";
+
 
     clearTimeout(
         window.addMessageTimer
     );
 
+
     window.addMessageTimer =
-        setTimeout(function(){
+        setTimeout(
+            function(){
 
-            message.style.display =
-                "none";
+                message.style.display =
+                    "none";
 
-        },2500);
+            },
+            2500
+        );
 
 }
 
 
-function saveCart(){
+function updateCartCount(){
 
-    localStorage.setItem(
-        "tabpay_cart",
-        JSON.stringify(cart)
+    var count = 0;
+
+
+    cart.forEach(
+        function(item){
+
+            count +=
+                item.qty;
+
+        }
     );
+
+
+    document.getElementById(
+        "cartCount"
+    ).innerText =
+        count;
 
 }
 
@@ -1195,139 +1460,142 @@ function openCart(){
 
     renderCart();
 
-    document.getElementById(
-        "cartTable"
-    ).innerText =
-        "میز " +
-        (selectedTable || "--");
-
-    navigate("cartPage");
+    navigate(
+        "cartPage"
+    );
 
 }
 
 
 function renderCart(){
 
-    var box =
+    var list =
         document.getElementById(
             "cartList"
         );
 
-    if(cart.length === 0){
 
-        box.innerHTML =
-            "<div class='center'>" +
-            "🛒 سبد خرید خالی است" +
-            "</div>";
+    if(
+        cart.length === 0
+    ){
 
-        document.getElementById(
-            "cartTotal"
-        ).innerText =
-            "۰ تومان";
+        list.innerHTML =
+
+            '<div class="empty">' +
+
+                '<h3>' +
+                'سبد خرید خالی است 🛒' +
+                '</h3>' +
+
+                '<button class="dark" ' +
+                'onclick="navigate(\'menuPage\')">' +
+                'رفتن به منو' +
+                '</button>' +
+
+            '</div>';
 
         return;
 
     }
 
+
     var html = "";
 
-    var total = 0;
 
-    for(
-        var i = 0;
-        i < cart.length;
-        i++
-    ){
+    cart.forEach(
+        function(item,index){
 
-        var item =
-            cart[i];
+            html +=
 
-        var itemTotal =
-            item.price *
-            item.qty;
+                '<div class="cart-item">' +
 
-        total += itemTotal;
+                    '<div class="cart-row">' +
 
-        html +=
+                        '<strong>' +
+                        item.name +
+                        '</strong>' +
 
-        "<div class='cart-item'>" +
+                        '<span>' +
+                        formatPrice(
+                            item.price *
+                            item.qty
+                        ) +
+                        ' تومان</span>' +
 
-            "<div class='cart-top'>" +
+                    '</div>' +
 
-                "<strong>" +
-                    item.name +
-                "</strong>" +
+                    '<br>' +
 
-                "<button " +
-                "class='delete' " +
-                "onclick='deleteItem(" +
-                i +
-                ")'>" +
+                    '<div class="cart-row">' +
 
-                    "🗑️" +
+                        '<div class="qty">' +
 
-                "</button>" +
+                            '<button class="gray" ' +
+                            'onclick="changeQty(' +
+                            index +
+                            ',-1)">−</button>' +
 
-            "</div>" +
+                            '<strong>' +
+                            item.qty +
+                            '</strong>' +
 
-            "<div class='food-price'>" +
+                            '<button class="dark" ' +
+                            'onclick="changeQty(' +
+                            index +
+                            ',1)">+</button>' +
 
-                formatPrice(
-                    itemTotal
-                ) +
+                        '</div>' +
 
-            "</div>" +
+                        '<button class="red" ' +
+                        'onclick="removeItem(' +
+                        index +
+                        ')">' +
+                        '🗑️ حذف' +
+                        '</button>' +
 
-            "<div class='qty'>" +
+                    '</div>' +
 
-                "<button " +
-                "onclick='changeQty(" +
-                i +
-                ",1)'>" +
+                '</div>';
 
-                    "+" +
+        }
+    );
 
-                "</button>" +
 
-                "<strong>" +
-                    item.qty +
-                "</strong>" +
+    html +=
 
-                "<button " +
-                "onclick='changeQty(" +
-                i +
-                ",-1)'>" +
+        '<div class="total">' +
+        'مبلغ کل: ' +
+        formatPrice(
+            getTotal()
+        ) +
+        ' تومان' +
+        '</div>' +
 
-                    "−" +
+        '<button class="green full" ' +
+        'onclick="openBill()">' +
+        '🧾 ادامه و مشاهده صورتحساب' +
+        '</button>' +
 
-                "</button>" +
+        '<button class="red full" ' +
+        'onclick="clearCart()">' +
+        '🗑️ خالی کردن سبد' +
+        '</button>';
 
-            "</div>" +
 
-        "</div>";
-
-    }
-
-    box.innerHTML =
+    list.innerHTML =
         html;
-
-    document.getElementById(
-        "cartTotal"
-    ).innerText =
-        formatPrice(total);
 
 }
 
 
-function changeQty(index,change){
+function changeQty(
+    index,
+    amount
+){
 
-    if(!cart[index]){
+    cart[index].qty +=
+        amount;
 
-        return;
-
-    }
-
-    cart[index].qty += change;
 
     if(
         cart[index].qty <= 0
@@ -1340,20 +1608,17 @@ function changeQty(index,change){
 
     }
 
+
     saveCart();
 
     renderCart();
 
+    updateCartCount();
+
 }
 
 
-function deleteItem(index){
-
-    if(!cart[index]){
-
-        return;
-
-    }
+function removeItem(index){
 
     cart.splice(
         index,
@@ -1364,28 +1629,33 @@ function deleteItem(index){
 
     renderCart();
 
+    updateCartCount();
+
 }
 
 
-/* ==================================================
-   حذف کامل سبد خرید - اصلاح شده
-================================================== */
-
 function clearCart(){
 
-    if(cart.length === 0){
+    if(
+        cart.length === 0
+    ){
 
         return;
 
     }
 
+
     cart = [];
+
 
     localStorage.removeItem(
         "tabpay_cart"
     );
 
+
     renderCart();
+
+    updateCartCount();
 
 }
 
@@ -1394,35 +1664,34 @@ function getTotal(){
 
     var total = 0;
 
-    for(
-        var i = 0;
-        i < cart.length;
-        i++
-    ){
 
-        total +=
-            cart[i].price *
-            cart[i].qty;
+    cart.forEach(
+        function(item){
 
-    }
+            total +=
+                item.price *
+                item.qty;
+
+        }
+    );
+
 
     return total;
 
 }
 
 
-function formatPrice(number){
 
-    return Number(number)
-        .toLocaleString("fa-IR")
-        + " تومان";
-
-}
+/* =========================
+   BILL
+========================= */
 
 
 function openBill(){
 
-    if(cart.length === 0){
+    if(
+        cart.length === 0
+    ){
 
         alert(
             "سبد خرید خالی است."
@@ -1432,118 +1701,91 @@ function openBill(){
 
     }
 
+
     renderBill();
 
-    navigate("billPage");
+    navigate(
+        "billPage"
+    );
 
 }
 
 
 function renderBill(){
 
-    var box =
+    var list =
         document.getElementById(
             "billList"
         );
 
-    var html =
 
-        "<p>" +
+    var html = "";
 
-            "<strong>" +
-                "شماره میز: " +
-            "</strong>" +
 
-            selectedTable +
+    cart.forEach(
+        function(item){
 
-        "</p>" +
+            html +=
 
-        "<hr>";
+                '<div class="cart-row" ' +
+                'style="margin-bottom:12px">' +
 
-    for(
-        var i = 0;
-        i < cart.length;
-        i++
-    ){
+                    '<span>' +
+                    item.name +
+                    ' × ' +
+                    item.qty +
+                    '</span>' +
 
-        var item =
-            cart[i];
+                    '<strong>' +
+                    formatPrice(
+                        item.price *
+                        item.qty
+                    ) +
+                    ' تومان</strong>' +
 
-        html +=
+                '</div>';
 
-        "<div style='" +
-        "display:flex;" +
-        "justify-content:space-between;" +
-        "padding:10px 0;'>" +
+        }
+    );
 
-            "<span>" +
 
-                item.name +
-                " × " +
-                item.qty +
-
-            "</span>" +
-
-            "<strong>" +
-
-                formatPrice(
-                    item.price *
-                    item.qty
-                ) +
-
-            "</strong>" +
-
-        "</div>";
-
-    }
-
-    html +=
-
-        "<hr>" +
-
-        "<div class='total'>" +
-
-            "<span>" +
-                "مبلغ نهایی" +
-            "</span>" +
-
-            "<span>" +
-
-                formatPrice(
-                    getTotal()
-                ) +
-
-            "</span>" +
-
-        "</div>";
-
-    box.innerHTML =
+    list.innerHTML =
         html;
+
+
+    document.getElementById(
+        "billTotal"
+    ).innerText =
+
+        "مبلغ نهایی: " +
+        formatPrice(
+            getTotal()
+        ) +
+        " تومان";
 
 }
 
 
+
+/* =========================
+   ORDER
+========================= */
+
+
 function submitOrder(){
 
-    if(cart.length === 0){
+    if(
+        cart.length === 0
+    ){
 
         alert(
-            "هیچ غذایی انتخاب نشده است."
+            "سبد خرید خالی است."
         );
 
         return;
 
     }
 
-    if(!selectedTable){
-
-        alert(
-            "شماره میز مشخص نیست."
-        );
-
-        return;
-
-    }
 
     var order = {
 
@@ -1555,9 +1797,7 @@ function submitOrder(){
             selectedTable,
 
         items:
-            JSON.parse(
-                JSON.stringify(cart)
-            ),
+            cart,
 
         total:
             getTotal(),
@@ -1570,17 +1810,20 @@ function submitOrder(){
 
     };
 
+
     localStorage.setItem(
         "tabpay_order",
         JSON.stringify(order)
     );
 
-    lastOrder =
-        order;
 
     cart = [];
 
-    saveCart();
+
+    localStorage.removeItem(
+        "tabpay_cart"
+    );
+
 
     document.getElementById(
         "orderId"
@@ -1588,31 +1831,58 @@ function submitOrder(){
         "شماره سفارش: " +
         order.id;
 
-    navigate("successPage");
+
+    navigate(
+        "successPage"
+    );
 
 }
 
 
+
+/* =========================
+   PAYMENT
+========================= */
+
+
 function openPayment(){
 
-    if(!lastOrder){
+    var saved =
+        localStorage.getItem(
+            "tabpay_order"
+        );
+
+
+    if(!saved){
 
         alert(
-            "سفارشی وجود ندارد."
+            "سفارشی پیدا نشد."
         );
 
         return;
 
     }
 
-    document.getElementById(
-        "paymentAmount"
-    ).innerText =
-        formatPrice(
-            lastOrder.total
+
+    var order =
+        JSON.parse(
+            saved
         );
 
-    navigate("paymentPage");
+
+    document.getElementById(
+        "paymentTotal"
+    ).innerText =
+
+        formatPrice(
+            order.total
+        ) +
+        " تومان";
+
+
+    navigate(
+        "paymentPage"
+    );
 
 }
 
@@ -1620,12 +1890,107 @@ function openPayment(){
 function fakePayment(){
 
     alert(
-        "پرداخت آزمایشی با موفقیت انجام شد ✅"
+        "در نسخه فعلی، درگاه پرداخت آزمایشی است. در مرحله بعد درگاه واقعی متصل می‌کنیم."
     );
+
+}
+
+
+
+/* =========================
+   LAST ORDER
+========================= */
+
+
+function showLastOrder(){
+
+    var saved =
+        localStorage.getItem(
+            "tabpay_order"
+        );
+
+
+    if(!saved){
+
+        alert(
+            "هنوز سفارشی ثبت نشده است."
+        );
+
+        return;
+
+    }
+
+
+    var order =
+        JSON.parse(
+            saved
+        );
+
+
+    alert(
+
+        "شماره سفارش: " +
+        order.id +
+
+        "\nمیز: " +
+        order.table +
+
+        "\nوضعیت: " +
+        order.status +
+
+        "\nمبلغ: " +
+        formatPrice(
+            order.total
+        ) +
+        " تومان"
+
+    );
+
+}
+
+
+
+/* =========================
+   PRICE
+========================= */
+
+
+function formatPrice(
+    number
+){
+
+    return Number(
+        number
+    ).toLocaleString(
+        "fa-IR"
+    );
+
+}
+
+
+
+/* =========================
+   INIT
+========================= */
+
+
+loadCart();
+
+updateCartCount();
+
+if(
+    selectedTable
+){
+
+    document.getElementById(
+        "selectedTableText"
+    ).innerText =
+        selectedTable;
 
 }
 
 </script>
 
 </body>
+
 </html>
