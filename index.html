@@ -1,46 +1,88 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TabPay | تب‌پی</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
   font-family:Tahoma,Arial,sans-serif;
-  background:#f1f5f9;
+  background:#eef2f7;
   color:#17202a;
 }
+
 .app{
   max-width:520px;
-  margin:auto;
   min-height:100vh;
-  background:#fff;
+  margin:auto;
+  background:white;
 }
+
 header{
   background:#111827;
-  color:#fff;
-  padding:20px;
-  border-radius:0 0 24px 24px;
+  color:white;
+  padding:22px 18px;
+  border-radius:0 0 26px 26px;
 }
-.logo{font-size:28px;font-weight:bold}
-.logo span{color:#22c55e}
-.subtitle{font-size:13px;color:#cbd5e1;margin-top:6px}
 
-.content{padding:18px}
+.logo{
+  font-size:30px;
+  font-weight:bold;
+}
 
-.screen{display:none}
-.screen.active{display:block}
+.logo span{
+  color:#22c55e;
+}
 
-h1{font-size:23px;margin-bottom:8px}
-.muted{color:#64748b;font-size:14px;line-height:1.8}
+.subtitle{
+  margin-top:5px;
+  color:#cbd5e1;
+  font-size:13px;
+}
+
+.content{
+  padding:18px;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+h1{
+  font-size:23px;
+  margin-bottom:8px;
+}
+
+h2{
+  font-size:19px;
+  margin-bottom:7px;
+}
+
+.muted{
+  color:#64748b;
+  font-size:14px;
+  line-height:1.9;
+}
 
 .card{
   background:#f8fafc;
   border:1px solid #e2e8f0;
   border-radius:18px;
-  padding:16px;
+  padding:17px;
   margin:15px 0;
 }
 
@@ -54,9 +96,21 @@ h1{font-size:23px;margin-bottom:8px}
   margin-top:12px;
   cursor:pointer;
 }
-.primary{background:#22c55e;color:white}
-.dark{background:#111827;color:white}
-.light{background:#e2e8f0;color:#17202a}
+
+.primary{
+  background:#22c55e;
+  color:white;
+}
+
+.dark{
+  background:#111827;
+  color:white;
+}
+
+.light{
+  background:#e2e8f0;
+  color:#17202a;
+}
 
 input{
   width:100%;
@@ -66,7 +120,6 @@ input{
   border-radius:12px;
   font-size:16px;
   text-align:center;
-  direction:ltr;
 }
 
 .message{
@@ -78,6 +131,26 @@ input{
   font-size:14px;
 }
 
+.scanner-box{
+  display:none;
+  margin-top:15px;
+  border-radius:18px;
+  overflow:hidden;
+  background:#000;
+}
+
+#reader{
+  width:100%;
+}
+
+.scan-info{
+  background:#111827;
+  color:white;
+  padding:12px;
+  text-align:center;
+  font-size:13px;
+}
+
 .menu-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -87,13 +160,13 @@ input{
 
 .food{
   border:1px solid #e2e8f0;
-  border-radius:16px;
+  border-radius:17px;
   padding:12px;
-  background:#fff;
+  background:white;
 }
 
 .food-icon{
-  font-size:38px;
+  font-size:40px;
   text-align:center;
   padding:8px;
 }
@@ -125,7 +198,8 @@ input{
   justify-content:space-between;
   align-items:center;
   border-bottom:1px solid #e2e8f0;
-  padding:13px 0;
+  padding:14px 0;
+  gap:10px;
 }
 
 .qty{
@@ -135,8 +209,8 @@ input{
 }
 
 .qty button{
-  width:30px;
-  height:30px;
+  width:32px;
+  height:32px;
   border:0;
   border-radius:8px;
   background:#e2e8f0;
@@ -149,6 +223,20 @@ input{
   font-size:18px;
   font-weight:bold;
   margin-top:18px;
+}
+
+.empty{
+  text-align:center;
+  padding:45px 10px;
+  color:#64748b;
+}
+
+.badge{
+  background:#22c55e;
+  color:white;
+  padding:2px 7px;
+  border-radius:20px;
+  font-size:11px;
 }
 
 .bottom{
@@ -172,20 +260,21 @@ input{
   border-radius:11px;
 }
 
-.badge{
-  background:#22c55e;
-  color:white;
-  padding:2px 7px;
-  border-radius:20px;
-  font-size:11px;
+.table-title{
+  background:#dcfce7;
+  color:#166534;
+  padding:10px;
+  border-radius:12px;
+  text-align:center;
+  margin:12px 0;
+  font-size:14px;
 }
 
-.empty{
-  text-align:center;
-  padding:40px 10px;
-  color:#64748b;
-}
 </style>
+
+<!-- QR SCANNER LIBRARY -->
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -193,348 +282,1149 @@ input{
 <div class="app">
 
 <header>
-  <div class="logo">Tab<span>Pay</span></div>
-  <div class="subtitle">سفارش و پرداخت هوشمند رستوران</div>
+
+  <div class="logo">
+    Tab<span>Pay</span>
+  </div>
+
+  <div class="subtitle">
+    سفارش و پرداخت هوشمند رستوران
+  </div>
+
 </header>
+
 
 <div class="content">
 
+
 <!-- HOME -->
+
 <section id="home" class="screen active">
+
   <h1>خوش آمدید 👋</h1>
+
   <p class="muted">
-    منو را ببینید، سفارش دهید و صورت‌حساب خود را مدیریت کنید.
+    QR میز را اسکن کنید یا شماره میز را دستی وارد کنید.
   </p>
+
 
   <div class="card">
-    <h2>📱 ورود به میز</h2>
-    <p class="muted">کد میز خود را وارد کنید.</p>
 
-    <input id="tableInput" placeholder="مثلاً TABLE-01">
+    <h2>📷 اسکن QR میز</h2>
 
-    <button class="btn primary" onclick="enterTable()">
-      تأیید میز
+    <p class="muted">
+      دوربین گوشی را فعال کنید و QR روی میز را مقابل دوربین بگیرید.
+    </p>
+
+    <button
+      class="btn dark"
+      onclick="startScanner()">
+
+      📷 شروع اسکن QR
+
     </button>
 
-    <div id="tableMessage" class="message"></div>
-  </div>
-</section>
 
-<!-- MENU -->
-<section id="menu" class="screen">
-  <h1>🍽️ منوی رستوران</h1>
-  <p class="muted">
-    میز شما: <b id="tableNumber"></b>
-  </p>
+    <div id="scannerBox" class="scanner-box">
 
-  <div class="menu-grid" id="menuGrid"></div>
-</section>
+      <div id="reader"></div>
 
-<!-- CART -->
-<section id="cart" class="screen">
-  <h1>🛒 سبد سفارش</h1>
-
-  <div id="cartContent"></div>
-</section>
-
-<!-- BILL -->
-<section id="bill" class="screen">
-  <h1>🧾 صورت‌حساب</h1>
-
-  <div class="card" id="billContent"></div>
-
-  <button class="btn primary" onclick="fakePayment()">
-    💳 پرداخت صورت‌حساب
-  </button>
-</section>
-
-</div>
-
-<div class="bottom">
-  <div class="nav">
-    <button onclick="showScreen('home')">🏠 خانه</button>
-    <button onclick="showScreen('menu')">🍽️ منو</button>
-    <button onclick="showScreen('cart')">
-      🛒 سبد <span class="badge" id="cartCount">0</span>
-    </button>
-  </div>
-</div>
-
-</div>
-
-<script>
-
-const foods = [
-  {id:1,name:"چلوکباب کوبیده",price:180000,icon:"🍖"},
-  {id:2,name:"جوجه کباب",price:160000,icon:"🍗"},
-  {id:3,name:"قورمه سبزی",price:140000,icon:"🍲"},
-  {id:4,name:"زرشک پلو با مرغ",price:150000,icon:"🍗"},
-  {id:5,name:"سیب‌زمینی سرخ‌کرده",price:70000,icon:"🍟"},
-  {id:6,name:"دوغ",price:30000,icon:"🥤"},
-  {id:7,name:"نوشابه",price:35000,icon:"🥤"},
-  {id:8,name:"چای",price:25000,icon:"☕"},
-  {id:9,name:"کیک شکلاتی",price:80000,icon:"🍰"}
-];
-
-let cart = JSON.parse(localStorage.getItem("tabpay_cart") || "{}");
-let table = localStorage.getItem("tabpay_table") || "";
-
-function money(number){
-  return number.toLocaleString("fa-IR") + " تومان";
-}
-
-function showScreen(id){
-
-  if(id !== "home" && !table){
-    alert("ابتدا میز خود را انتخاب کنید.");
-    return;
-  }
-
-  document.querySelectorAll(".screen")
-    .forEach(x=>x.classList.remove("active"));
-
-  document.getElementById(id)
-    .classList.add("active");
-
-  if(id==="menu") renderMenu();
-  if(id==="cart") renderCart();
-  if(id==="bill") renderBill();
-
-  window.scrollTo(0,0);
-}
-
-function enterTable(){
-
-  let value = document.getElementById("tableInput").value
-    .trim()
-    .toUpperCase();
-
-  if(/^\d+$/.test(value)){
-    value = "TABLE-" + value.padStart(2,"0");
-  }
-
-  const valid = [
-    "TABLE-01",
-    "TABLE-02",
-    "TABLE-03",
-    "TABLE-04"
-  ];
-
-  const message = document.getElementById("tableMessage");
-
-  if(!valid.includes(value)){
-    message.style.display="block";
-    message.style.background="#fee2e2";
-    message.style.color="#991b1b";
-    message.innerText="❌ کد میز معتبر نیست.";
-    return;
-  }
-
-  table=value;
-  localStorage.setItem("tabpay_table",table);
-
-  message.style.display="block";
-  message.style.background="#dcfce7";
-  message.style.color="#166534";
-  message.innerText=
-    "✅ میز " + value.replace("TABLE-","") +
-    " با موفقیت ثبت شد.";
-
-  document.getElementById("tableNumber").innerText =
-    value.replace("TABLE-","");
-
-  setTimeout(()=>{
-    showScreen("menu");
-  },700);
-}
-
-function renderMenu(){
-
-  const grid=document.getElementById("menuGrid");
-
-  grid.innerHTML=foods.map(food=>`
-
-    <div class="food">
-
-      <div class="food-icon">${food.icon}</div>
-
-      <h3>${food.name}</h3>
-
-      <div class="price">${money(food.price)}</div>
-
-      <button class="add" onclick="addToCart(${food.id})">
-        + افزودن
-      </button>
+      <div class="scan-info">
+        QR میز را داخل کادر قرار دهید
+      </div>
 
     </div>
 
-  `).join("");
+
+    <button
+      id="stopScannerBtn"
+      class="btn light"
+      style="display:none"
+      onclick="stopScanner()">
+
+      ✕ بستن دوربین
+
+    </button>
+
+  </div>
+
+
+
+  <div class="card">
+
+    <h2>⌨️ ورود دستی</h2>
+
+    <p class="muted">
+      اگر QR در دسترس نیست، شماره میز را وارد کنید.
+    </p>
+
+    <input
+      id="tableInput"
+      type="text"
+      placeholder="مثلاً 1 یا TABLE-01">
+
+    <button
+      class="btn primary"
+      onclick="enterTable()">
+
+      تأیید میز
+
+    </button>
+
+    <div
+      id="tableMessage"
+      class="message">
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- MENU -->
+
+<section id="menu" class="screen">
+
+  <h1>🍽️ منوی رستوران</h1>
+
+  <div class="table-title">
+    میز شما: <b id="tableNumber"></b>
+  </div>
+
+  <div
+    class="menu-grid"
+    id="menuGrid">
+  </div>
+
+</section>
+
+
+
+<!-- CART -->
+
+<section id="cart" class="screen">
+
+  <h1>🛒 سبد سفارش</h1>
+
+  <div id="cartContent"></div>
+
+</section>
+
+
+
+<!-- BILL -->
+
+<section id="bill" class="screen">
+
+  <h1>🧾 صورت‌حساب</h1>
+
+  <div
+    class="card"
+    id="billContent">
+  </div>
+
+  <button
+    class="btn primary"
+    onclick="fakePayment()">
+
+    💳 پرداخت صورت‌حساب
+
+  </button>
+
+</section>
+
+
+</div>
+
+
+
+<!-- NAVIGATION -->
+
+<div class="bottom">
+
+  <div class="nav">
+
+    <button onclick="showScreen('home')">
+      🏠 خانه
+    </button>
+
+    <button onclick="showScreen('menu')">
+      🍽️ منو
+    </button>
+
+    <button onclick="showScreen('cart')">
+      🛒 سبد
+      <span
+        class="badge"
+        id="cartCount">
+        0
+      </span>
+    </button>
+
+  </div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   MENU
+========================= */
+
+const foods = [
+
+  {
+    id:1,
+    name:"چلوکباب کوبیده",
+    price:180000,
+    icon:"🍖"
+  },
+
+  {
+    id:2,
+    name:"جوجه کباب",
+    price:160000,
+    icon:"🍗"
+  },
+
+  {
+    id:3,
+    name:"قورمه سبزی",
+    price:140000,
+    icon:"🍲"
+  },
+
+  {
+    id:4,
+    name:"زرشک پلو با مرغ",
+    price:150000,
+    icon:"🍗"
+  },
+
+  {
+    id:5,
+    name:"سیب‌زمینی سرخ‌کرده",
+    price:70000,
+    icon:"🍟"
+  },
+
+  {
+    id:6,
+    name:"دوغ",
+    price:30000,
+    icon:"🥤"
+  },
+
+  {
+    id:7,
+    name:"نوشابه",
+    price:35000,
+    icon:"🥤"
+  },
+
+  {
+    id:8,
+    name:"چای",
+    price:25000,
+    icon:"☕"
+  },
+
+  {
+    id:9,
+    name:"کیک شکلاتی",
+    price:80000,
+    icon:"🍰"
+  }
+
+];
+
+
+
+/* =========================
+   DATA
+========================= */
+
+let cart =
+  JSON.parse(
+    localStorage.getItem("tabpay_cart") || "{}"
+  );
+
+let table =
+  localStorage.getItem("tabpay_table") || "";
+
+let scanner = null;
+
+let scannerRunning = false;
+
+
+
+/* =========================
+   MONEY
+========================= */
+
+function money(number){
+
+  return number.toLocaleString("fa-IR")
+    + " تومان";
+
 }
+
+
+
+/* =========================
+   SCREEN
+========================= */
+
+function showScreen(id){
+
+  if(
+    id !== "home" &&
+    !table
+  ){
+
+    alert(
+      "ابتدا میز خود را انتخاب کنید."
+    );
+
+    return;
+  }
+
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(
+      x => x.classList.remove("active")
+    );
+
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+
+  if(id === "menu")
+    renderMenu();
+
+  if(id === "cart")
+    renderCart();
+
+  if(id === "bill")
+    renderBill();
+
+
+  window.scrollTo(0,0);
+
+}
+
+
+
+/* =========================
+   TABLE
+========================= */
+
+function normalizeTable(value){
+
+  value =
+    value
+      .trim()
+      .toUpperCase();
+
+
+  if(
+    value.startsWith("HTTP")
+  ){
+
+    try{
+
+      const url =
+        new URL(value);
+
+      const qrTable =
+        url.searchParams.get("table");
+
+      if(qrTable){
+        value = qrTable;
+      }
+
+    }catch(e){}
+
+  }
+
+
+  if(
+    value.startsWith("TABLE-")
+  ){
+
+    return value;
+
+  }
+
+
+  if(
+    /^\d+$/.test(value)
+  ){
+
+    return(
+      "TABLE-" +
+      value.padStart(2,"0")
+    );
+
+  }
+
+
+  return value;
+
+}
+
+
+
+function setTable(value){
+
+  value =
+    normalizeTable(value);
+
+
+  const valid = [
+
+    "TABLE-01",
+    "TABLE-02",
+    "TABLE-03",
+    "TABLE-04",
+    "TABLE-05",
+    "TABLE-06",
+    "TABLE-07",
+    "TABLE-08",
+    "TABLE-09",
+    "TABLE-10"
+
+  ];
+
+
+  if(
+    !valid.includes(value)
+  ){
+
+    alert(
+      "❌ QR یا کد میز معتبر نیست."
+    );
+
+    return false;
+
+  }
+
+
+  table = value;
+
+
+  localStorage.setItem(
+    "tabpay_table",
+    table
+  );
+
+
+  document
+    .getElementById("tableNumber")
+    .innerText =
+      table.replace(
+        "TABLE-",
+        ""
+      );
+
+
+  return true;
+
+}
+
+
+
+/* =========================
+   MANUAL TABLE
+========================= */
+
+function enterTable(){
+
+  const input =
+    document.getElementById(
+      "tableInput"
+    );
+
+  const message =
+    document.getElementById(
+      "tableMessage"
+    );
+
+
+  let value =
+    normalizeTable(
+      input.value
+    );
+
+
+  const success =
+    setTable(value);
+
+
+  if(!success){
+
+    message.style.display =
+      "block";
+
+    message.style.background =
+      "#fee2e2";
+
+    message.style.color =
+      "#991b1b";
+
+    message.innerText =
+      "❌ شماره میز معتبر نیست.";
+
+    return;
+
+  }
+
+
+  message.style.display =
+    "block";
+
+  message.style.background =
+    "#dcfce7";
+
+  message.style.color =
+    "#166534";
+
+  message.innerText =
+    "✅ میز " +
+    table.replace("TABLE-","") +
+    " با موفقیت ثبت شد.";
+
+
+  setTimeout(
+    () => showScreen("menu"),
+    700
+  );
+
+}
+
+
+
+/* =========================
+   QR SCANNER
+========================= */
+
+function startScanner(){
+
+  if(scannerRunning)
+    return;
+
+
+  const box =
+    document.getElementById(
+      "scannerBox"
+    );
+
+  const stopBtn =
+    document.getElementById(
+      "stopScannerBtn"
+    );
+
+
+  box.style.display =
+    "block";
+
+  stopBtn.style.display =
+    "block";
+
+
+  scanner =
+    new Html5Qrcode("reader");
+
+
+  const config = {
+
+    fps:10,
+
+    qrbox:{
+      width:250,
+      height:250
+    },
+
+    aspectRatio:1.0
+
+  };
+
+
+  scanner
+    .start(
+
+      {
+        facingMode:
+          "environment"
+      },
+
+      config,
+
+      onScanSuccess,
+
+      function(errorMessage){
+        // خطاهای لحظه‌ای اسکن نادیده گرفته می‌شوند
+      }
+
+    )
+
+    .then(() => {
+
+      scannerRunning =
+        true;
+
+    })
+
+    .catch(error => {
+
+      console.log(error);
+
+      alert(
+        "❌ دوربین فعال نشد.\n\n" +
+        "اجازه دسترسی دوربین را به مرورگر بدهید."
+      );
+
+      box.style.display =
+        "none";
+
+      stopBtn.style.display =
+        "none";
+
+      scanner = null;
+
+    });
+
+}
+
+
+
+/* =========================
+   QR SUCCESS
+========================= */
+
+function onScanSuccess(decodedText){
+
+  if(!scannerRunning)
+    return;
+
+
+  const success =
+    setTable(decodedText);
+
+
+  if(!success)
+    return;
+
+
+  stopScanner();
+
+
+  alert(
+    "✅ QR میز " +
+    table.replace("TABLE-","") +
+    " با موفقیت اسکن شد."
+  );
+
+
+  showScreen("menu");
+
+}
+
+
+
+/* =========================
+   STOP SCANNER
+========================= */
+
+function stopScanner(){
+
+  if(
+    scanner &&
+    scannerRunning
+  ){
+
+    scanner
+      .stop()
+      .then(() => {
+
+        scanner.clear();
+
+        scanner = null;
+
+        scannerRunning =
+          false;
+
+      })
+
+      .catch(error => {
+
+        console.log(error);
+
+        scanner = null;
+
+        scannerRunning =
+          false;
+
+      });
+
+  }
+
+
+  document
+    .getElementById(
+      "scannerBox"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "stopScannerBtn"
+    )
+    .style.display =
+      "none";
+
+}
+
+
+
+/* =========================
+   MENU
+========================= */
+
+function renderMenu(){
+
+  const grid =
+    document.getElementById(
+      "menuGrid"
+    );
+
+
+  grid.innerHTML =
+
+    foods.map(food => `
+
+      <div class="food">
+
+        <div class="food-icon">
+          ${food.icon}
+        </div>
+
+        <h3>
+          ${food.name}
+        </h3>
+
+        <div class="price">
+          ${money(food.price)}
+        </div>
+
+        <button
+          class="add"
+          onclick="addToCart(${food.id})">
+
+          + افزودن
+
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+
+/* =========================
+   CART
+========================= */
 
 function addToCart(id){
 
-  cart[id]=(cart[id] || 0)+1;
+  cart[id] =
+    (cart[id] || 0) + 1;
+
 
   saveCart();
 
   updateCartCount();
 
-  alert("✅ به سبد سفارش اضافه شد");
+
+  alert(
+    "✅ به سبد سفارش اضافه شد"
+  );
+
 }
+
+
 
 function changeQty(id,change){
 
-  cart[id]=(cart[id] || 0)+change;
+  cart[id] =
+    (cart[id] || 0) + change;
 
-  if(cart[id]<=0){
+
+  if(cart[id] <= 0){
+
     delete cart[id];
+
   }
 
+
   saveCart();
+
   renderCart();
+
   updateCartCount();
+
 }
 
+
+
 function saveCart(){
+
   localStorage.setItem(
     "tabpay_cart",
     JSON.stringify(cart)
   );
+
 }
+
+
 
 function updateCartCount(){
 
-  let count=Object.values(cart)
-    .reduce((a,b)=>a+b,0);
+  const count =
+    Object
+      .values(cart)
+      .reduce(
+        (a,b) => a+b,
+        0
+      );
 
-  document.getElementById("cartCount")
-    .innerText=count;
+
+  document
+    .getElementById(
+      "cartCount"
+    )
+    .innerText =
+      count;
+
 }
+
+
+
+/* =========================
+   RENDER CART
+========================= */
 
 function renderCart(){
 
-  const box=document.getElementById("cartContent");
+  const box =
+    document.getElementById(
+      "cartContent"
+    );
 
-  const ids=Object.keys(cart);
 
-  if(ids.length===0){
+  const ids =
+    Object.keys(cart);
 
-    box.innerHTML=`
+
+  if(ids.length === 0){
+
+    box.innerHTML = `
+
       <div class="empty">
-        🛒<br><br>
+
+        🛒
+
+        <br><br>
+
         سبد سفارش شما خالی است.
+
       </div>
+
     `;
 
     return;
+
   }
 
-  let total=0;
 
-  let html="";
+  let total = 0;
 
-  ids.forEach(id=>{
+  let html = "";
 
-    const food=foods.find(x=>x.id==id);
-    const qty=cart[id];
 
-    const subtotal=food.price*qty;
+  ids.forEach(id => {
 
-    total+=subtotal;
+    const food =
+      foods.find(
+        x => x.id == id
+      );
 
-    html+=`
+
+    const qty =
+      cart[id];
+
+
+    const subtotal =
+      food.price * qty;
+
+
+    total += subtotal;
+
+
+    html += `
+
       <div class="cart-item">
 
         <div>
-          <b>${food.name}</b>
+
+          <b>
+            ${food.name}
+          </b>
+
           <br>
-          <small>${money(subtotal)}</small>
+
+          <small>
+            ${money(subtotal)}
+          </small>
+
         </div>
+
 
         <div class="qty">
 
-          <button onclick="changeQty(${id},1)">+</button>
+          <button
+            onclick="changeQty(${id},1)">
+            +
+          </button>
 
-          <b>${qty}</b>
+          <b>
+            ${qty}
+          </b>
 
-          <button onclick="changeQty(${id},-1)">−</button>
+          <button
+            onclick="changeQty(${id},-1)">
+            −
+          </button>
 
         </div>
 
       </div>
+
     `;
+
   });
 
-  html+=`
+
+  html += `
+
     <div class="total">
-      <span>مبلغ کل</span>
-      <span>${money(total)}</span>
+
+      <span>
+        مبلغ کل
+      </span>
+
+      <span>
+        ${money(total)}
+      </span>
+
     </div>
 
-    <button class="btn primary"
+
+    <button
+      class="btn primary"
       onclick="showScreen('bill')">
+
       مشاهده صورت‌حساب
+
     </button>
+
   `;
 
-  box.innerHTML=html;
+
+  box.innerHTML =
+    html;
+
 }
+
+
+
+/* =========================
+   BILL
+========================= */
 
 function renderBill(){
 
-  const box=document.getElementById("billContent");
+  const box =
+    document.getElementById(
+      "billContent"
+    );
 
-  let total=0;
-  let html="";
 
-  Object.keys(cart).forEach(id=>{
+  let total = 0;
 
-    const food=foods.find(x=>x.id==id);
-    const qty=cart[id];
+  let html = "";
 
-    const subtotal=food.price*qty;
 
-    total+=subtotal;
+  Object
+    .keys(cart)
+    .forEach(id => {
 
-    html+=`
-      <p style="margin:10px 0">
-        ${food.name} × ${qty}
-        <br>
-        <b>${money(subtotal)}</b>
-      </p>
-    `;
-  });
+      const food =
+        foods.find(
+          x => x.id == id
+        );
 
-  html+=`
+
+      const qty =
+        cart[id];
+
+
+      const subtotal =
+        food.price * qty;
+
+
+      total += subtotal;
+
+
+      html += `
+
+        <p style="margin:12px 0">
+
+          ${food.name}
+          × ${qty}
+
+          <br>
+
+          <b>
+            ${money(subtotal)}
+          </b>
+
+        </p>
+
+      `;
+
+    });
+
+
+  html += `
+
     <hr>
+
     <div class="total">
-      <span>مبلغ نهایی</span>
-      <span>${money(total)}</span>
+
+      <span>
+        مبلغ نهایی
+      </span>
+
+      <span>
+        ${money(total)}
+      </span>
+
     </div>
+
   `;
 
-  box.innerHTML=html;
+
+  box.innerHTML =
+    html;
+
 }
+
+
+
+/* =========================
+   PAYMENT
+========================= */
 
 function fakePayment(){
 
-  if(Object.keys(cart).length===0){
-    alert("سبد سفارش خالی است.");
+  if(
+    Object.keys(cart).length === 0
+  ){
+
+    alert(
+      "سبد سفارش خالی است."
+    );
+
     return;
+
   }
 
+
   alert(
-    "💳 در نسخه آزمایشی هستیم.\n\n" +
-    "پرداخت واقعی هنوز متصل نشده است."
+
+    "💳 نسخه فعلی آزمایشی است.\n\n" +
+
+    "در مرحله بعد درگاه پرداخت واقعی " +
+    "و ثبت سفارش را اضافه می‌کنیم."
+
   );
+
 }
+
+
+
+/* =========================
+   START
+========================= */
 
 updateCartCount();
 
+
 if(table){
-  document.getElementById("tableNumber").innerText =
-    table.replace("TABLE-","");
+
+  document
+    .getElementById(
+      "tableNumber"
+    )
+    .innerText =
+      table.replace(
+        "TABLE-",
+        ""
+      );
+
 }
+
+
+/* QR LINK SUPPORT */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+
+const qrTable =
+  params.get("table");
+
+
+if(qrTable){
+
+  if(setTable(qrTable)){
+
+    setTimeout(
+      () => showScreen("menu"),
+      300
+    );
+
+  }
+
+}
+
 
 </script>
 
