@@ -1,2435 +1,350 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TabPay | تب‌پی</title>
 
-
-<!-- QR SCANNER -->
-<script
-  src="https://unpkg.com/html5-qrcode"
-  type="text/javascript">
-</script>
-
-
-<!-- QR GENERATOR -->
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-</script>
-
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-
-/* =========================
-   GLOBAL
-========================= */
-
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Tahoma,Arial,sans-serif;
 }
 
 body{
-  background:#f1f5f9;
-  color:#0f172a;
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#f4f6f8;
+  color:#222;
 }
 
-.app{
-  width:100%;
-  max-width:520px;
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.container{
+  max-width:600px;
   margin:auto;
-  min-height:100vh;
-  background:#fff;
+  padding:16px;
 }
-
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-  background:#0f172a;
-  color:#fff;
-  padding:20px;
-  text-align:center;
-}
-
-header h1{
-  font-size:27px;
-  margin-bottom:7px;
-}
-
-header p{
-  color:#cbd5e1;
-  font-size:13px;
-}
-
-
-/* =========================
-   SCREENS
-========================= */
 
 .screen{
   display:none;
-  padding:20px;
+  min-height:100vh;
 }
 
 .screen.active{
   display:block;
 }
 
+.header{
+  background:#111827;
+  color:white;
+  padding:18px;
+  border-radius:0 0 20px 20px;
+  margin:-16px -16px 20px;
+}
 
-/* =========================
-   CARD
-========================= */
+.header h1{
+  margin:0;
+  font-size:25px;
+}
+
+.header p{
+  margin:7px 0 0;
+  opacity:.8;
+}
 
 .card{
-  background:#f8fafc;
+  background:white;
   border-radius:18px;
-  padding:20px;
-  margin-bottom:18px;
-  border:1px solid #e2e8f0;
-}
-
-h2{
-  margin-bottom:10px;
-  font-size:20px;
-}
-
-h3{
-  margin-bottom:8px;
-}
-
-.muted{
-  color:#64748b;
-  font-size:14px;
-  line-height:1.8;
-}
-
-
-/* =========================
-   INPUT
-========================= */
-
-input{
-  width:100%;
-  padding:15px;
-  border:1px solid #cbd5e1;
-  border-radius:12px;
-  font-size:16px;
-  margin:12px 0;
-  direction:ltr;
-  text-align:center;
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-
-button{
-  border:none;
-  cursor:pointer;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
 .btn{
   width:100%;
-  padding:15px;
-  border-radius:12px;
+  border:0;
+  padding:14px;
+  border-radius:14px;
   font-size:16px;
   margin-top:10px;
-  font-weight:bold;
 }
 
-.primary{
-  background:#2563eb;
-  color:#fff;
+.btn.dark{
+  background:#111827;
+  color:white;
 }
 
-.dark{
-  background:#0f172a;
-  color:#fff;
-}
-
-.light{
-  background:#e2e8f0;
-  color:#0f172a;
-}
-
-.success{
+.btn.green{
   background:#16a34a;
-  color:#fff;
+  color:white;
 }
 
-.danger{
+.btn.red{
   background:#dc2626;
-  color:#fff;
+  color:white;
 }
 
-
-/* =========================
-   TABLE
-========================= */
-
-.table-badge{
-  display:inline-block;
-  background:#dbeafe;
-  color:#1d4ed8;
-  padding:8px 14px;
-  border-radius:20px;
-  font-weight:bold;
-  margin:10px 0;
+.btn.gray{
+  background:#e5e7eb;
+  color:#111;
 }
 
-
-/* =========================
-   MENU
-========================= */
-
-.menu-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  background:#fff;
-  border:1px solid #e2e8f0;
-  padding:15px;
-  border-radius:15px;
-  margin-bottom:12px;
-}
-
-.menu-info{
-  flex:1;
-}
-
-.price{
-  color:#2563eb;
-  font-weight:bold;
-  margin-top:5px;
-}
-
-.add-btn{
-  background:#2563eb;
-  color:#fff;
-  border-radius:10px;
-  padding:10px 14px;
-}
-
-
-/* =========================
-   CART
-========================= */
-
-.cart-item{
-  background:#fff;
-  border:1px solid #e2e8f0;
-  border-radius:15px;
+.input{
+  width:100%;
   padding:14px;
-  margin-bottom:12px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+  margin:8px 0;
+  text-align:center;
 }
 
-.cart-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.title{
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+.table-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
   gap:10px;
 }
 
-.cart-name{
-  font-weight:bold;
+.table-btn{
+  border:0;
+  padding:18px;
+  background:#f1f5f9;
+  border-radius:15px;
+  font-size:17px;
 }
 
-.delete-btn{
-  background:#fee2e2;
-  color:#dc2626;
-  border-radius:10px;
-  padding:9px 11px;
-  font-size:16px;
+.table-btn.selected{
+  background:#111827;
+  color:white;
 }
 
-.quantity-row{
+.menu-item{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-top:12px;
+  gap:10px;
+  border:1px solid #eee;
+  border-radius:15px;
+  padding:14px;
+  margin-bottom:10px;
 }
 
-.quantity-controls{
+.food-info{
+  flex:1;
+}
+
+.food-name{
+  font-weight:bold;
+  font-size:17px;
+}
+
+.food-price{
+  color:#16a34a;
+  margin-top:7px;
+  font-size:14px;
+}
+
+.add-btn{
+  background:#111827;
+  color:white;
+  border:0;
+  border-radius:12px;
+  padding:11px 14px;
+}
+
+.cart-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px 0;
+  border-bottom:1px solid #eee;
+}
+
+.qty{
   display:flex;
   align-items:center;
   gap:8px;
 }
 
-.qty-btn{
-  width:35px;
-  height:35px;
+.qty button{
+  width:32px;
+  height:32px;
+  border:0;
   border-radius:9px;
-  background:#e2e8f0;
-  color:#0f172a;
-  font-size:20px;
-  font-weight:bold;
+  background:#e5e7eb;
+  font-size:18px;
 }
 
-.qty-number{
-  min-width:30px;
-  text-align:center;
-  font-weight:bold;
-}
-
-.total-box{
-  background:#eff6ff;
-  border-radius:15px;
-  padding:17px;
-  margin-top:15px;
-  border:1px solid #bfdbfe;
+.delete{
+  border:0;
+  background:#fee2e2;
+  color:#dc2626;
+  padding:8px;
+  border-radius:9px;
 }
 
 .total{
-  font-size:20px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.clear-cart{
   display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  width:100%;
-  background:#fee2e2;
-  color:#dc2626;
-  padding:13px;
-  border-radius:12px;
-  margin-top:12px;
-  font-size:15px;
+  justify-content:space-between;
+  font-size:19px;
   font-weight:bold;
+  margin-top:18px;
 }
 
+.empty{
+  text-align:center;
+  padding:35px 10px;
+  color:#777;
+}
 
-/* =========================
-   QR
-========================= */
+.badge{
+  display:inline-block;
+  background:#dcfce7;
+  color:#166534;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:13px;
+}
 
-.scanner-box{
-  display:none;
-  margin-top:15px;
-  border-radius:15px;
-  overflow:hidden;
-  background:#000;
+.center{
+  text-align:center;
 }
 
 #reader{
   width:100%;
+  overflow:hidden;
+  border-radius:15px;
 }
 
-.scan-info{
-  color:#fff;
-  text-align:center;
-  padding:12px;
-  font-size:13px;
-}
-
-.qr-container{
-  text-align:center;
-}
-
-#tableQR{
+#qrcode{
   display:flex;
   justify-content:center;
   margin:20px 0;
 }
 
-
-/* =========================
-   EMPTY
-========================= */
-
-.empty{
-  text-align:center;
-  padding:30px 10px;
-  color:#64748b;
-}
-
-
-/* =========================
-   PAYMENT
-========================= */
-
 .success-icon{
-  font-size:55px;
-  margin:20px;
+  font-size:65px;
+  margin-bottom:10px;
 }
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  text-align:center;
-  padding:25px;
-  color:#94a3b8;
-  font-size:12px;
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-<div class="app">
+<div class="container">
 
+<!-- HOME -->
+<section id="home" class="screen active">
 
-<!-- =========================
-HEADER
-========================= -->
+  <div class="header">
+    <h1>تب‌پی</h1>
+    <p>سیستم سفارش و پرداخت هوشمند رستوران</p>
+  </div>
 
-<header>
+  <div class="card center">
+    <div class="title">🍽️ ورود به رستوران</div>
 
-<h1>
-TabPay
-</h1>
+    <button class="btn dark" type="button" onclick="openScanner()">
+      📷 شروع اسکن QR
+    </button>
 
-<p>
-تب‌پی | سفارش و پرداخت هوشمند
-</p>
+    <button class="btn gray" type="button" onclick="showTableSelection()">
+      🪑 انتخاب دستی میز
+    </button>
 
-</header>
-
-
-
-<!-- =========================
-HOME
-========================= -->
-
-<section
-id="home"
-class="screen active">
-
-
-<h2>
-خوش آمدید 👋
-</h2>
-
-<p class="muted">
-QR میز را اسکن کنید یا شماره میز را دستی وارد کنید.
-</p>
-
-
-
-<!-- QR SCANNER -->
-
-<div class="card">
-
-<h2>
-📷 اسکن QR میز
-</h2>
-
-<p class="muted">
-دوربین گوشی را فعال کنید و QR روی میز را مقابل دوربین بگیرید.
-</p>
-
-
-<button
-class="btn dark"
-onclick="startScanner()">
-
-📷 شروع اسکن QR
-
-</button>
-
-
-<div
-id="scannerBox"
-class="scanner-box">
-
-<div id="reader"></div>
-
-<div class="scan-info">
-QR میز را داخل کادر قرار دهید
-</div>
-
-</div>
-
-
-<button
-id="stopScannerBtn"
-class="btn light"
-style="display:none"
-onclick="stopScanner()">
-
-✕ بستن دوربین
-
-</button>
-
-</div>
-
-
-
-<!-- MANUAL TABLE -->
-
-<div class="card">
-
-<h2>
-⌨️ ورود دستی
-</h2>
-
-<p class="muted">
-اگر QR در دسترس نیست، شماره میز را وارد کنید.
-</p>
-
-
-<input
-id="tableInput"
-type="text"
-placeholder="مثلاً 1 یا TABLE-01">
-
-
-<button
-class="btn primary"
-onclick="enterTable()">
-
-تأیید میز
-
-</button>
-
-</div>
-
-
-
-<!-- TEST QR -->
-
-<div class="card qr-container">
-
-<h2>
-🧪 QR تست میز ۰۱
-</h2>
-
-<p class="muted">
-این QR برای تست سیستم ساخته شده است.
-</p>
-
-
-<div class="table-badge">
-میز ۰۱
-</div>
-
-
-<div id="tableQR"></div>
-
-
-<p class="muted">
-QR بالا را با گزینه «شروع اسکن QR» اسکن کنید.
-</p>
-
-</div>
+    <button class="btn gray" type="button" onclick="showQrGenerator()">
+      🔳 نمایش QR میز ۱
+    </button>
+  </div>
 
 </section>
 
 
-
-<!-- =========================
-MENU
-========================= -->
-
-<section
-id="menu"
-class="screen">
-
-
-<h2>
-🍽 منوی رستوران
-</h2>
-
-
-<div
-class="table-badge"
-id="currentTable">
-
-میز ۰۱
-
-</div>
-
-
-
-<!-- BURGER -->
-
-<div class="menu-item">
-
-<div class="menu-info">
-
-<h3>
-🍔 برگر مخصوص
-</h3>
-
-<p class="muted">
-برگر گوشت، پنیر و سبزیجات
-</p>
-
-<div class="price">
-۱۸۰٬۰۰۰ تومان
-</div>
-
-</div>
-
-
-<button
-class="add-btn"
-onclick="addToCart('برگر مخصوص',180000)">
-
-افزودن
-
-</button>
-
-</div>
-
-
-
-<!-- PIZZA -->
-
-<div class="menu-item">
-
-<div class="menu-info">
-
-<h3>
-🍕 پیتزا مخصوص
-</h3>
-
-<p class="muted">
-پیتزای مخصوص سرآشپز
-</p>
-
-<div class="price">
-۲۵۰٬۰۰۰ تومان
-</div>
-
-</div>
-
-
-<button
-class="add-btn"
-onclick="addToCart('پیتزا مخصوص',250000)">
-
-افزودن
-
-</button>
-
-</div>
-
-
-
-<!-- CHICKEN -->
-
-<div class="menu-item">
-
-<div class="menu-info">
-
-<h3>
-🍗 مرغ گریل
-</h3>
-
-<p class="muted">
-مرغ گریل با سیب‌زمینی
-</p>
-
-<div class="price">
-۲۲۰٬۰۰۰ تومان
-</div>
-
-</div>
-
-
-<button
-class="add-btn"
-onclick="addToCart('مرغ گریل',220000)">
-
-افزودن
-
-</button>
-
-</div>
-
-
-
-<!-- DRINK -->
-
-<div class="menu-item">
-
-<div class="menu-info">
-
-<h3>
-🥤 نوشابه
-</h3>
-
-<p class="muted">
-نوشابه خنک
-</p>
-
-<div class="price">
-۴۰٬۰۰۰ تومان
-</div>
-
-</div>
-
-
-<button
-class="add-btn"
-onclick="addToCart('نوشابه',40000)">
-
-افزودن
-
-</button>
-
-</div>
-
-
-
-<button
-type="button"
-class="btn dark"
-onclick="openCart()">
-
-🛒 مشاهده سبد خرید
-
-</button>
+<!-- TABLE -->
+<section id="table" class="screen">
+
+  <div class="header">
+    <h1>انتخاب میز</h1>
+    <p>شماره میز خود را انتخاب کنید</p>
+  </div>
+
+  <div class="card">
+
+    <div class="table-grid">
+
+      <button class="table-btn" onclick="selectTable('01')">میز 01</button>
+      <button class="table-btn" onclick="selectTable('02')">میز 02</button>
+      <button class="table-btn" onclick="selectTable('03')">میز 03</button>
+      <button class="table-btn" onclick="selectTable('04')">میز 04</button>
+      <button class="table-btn" onclick="selectTable('05')">میز 05</button>
+      <button class="table-btn" onclick="selectTable('06')">میز 06</button>
+      <button class="table-btn" onclick="selectTable('07')">میز 07</button>
+      <button class="table-btn" onclick="selectTable('08')">میز 08</button>
+      <button class="table-btn" onclick="selectTable('09')">میز 09</button>
+      <button class="table-btn" onclick="selectTable('10')">میز 10</button>
+
+    </div>
+
+    <input
+      id="manualTable"
+      class="input"
+      placeholder="مثلاً 01"
+      inputmode="numeric"
+    >
+
+    <button class="btn dark" onclick="manualTableEnter()">
+      ورود به منو
+    </button>
+
+    <button class="btn gray" onclick="goBack()">
+      ← بازگشت
+    </button>
+
+  </div>
 
 </section>
 
 
+<!-- SCANNER -->
+<section id="scanner" class="screen">
 
-<!-- =========================
-CART
-========================= -->
+  <div class="header">
+    <h1>اسکن QR</h1>
+    <p>QR روی میز را مقابل دوربین بگیرید</p>
+  </div>
 
-<section
-id="cart"
-class="screen">
+  <div class="card">
 
+    <div id="reader"></div>
 
-<h2>
-🛒 سبد خرید
-</h2>
+    <button class="btn red" onclick="stopScanner()">
+      توقف اسکن
+    </button>
 
+    <button class="btn gray" onclick="goBack()">
+      ← بازگشت
+    </button>
 
-<div id="cartItems"></div>
-
-
-<div
-id="cartBottom"
-style="display:none">
-
-
-<div class="total-box">
-
-<div
-class="total"
-id="cartTotal">
-
-مجموع: ۰ تومان
-
-</div>
-
-</div>
-
-
-<button
-class="clear-cart"
-onclick="clearCart()">
-
-🗑️ حذف همه سفارش‌ها
-
-</button>
-
-
-<button
-class="btn success"
-onclick="showBill()">
-
-ادامه و مشاهده صورتحساب
-
-</button>
-
-</div>
-
-
-<button
-class="btn light"
-onclick="goBackInside()">
-
-← بازگشت به منو
-
-</button>
+  </div>
 
 </section>
 
 
-
-<!-- =========================
-BILL
-========================= -->
-
-<section
-id="bill"
-class="screen">
-
-
-<h2>
-🧾 صورتحساب
-</h2>
-
-
-<div class="card">
-
-
-<p>
-میز:
-
-<strong id="billTable">
-۰۱
-</strong>
-
-</p>
-
-
-<div id="billItems"></div>
-
-
-<div class="total-box">
-
-<div
-class="total"
-id="billTotal">
-
-مجموع: ۰ تومان
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<button
-class="btn primary"
-onclick="submitOrder()">
-
-📋 ثبت سفارش
-
-</button>
-
-
-<button
-class="btn light"
-onclick="goBackInside()">
-
-← بازگشت به سبد
-
-</button>
-
-</section>
-
-
-
-<!-- =========================
-ORDER SUCCESS
-========================= -->
-
-<section
-id="orderSuccess"
-class="screen">
-
-
-<div
-class="card"
-style="text-align:center">
-
-
-<div class="success-icon">
-✅
-</div>
-
-
-<h2>
-سفارش با موفقیت ثبت شد
-</h2>
-
-
-<p class="muted">
-سفارش شما برای رستوران ارسال شد.
-</p>
-
-
-<div
-class="total-box"
-style="margin-top:20px">
-
-<p>
-شماره سفارش:
-</p>
-
-<strong
-id="orderNumber"
-style="font-size:18px">
-
-</strong>
-
-</div>
-
-
-<button
-class="btn dark"
-onclick="showScreen('home')">
-
-بازگشت به صفحه اصلی
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-PAYMENT
-========================= -->
-
-<section
-id="payment"
-class="screen">
-
-
-<div
-class="card"
-style="text-align:center">
-
-
-<h2>
-💳 پرداخت
-</h2>
-
-
-<p class="muted">
-این قسمت فعلاً برای تست نسخه اول TabPay است.
-</p>
-
-
-<div class="success-icon">
-💳
-</div>
-
-
-<button
-class="btn success"
-onclick="finishPayment()">
-
-پرداخت موفق آزمایشی
-
-</button>
-
-
-<button
-class="btn light"
-onclick="goBackInside()">
-
-← بازگشت
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<footer>
-
-TabPay © 2026
-
-</footer>
-
-
-</div>
-
-
-
-<script>
-
-/* ==================================================
-   VARIABLES
-================================================== */
-
-let currentTable = "";
-
-let cart = [];
-
-let html5QrCode = null;
-
-
-/*
-  تاریخچه داخلی برنامه
-*/
-
-let screenHistory = ["home"];
-
-
-
-/* ==================================================
-   SCREEN NAVIGATION
-================================================== */
-
-function showScreen(id, addHistory = true){
-
-  const current =
-    document.querySelector(".screen.active");
-
-  const currentId =
-    current ? current.id : null;
-
-
-  if(
-    addHistory &&
-    currentId !== id
-  ){
-
-    screenHistory.push(id);
-
-    history.pushState(
-      {tabpayScreen:id},
-      "",
-      "#"+id
-    );
-
-  }
-
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(function(screen){
-
-      screen.classList.remove("active");
-
-    });
-
-
-  const next =
-    document.getElementById(id);
-
-
-  if(next){
-
-    next.classList.add("active");
-
-  }
-
-
-  window.scrollTo(0,0);
-
-}
-
-
-
-/* ==================================================
-   INTERNAL BACK
-================================================== */
-
-function goBackInside(){
-
-  if(screenHistory.length > 1){
-
-    screenHistory.pop();
-
-    const previous =
-      screenHistory[
-        screenHistory.length - 1
-      ];
-
-
-    showScreen(
-      previous,
-      false
-    );
-
-    history.replaceState(
-      {tabpayScreen:previous},
-      "",
-      "#"+previous
-    );
-
-  }else{
-
-    showScreen(
-      "home",
-      false
-    );
-
-  }
-
-}
-
-
-
-/* ==================================================
-   PHONE BACK BUTTON
-================================================== */
-
-window.addEventListener(
-  "popstate",
-  function(){
-
-    if(screenHistory.length > 1){
-
-      screenHistory.pop();
-
-
-      const previous =
-        screenHistory[
-          screenHistory.length - 1
-        ];
-
-
-      showScreen(
-        previous,
-        false
-      );
-
-    }else{
-
-      /*
-        در صفحه اصلی هستیم.
-        دوباره State می‌سازیم تا
-        برنامه ناگهانی خارج نشود.
-      */
-
-      history.pushState(
-        {tabpayScreen:"home"},
-        "",
-        "#home"
-      );
-
-    }
-
-  }
-);
-
-
-
-/*
-  ایجاد State اولیه
-*/
-
-history.replaceState(
-  {tabpayScreen:"home"},
-  "",
-  "#home"
-);
-
-
-
-/* ==================================================
-   TABLE
-================================================== */
-
-function normalizeTable(value){
-
-  if(!value){
-
-    return null;
-
-  }
-
-
-  value =
-    String(value)
-    .trim()
-    .toUpperCase();
-
-
-  if(/^\d+$/.test(value)){
-
-    const number =
-      parseInt(value);
-
-
-    if(
-      number >= 1 &&
-      number <= 10
-    ){
-
-      return (
-        "TABLE-" +
-        String(number).padStart(2,"0")
-      );
-
-    }
-
-  }
-
-
-  if(/^TABLE-\d+$/.test(value)){
-
-    const number =
-      parseInt(
-        value.replace(
-          "TABLE-",
-          ""
-        )
-      );
-
-
-    if(
-      number >= 1 &&
-      number <= 10
-    ){
-
-      return (
-        "TABLE-" +
-        String(number).padStart(2,"0")
-      );
-
-    }
-
-  }
-
-
-  return null;
-
-}
-
-
-
-/* ==================================================
-   SET TABLE
-================================================== */
-
-function setTable(value){
-
-  const table =
-    normalizeTable(value);
-
-
-  if(!table){
-
-    alert(
-      "شماره میز معتبر نیست."
-    );
-
-    return false;
-
-  }
-
-
-  currentTable =
-    table;
-
-
-  localStorage.setItem(
-    "tabpay_table",
-    table
-  );
-
-
-  document
-    .getElementById("currentTable")
-    .innerText =
-      "میز " +
-      table.replace(
-        "TABLE-",
-        ""
-      );
-
-
-  document
-    .getElementById("billTable")
-    .innerText =
-      table.replace(
-        "TABLE-",
-        ""
-      );
-
-
-  return true;
-
-}
-
-
-
-/* ==================================================
-   MANUAL TABLE
-================================================== */
-
-function enterTable(){
-
-  const value =
-    document
-      .getElementById(
-        "tableInput"
-      )
-      .value;
-
-
-  if(
-    setTable(value)
-  ){
-
-    screenHistory = ["home"];
-
-
-    showScreen(
-      "menu"
-    );
-
-  }
-
-}
-
-
-
-/* ==================================================
-   QR SCANNER
-================================================== */
-
-function startScanner(){
-
-  const scannerBox =
-    document.getElementById(
-      "scannerBox"
-    );
-
-
-  scannerBox.style.display =
-    "block";
-
-
-  document
-    .getElementById(
-      "stopScannerBtn"
-    )
-    .style.display =
-      "block";
-
-
-  html5QrCode =
-    new Html5Qrcode(
-      "reader"
-    );
-
-
-  html5QrCode
-    .start(
-
-      {facingMode:"environment"},
-
-      {
-        fps:10,
-
-        qrbox:{
-          width:250,
-          height:250
-        }
-
-      },
-
-      onScanSuccess,
-
-      function(){
-
-      }
-
-    )
-
-    .catch(
-      function(error){
-
-        console.error(
-          error
-        );
-
-
-        alert(
-          "دسترسی به دوربین ممکن نشد. لطفاً اجازه Camera را فعال کنید."
-        );
-
-
-        stopScanner();
-
-      }
-    );
-
-}
-
-
-
-/* ==================================================
-   QR SUCCESS
-================================================== */
-
-function onScanSuccess(
-  decodedText
-){
-
-  console.log(
-    "QR:",
-    decodedText
-  );
-
-
-  const table =
-    normalizeTable(
-      decodedText
-    );
-
-
-  if(table){
-
-    stopScanner();
-
-
-    if(
-      setTable(table)
-    ){
-
-      alert(
-        "میز " +
-        table.replace(
-          "TABLE-",
-          ""
-        ) +
-        " با موفقیت ثبت شد."
-      );
-
-
-      screenHistory =
-        ["home"];
-
-
-      showScreen(
-        "menu"
-      );
-
-    }
-
-
-    return;
-
-  }
-
-
-
-  /*
-    URL QR
-  */
-
-  try{
-
-    const url =
-      new URL(
-        decodedText
-      );
-
-
-    const tableParam =
-      url.searchParams.get(
-        "table"
-      );
-
-
-    if(tableParam){
-
-      stopScanner();
-
-
-      if(
-        setTable(
-          tableParam
-        )
-      ){
-
-        screenHistory =
-          ["home"];
-
-
-        showScreen(
-          "menu"
-        );
-
-      }
-
-    }
-
-  }catch(e){}
-
-}
-
-
-
-/* ==================================================
-   STOP SCANNER
-================================================== */
-
-function stopScanner(){
-
-  if(html5QrCode){
-
-    html5QrCode
-      .stop()
-
-      .then(
-        function(){
-
-          html5QrCode.clear();
-
-        }
-      )
-
-      .catch(
-        function(){}
-      );
-
-
-    html5QrCode = null;
-
-  }
-
-
-  document
-    .getElementById(
-      "scannerBox"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "stopScannerBtn"
-    )
-    .style.display =
-      "none";
-
-}
-
-
-
-/* ==================================================
-   ADD TO CART
-================================================== */
-
-function addToCart(name,price){
-
-  const existing =
-    cart.find(function(item){
-
-      return item.name === name;
-
-    });
-
-  if(existing){
-
-    existing.qty++;
-
-  }else{
-
-    cart.push({
-
-      name:name,
-      price:price,
-      qty:1
-
-    });
-
-  }
-
-  saveCart();
-
-  openCart();
-
-}
-
-  const existing =
-    cart.find(
-      function(item){
-
-        return (
-          item.name === name
-        );
-
-      }
-    );
-
-
-  if(existing){
-
-    existing.qty++;
-
-  }else{
-
-    cart.push({
-
-      name:name,
-
-      price:price,
-
-      qty:1
-
-    });
-
-  }
-
-
-  saveCart();
-
-
-  /*
-    بعد از افزودن،
-    مستقیم سبد باز می‌شود.
-  */
-
-  openCart();
-
-}
-
-
-
-/* ==================================================
-   OPEN CART
-================================================== */
-
-function openCart(){
-
-  renderCart();
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(function(screen){
-
-      screen.classList.remove("active");
-
-    });
-
-  document
-    .getElementById("cart")
-    .classList.add("active");
-
-  screenHistory.push("cart");
-
-  history.pushState(
-    {tabpayScreen:"cart"},
-    "",
-    "#cart"
-  );
-
-  window.scrollTo(0,0);
-
-}
-
-
-
-
-
-/* ==================================================
-   SAVE CART
-================================================== */
-
-function saveCart(){
-
-  localStorage.setItem(
-    "tabpay_cart",
-    JSON.stringify(cart)
-  );
-
-}
-
-
-
-/* ==================================================
-   LOAD CART
-================================================== */
-
-function loadCart(){
-
-  const saved =
-    localStorage.getItem(
-      "tabpay_cart"
-    );
-
-
-  if(saved){
-
-    try{
-
-      cart =
-        JSON.parse(
-          saved
-        );
-
-    }catch(e){
-
-      cart = [];
-
-    }
-
-  }
-
-}
-
-
-
-/* ==================================================
-   RENDER CART
-================================================== */
-
-function renderCart(){
-
-  const box =
-    document.getElementById(
-      "cartItems"
-    );
-
-
-  const bottom =
-    document.getElementById(
-      "cartBottom"
-    );
-
-
-  if(
-    cart.length === 0
-  ){
-
-    box.innerHTML = `
-
-      <div class="empty">
-
-        <div
-          style="font-size:45px;margin-bottom:10px">
-
-          🛒
-
-        </div>
-
-        سبد خرید خالی است.
-
-      </div>
-
-    `;
-
-
-    bottom.style.display =
-      "none";
-
-
-    return;
-
-  }
-
-
-  bottom.style.display =
-    "block";
-
-
-  let html = "";
-
-  let total = 0;
-
-
-  cart.forEach(
-    function(item,index){
-
-      const itemTotal =
-        item.price *
-        item.qty;
-
-
-      total +=
-        itemTotal;
-
-
-      html += `
-
-        <div class="cart-item">
-
-          <div class="cart-top">
-
-            <div>
-
-              <div class="cart-name">
-
-                ${item.name}
-
-              </div>
-
-              <div class="muted">
-
-                ${formatPrice(item.price)}
-                برای هر عدد
-
-              </div>
-
-            </div>
-
-
-            <button
-
-              class="delete-btn"
-
-              onclick="removeFromCart(${index})"
-
-              title="حذف">
-
-              🗑️
-
-            </button>
-
-          </div>
-
-
-          <div class="quantity-row">
-
-            <strong>
-
-              ${formatPrice(itemTotal)}
-
-            </strong>
-
-
-            <div class="quantity-controls">
-
-
-              <button
-
-                class="qty-btn"
-
-                onclick="decreaseQuantity(${index})">
-
-                −
-
-              </button>
-
-
-              <span class="qty-number">
-
-                ${item.qty}
-
-              </span>
-
-
-              <button
-
-                class="qty-btn"
-
-                onclick="increaseQuantity(${index})">
-
-                +
-
-              </button>
-
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  box.innerHTML =
-    html;
-
-
-  document
-    .getElementById(
-      "cartTotal"
-    )
-    .innerText =
-      "مجموع: " +
-      formatPrice(total);
-
-}
-
-
-
-/* ==================================================
-   INCREASE
-================================================== */
-
-function increaseQuantity(
-  index
-){
-
-  cart[index].qty++;
-
-
-  saveCart();
-
-
-  renderCart();
-
-}
-
-
-
-/* ==================================================
-   DECREASE
-================================================== */
-
-function decreaseQuantity(
-  index
-){
-
-  if(
-    cart[index].qty > 1
-  ){
-
-    cart[index].qty--;
-
-  }else{
-
-    removeFromCart(
-      index
-    );
-
-    return;
-
-  }
-
-
-  saveCart();
-
-
-  renderCart();
-
-}
-
-
-
-/* ==================================================
-   DELETE ONE
-================================================== */
-
-function removeFromCart(
-  index
-){
-
-  const itemName =
-    cart[index].name;
-
-
-  const confirmDelete =
-    confirm(
-      "آیا می‌خواهید «" +
-      itemName +
-      "» از سبد حذف شود؟"
-    );
-
-
-  if(
-    !confirmDelete
-  ){
-
-    return;
-
-  }
-
-
-  cart.splice(
-    index,
-    1
-  );
-
-
-  saveCart();
-
-
-  renderCart();
-
-}
-
-
-
-/* ==================================================
-   DELETE ALL
-================================================== */
-
-function clearCart(){
-
-  if(
-    cart.length === 0
-  ){
-
-    return;
-
-  }
-
-
-  const confirmDelete =
-    confirm(
-      "آیا مطمئن هستید که می‌خواهید تمام سفارش‌های سبد را حذف کنید؟"
-    );
-
-
-  if(
-    !confirmDelete
-  ){
-
-    return;
-
-  }
-
-
-  cart = [];
-
-
-  saveCart();
-
-
-  renderCart();
-
-
-  alert(
-    "تمام سفارش‌ها از سبد حذف شدند."
-  );
-
-}
-
-
-
-/* ==================================================
-   BILL
-================================================== */
-
-function showBill(){
-
-  if(
-    cart.length === 0
-  ){
-
-    alert(
-      "سبد خرید خالی است."
-    );
-
-    return;
-
-  }
-
-
-  renderBill();
-
-
-  showScreen(
-    "bill"
-  );
-
-}
-
-
-
-/* ==================================================
-   RENDER BILL
-================================================== */
-
-function renderBill(){
-
-  const box =
-    document.getElementById(
-      "billItems"
-    );
-
-
-  let html = "";
-
-  let total = 0;
-
-
-  cart.forEach(
-    function(item){
-
-      const itemTotal =
-        item.price *
-        item.qty;
-
-
-      total +=
-        itemTotal;
-
-
-      html += `
-
-        <div class="cart-item">
-
-          <div class="cart-top">
-
-            <span>
-
-              ${item.name}
-              ×
-              ${item.qty}
-
-            </span>
-
-
-            <strong>
-
-              ${formatPrice(itemTotal)}
-
-            </strong>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  box.innerHTML =
-    html;
-
-
-  document
-    .getElementById(
-      "billTotal"
-    )
-    .innerText =
-      "مجموع: " +
-      formatPrice(total);
-
-}
-
-
-
-/* ==================================================
-   SUBMIT ORDER
-================================================== */
-
-function submitOrder(){
-
-  if(
-    cart.length === 0
-  ){
-
-    alert(
-      "سبد خرید خالی است."
-    );
-
-    return;
-
-  }
-
-
-  const order = {
-
-    id:
-      "ORD-" +
-      Date.now(),
-
-    table:
-      currentTable,
-
-    items:
-      cart.map(
-        function(item){
-
-          return {
-
-            name:
-              item.name,
-
-            price:
-              item.price,
-
-            qty:
-              item.qty,
-
-            total:
-              item.price *
-              item.qty
-
-          };
-
-        }
-      ),
-
-    total:
-      cart.reduce(
-        function(sum,item){
-
-          return (
-            sum +
-            (
-              item.price *
-              item.qty
-            )
-          );
-
-        },
-        0
-      ),
-
-    status:
-      "جدید",
-
-    createdAt:
-      new Date()
-        .toLocaleString(
-          "fa-IR"
-        )
-
-  };
-
-
-  let orders = [];
-
-
-  const savedOrders =
-    localStorage.getItem(
-      "tabpay_orders"
-    );
-
-
-  if(savedOrders){
-
-    try{
-
-      orders =
-        JSON.parse(
-          savedOrders
-        );
-
-    }catch(e){
-
-      orders = [];
-
-    }
-
-  }
-
-
-  orders.push(
-    order
-  );
-
-
-  localStorage.setItem(
-    "tabpay_orders",
-    JSON.stringify(
-      orders
-    )
-  );
-
-
-  cart = [];
-
-
-  saveCart();
-
-
-  document
-    .getElementById(
-      "orderNumber"
-    )
-    .innerText =
-      order.id;
-
-
-  showScreen(
-    "orderSuccess"
-  );
-
-}
-
-
-
-/* ==================================================
-   PAYMENT
-================================================== */
-
-function pay(){
-
-  showScreen(
-    "payment"
-  );
-
-}
-
-
-
-/* ==================================================
-   FINISH PAYMENT
-================================================== */
-
-function finishPayment(){
-
-  alert(
-    "پرداخت آزمایشی با موفقیت انجام شد ✅"
-  );
-
-
-  cart = [];
-
-
-  saveCart();
-
-
-  showScreen(
-    "home"
-  );
-
-}
-
-
-
-/* ==================================================
-   PRICE
-================================================== */
-
-function formatPrice(
-  number
-){
-
-  return Number(
-    number
-  )
-  .toLocaleString(
-    "fa-IR"
-  )
-  +
-  " تومان";
-
-}
-
-
-
-/* ==================================================
-   INITIAL LOAD
-================================================== */
-
-window.addEventListener(
-  "load",
-  function(){
-
-    /*
-      QR میز ۰۱
-    */
-
-    const qrBox =
-      document.getElementById(
-        "tableQR"
-      );
-
-
-    if(qrBox){
-
-      new QRCode(
-        qrBox,
-        {
-
-          text:
-            "TABLE-01",
-
-          width:
-            250,
-
-          height:
-            250,
-
-          correctLevel:
-            QRCode.CorrectLevel.H
-
-        }
-      );
-
-    }
-
-
-
-    /*
-      میز ذخیره شده
-    */
-
-    const savedTable =
-      localStorage.getItem(
-        "tabpay_table"
-      );
-
-
-    if(savedTable){
-
-      setTable(
-        savedTable
-      );
-
-    }
-
-
-
-    /*
-      سبد ذخیره شده
-    */
-
-    loadCart();
-
-
-
-    /*
-      اگر URL دارای
-      ?table=01 باشد
-    */
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-
-    const qrTable =
-      params.get(
-        "table"
-      );
-
-
-    if(qrTable){
-
-      if(
-        setTable(
-          qrTable
-        )
-      ){
-
-        screenHistory =
-          ["home"];
-
-
-        showScreen(
-          "menu"
-        );
-
-      }
-
-    }
-
-  }
-);
-
-</script>
-
-</body>
-</html>
+<!-- QR GENERATOR -->
+<section id="qr" class="screen">
+
+  <div class="header">
+    <h1>QR میز
