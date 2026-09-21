@@ -1527,10 +1527,36 @@ function stopScanner(){
    ADD TO CART
 ================================================== */
 
-function addToCart(
-  name,
-  price
-){
+function addToCart(name,price){
+
+  const existing =
+    cart.find(function(item){
+
+      return item.name === name;
+
+    });
+
+  if(existing){
+
+    existing.qty++;
+
+  }else{
+
+    cart.push({
+
+      name:name,
+      price:price,
+      qty:1
+
+    });
+
+  }
+
+  saveCart();
+
+  openCart();
+
+}
 
   const existing =
     cart.find(
@@ -1585,12 +1611,31 @@ function openCart(){
 
   renderCart();
 
+  document
+    .querySelectorAll(".screen")
+    .forEach(function(screen){
 
-  showScreen(
-    "cart"
+      screen.classList.remove("active");
+
+    });
+
+  document
+    .getElementById("cart")
+    .classList.add("active");
+
+  screenHistory.push("cart");
+
+  history.pushState(
+    {tabpayScreen:"cart"},
+    "",
+    "#cart"
   );
 
+  window.scrollTo(0,0);
+
 }
+
+
 
 
 
