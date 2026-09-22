@@ -1,55 +1,34 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<meta
-    name="theme-color"
-    content="#111827"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#111827">
 
 <title>TabPay | سفارش غذا</title>
 
 <style>
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     margin:0;
     background:#f5f7fb;
     color:#111827;
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
+    font-family:Tahoma,Arial,sans-serif
 }
 
-button,
-input{
-    font-family:inherit;
-}
+button,input{font-family:inherit}
 
 button{
     cursor:pointer;
-    border:none;
+    border:0
 }
 
-.hidden{
-    display:none !important;
-}
+.hidden{display:none!important}
 
 .app{
     width:100%;
@@ -57,61 +36,53 @@ button{
     min-height:100vh;
     margin:auto;
     background:#fff;
-    position:relative;
+    position:relative
 }
 
 header{
     background:#111827;
-    color:white;
+    color:#fff;
     padding:18px;
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:100
 }
 
 .header-row{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:10px;
+    gap:10px
 }
 
 .logo{
     font-size:25px;
-    font-weight:900;
+    font-weight:900
 }
 
-.logo span{
-    color:#22c55e;
-}
+.logo span{color:#22c55e}
 
-.header-info{
-    text-align:left;
-}
+.header-info{text-align:left}
 
 .header-info small{
     display:block;
     opacity:.7;
-    font-size:11px;
+    font-size:11px
 }
 
-.header-info strong{
-    font-size:13px;
-}
+.header-info strong{font-size:13px}
 
 .page{
     display:none;
     padding:18px;
-    padding-bottom:100px;
+    padding-bottom:100px
 }
 
-.page.active{
-    display:block;
-}
+.page.active{display:block}
 
 .hero{
-    padding:30px 10px 20px;
-    text-align:center;
+    padding:40px 10px 25px;
+    text-align:center
 }
 
 .hero-icon{
@@ -124,18 +95,18 @@ header{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:40px;
+    font-size:40px
 }
 
 .hero h1{
     margin:0 0 10px;
-    font-size:28px;
+    font-size:28px
 }
 
 .hero p{
     color:#6b7280;
-    line-height:1.8;
-    margin:0;
+    line-height:1.9;
+    margin:0
 }
 
 .card{
@@ -144,19 +115,83 @@ header{
     border-radius:20px;
     padding:16px;
     margin-bottom:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.04);
+    box-shadow:0 5px 20px rgba(0,0,0,.04)
 }
 
 .title{
     font-size:18px;
     font-weight:900;
-    margin-bottom:12px;
+    margin-bottom:12px
 }
 
 .small{
     color:#6b7280;
     font-size:12px;
-    line-height:1.8;
+    line-height:1.8
+}
+
+button{
+    border-radius:14px;
+    padding:14px 16px;
+    font-size:14px;
+    font-weight:800
+}
+
+.full{width:100%}
+
+.green{
+    background:#22c55e;
+    color:#fff
+}
+
+.dark{
+    background:#111827;
+    color:#fff
+}
+
+.gray{
+    background:#e5e7eb;
+    color:#111827
+}
+
+.outline{
+    background:#fff;
+    border:1px solid #d1d5db;
+    color:#111827
+}
+
+.top-info{
+    background:#f8fafc;
+    border-radius:18px;
+    padding:14px;
+    margin-bottom:15px
+}
+
+.top-info strong{
+    display:block;
+    font-size:17px
+}
+
+.top-info span{
+    color:#6b7280;
+    font-size:12px
+}
+
+.search{
+    position:relative;
+    margin-bottom:14px
+}
+
+.search input{
+    padding-right:45px;
+    margin:0
+}
+
+.search-icon{
+    position:absolute;
+    right:15px;
+    top:14px;
+    font-size:18px
 }
 
 .input{
@@ -166,109 +201,12 @@ header{
     padding:15px;
     outline:none;
     font-size:15px;
-    margin-bottom:10px;
-    direction:ltr;
-    text-align:left;
+    direction:rtl
 }
 
 .input:focus{
     border-color:#22c55e;
-    box-shadow:0 0 0 3px rgba(34,197,94,.1);
-}
-
-button{
-    border-radius:14px;
-    padding:14px 16px;
-    font-size:14px;
-    font-weight:800;
-}
-
-.full{
-    width:100%;
-}
-
-.green{
-    background:#22c55e;
-    color:#fff;
-}
-
-.dark{
-    background:#111827;
-    color:#fff;
-}
-
-.gray{
-    background:#e5e7eb;
-    color:#111827;
-}
-
-.red{
-    background:#ef4444;
-    color:white;
-}
-
-.outline{
-    background:#fff;
-    border:1px solid #d1d5db;
-    color:#111827;
-}
-
-.button-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.restaurant-box{
-    padding:15px;
-    border-radius:17px;
-    background:#f8fafc;
-    margin-top:10px;
-}
-
-.restaurant-name{
-    font-weight:900;
-    font-size:17px;
-}
-
-.restaurant-address{
-    color:#6b7280;
-    font-size:12px;
-    margin-top:5px;
-}
-
-.top-info{
-    background:#f8fafc;
-    border-radius:18px;
-    padding:14px;
-    margin-bottom:15px;
-}
-
-.top-info strong{
-    display:block;
-    font-size:17px;
-}
-
-.top-info span{
-    color:#6b7280;
-    font-size:12px;
-}
-
-.search{
-    position:relative;
-    margin-bottom:14px;
-}
-
-.search input{
-    padding-right:45px;
-    margin:0;
-}
-
-.search-icon{
-    position:absolute;
-    right:15px;
-    top:14px;
-    font-size:18px;
+    box-shadow:0 0 0 3px rgba(34,197,94,.1)
 }
 
 .categories{
@@ -276,12 +214,10 @@ button{
     gap:8px;
     overflow-x:auto;
     padding-bottom:10px;
-    margin-bottom:10px;
+    margin-bottom:10px
 }
 
-.categories::-webkit-scrollbar{
-    display:none;
-}
+.categories::-webkit-scrollbar{display:none}
 
 .category{
     flex:none;
@@ -290,56 +226,49 @@ button{
     background:#f3f4f6;
     color:#374151;
     font-size:12px;
-    font-weight:800;
+    font-weight:800
 }
 
 .category.active{
     background:#111827;
-    color:#fff;
+    color:#fff
 }
 
 .menu-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
+    gap:12px
 }
 
 .food-card{
     border:1px solid #e5e7eb;
     border-radius:18px;
     overflow:hidden;
-    background:#fff;
+    background:#fff
 }
 
 .food-image{
     height:125px;
-    background:
-        linear-gradient(
-            135deg,
-            #e5e7eb,
-            #f9fafb
-        );
+    background:linear-gradient(135deg,#e5e7eb,#f9fafb);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:48px;
+    font-size:48px
 }
 
-.food-body{
-    padding:12px;
-}
+.food-body{padding:12px}
 
 .food-name{
     font-size:14px;
     font-weight:900;
-    margin-bottom:6px;
+    margin-bottom:6px
 }
 
 .food-description{
     color:#6b7280;
     font-size:10px;
     line-height:1.7;
-    min-height:34px;
+    min-height:34px
 }
 
 .food-bottom{
@@ -347,12 +276,12 @@ button{
     align-items:center;
     justify-content:space-between;
     gap:5px;
-    margin-top:10px;
+    margin-top:10px
 }
 
 .price{
     font-size:12px;
-    font-weight:900;
+    font-weight:900
 }
 
 .add-btn{
@@ -362,13 +291,13 @@ button{
     height:38px;
     padding:0;
     border-radius:12px;
-    font-size:20px;
+    font-size:20px
 }
 
 .empty{
     text-align:center;
     padding:40px 15px;
-    color:#6b7280;
+    color:#6b7280
 }
 
 .cart-item{
@@ -377,38 +306,34 @@ button{
     justify-content:space-between;
     gap:10px;
     border-bottom:1px solid #eee;
-    padding:13px 0;
+    padding:13px 0
 }
 
-.cart-item:last-child{
-    border-bottom:none;
-}
+.cart-item:last-child{border-bottom:0}
 
-.cart-info{
-    flex:1;
-}
+.cart-info{flex:1}
 
 .cart-name{
     font-weight:900;
-    font-size:14px;
+    font-size:14px
 }
 
 .cart-options{
     color:#6b7280;
     font-size:10px;
-    margin-top:4px;
+    margin-top:4px
 }
 
 .cart-price{
     font-size:12px;
     font-weight:800;
-    margin-top:5px;
+    margin-top:5px
 }
 
 .qty{
     display:flex;
     align-items:center;
-    gap:7px;
+    gap:7px
 }
 
 .qty button{
@@ -416,34 +341,34 @@ button{
     height:30px;
     padding:0;
     background:#f3f4f6;
-    border-radius:9px;
+    border-radius:9px
 }
 
 .qty span{
     min-width:20px;
     text-align:center;
-    font-weight:900;
+    font-weight:900
 }
 
 .total-box{
     background:#f8fafc;
     border-radius:17px;
     padding:15px;
-    margin-top:15px;
+    margin-top:15px
 }
 
 .total-line{
     display:flex;
     justify-content:space-between;
     margin-bottom:10px;
-    font-size:13px;
+    font-size:13px
 }
 
 .total-line.final{
     border-top:1px solid #ddd;
     padding-top:12px;
     font-size:18px;
-    font-weight:900;
+    font-weight:900
 }
 
 .payment-option{
@@ -453,17 +378,15 @@ button{
     margin-bottom:10px;
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:12px
 }
 
 .payment-option.selected{
     border-color:#22c55e;
-    background:#f0fdf4;
+    background:#f0fdf4
 }
 
-.payment-option input{
-    accent-color:#22c55e;
-}
+.payment-option input{accent-color:#22c55e}
 
 .modal{
     position:fixed;
@@ -472,12 +395,10 @@ button{
     z-index:1000;
     display:none;
     align-items:flex-end;
-    justify-content:center;
+    justify-content:center
 }
 
-.modal.show{
-    display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
     background:#fff;
@@ -486,14 +407,14 @@ button{
     max-height:90vh;
     overflow-y:auto;
     border-radius:25px 25px 0 0;
-    padding:20px;
+    padding:20px
 }
 
 .modal-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:15px;
+    margin-bottom:15px
 }
 
 .close{
@@ -501,7 +422,7 @@ button{
     height:38px;
     padding:0;
     border-radius:12px;
-    background:#f3f4f6;
+    background:#f3f4f6
 }
 
 .food-detail-icon{
@@ -512,7 +433,7 @@ button{
     align-items:center;
     justify-content:center;
     font-size:75px;
-    margin-bottom:15px;
+    margin-bottom:15px
 }
 
 .option-row{
@@ -522,31 +443,27 @@ button{
     border:1px solid #e5e7eb;
     padding:12px;
     border-radius:13px;
-    margin-top:8px;
+    margin-top:8px
 }
 
-.option-row input{
-    accent-color:#22c55e;
-}
+.option-row input{accent-color:#22c55e}
 
 .quantity-large{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:20px;
-    margin:20px 0;
+    margin:20px 0
 }
 
 .quantity-large button{
     width:45px;
     height:45px;
     padding:0;
-    background:#f3f4f6;
+    background:#f3f4f6
 }
 
-.quantity-large strong{
-    font-size:20px;
-}
+.quantity-large strong{font-size:20px}
 
 .bottom-nav{
     position:fixed;
@@ -560,19 +477,17 @@ button{
     display:flex;
     justify-content:space-around;
     padding:8px;
-    z-index:200;
+    z-index:200
 }
 
 .nav-btn{
     background:transparent;
     color:#6b7280;
     padding:8px;
-    font-size:11px;
+    font-size:11px
 }
 
-.nav-btn.active{
-    color:#111827;
-}
+.nav-btn.active{color:#111827}
 
 .cart-count{
     display:inline-flex;
@@ -584,7 +499,7 @@ button{
     color:white;
     border-radius:50%;
     font-size:9px;
-    margin-right:3px;
+    margin-right:3px
 }
 
 .status{
@@ -594,7 +509,7 @@ button{
     padding:14px;
     border-radius:16px;
     background:#f8fafc;
-    margin-bottom:10px;
+    margin-bottom:10px
 }
 
 .status-icon{
@@ -604,37 +519,35 @@ button{
     background:#e5e7eb;
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content:center
 }
 
-.status.active{
-    background:#f0fdf4;
-}
+.status.active{background:#f0fdf4}
 
 .status.active .status-icon{
     background:#22c55e;
-    color:white;
+    color:white
 }
 
 .status.done .status-icon{
     background:#16a34a;
-    color:white;
+    color:white
 }
 
 .status-text strong{
     display:block;
-    font-size:14px;
+    font-size:14px
 }
 
 .status-text span{
     color:#6b7280;
-    font-size:11px;
+    font-size:11px
 }
 
 .waiter-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:10px
 }
 
 .waiter-btn{
@@ -642,14 +555,14 @@ button{
     border:1px solid #e5e7eb;
     padding:20px 10px;
     border-radius:18px;
-    font-weight:900;
+    font-weight:900
 }
 
 .bill-item{
     display:flex;
     justify-content:space-between;
     padding:10px 0;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #eee
 }
 
 .toast{
@@ -658,7 +571,7 @@ button{
     bottom:85px;
     transform:translateX(-50%) translateY(20px);
     background:#111827;
-    color:white;
+    color:#fff;
     padding:12px 18px;
     border-radius:14px;
     font-size:12px;
@@ -667,22 +580,20 @@ button{
     transition:.25s;
     z-index:99999;
     max-width:90%;
-    text-align:center;
+    text-align:center
 }
 
 .toast.show{
     opacity:1;
-    transform:translateX(-50%) translateY(0);
+    transform:translateX(-50%) translateY(0)
 }
 
-.qr-modal{
-    align-items:center;
-}
+.qr-modal{align-items:center}
 
 .qr-modal .modal-box{
     border-radius:24px;
     max-width:500px;
-    max-height:90vh;
+    max-height:90vh
 }
 
 #qrReader{
@@ -690,38 +601,30 @@ button{
     overflow:hidden;
     border-radius:18px;
     margin:15px 0;
+    min-height:280px
 }
 
 #qrReader video{
-    width:100% !important;
-    border-radius:18px;
+    width:100%!important;
+    border-radius:18px
 }
 
-.demo-note{
-    background:#fff7ed;
-    border:1px solid #fed7aa;
-    color:#9a3412;
+.qr-help{
+    background:#f0fdf4;
+    border:1px solid #bbf7d0;
+    color:#166534;
     border-radius:14px;
-    padding:12px;
+    padding:13px;
     font-size:11px;
     line-height:1.8;
-    margin-top:12px;
+    margin-top:12px
 }
 
 @media(max-width:380px){
-
-    .menu-grid{
-        grid-template-columns:1fr;
-    }
-
-    .button-row{
-        grid-template-columns:1fr;
-    }
-
+    .menu-grid{grid-template-columns:1fr}
 }
 
 </style>
-
 </head>
 
 <body>
@@ -730,924 +633,742 @@ button{
 
 <header>
 
-    <div class="header-row">
+<div class="header-row">
 
-        <div class="logo">
-            Tab<span>Pay</span>
-        </div>
+<div class="logo">
+Tab<span>Pay</span>
+</div>
 
-        <div class="header-info">
+<div class="header-info">
 
-            <small>سفارش از میز</small>
+<small>سفارش از</small>
 
-            <strong id="tableBadge">
-                انتخاب نشده
-            </strong>
+<strong id="tableBadge">
+ابتدا QR میز را اسکن کنید
+</strong>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </header>
 
 
-<!-- =========================
-     ENTRY
-========================= -->
+<!-- ENTRY -->
 
-<section
-    id="entryPage"
-    class="page active"
->
+<section id="entryPage" class="page active">
 
-    <div class="hero">
+<div class="hero">
 
-        <div class="hero-icon">
-            🍽️
-        </div>
+<div class="hero-icon">
+🍽️
+</div>
 
-        <h1>
-            به TabPay خوش آمدید
-        </h1>
+<h1>
+به TabPay خوش آمدید
+</h1>
 
-        <p>
-            منو را ببینید، سفارش دهید و
-            وضعیت سفارش خود را لحظه‌ای پیگیری کنید.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="title">
-            📷 اتصال به میز
-        </div>
-
-        <p class="small">
-            QR روی میز را اسکن کنید یا کد میز را وارد کنید.
-        </p>
-
-        <button
-            class="dark full"
-            onclick="demoQR()"
-        >
-            📷 اسکن QR میز
-        </button>
-
-        <div style="height:10px"></div>
-
-        <input
-            id="tableCodeInput"
-            class="input"
-            placeholder="مثلاً A7-83K"
-            autocomplete="off"
-        >
-
-        <button
-            class="green full"
-            onclick="enterByCode()"
-        >
-            ورود به میز
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="title">
-            میز آزمایشی
-        </div>
-
-        <p class="small">
-            برای تست سریع برنامه می‌توانید یکی از کدهای زیر را وارد کنید:
-        </p>
-
-        <div class="restaurant-box">
-
-            <div class="restaurant-name">
-                رستوران آرمان
-            </div>
-
-            <div class="restaurant-address">
-                اردبیل، خیابان امام
-            </div>
-
-            <p class="small">
-                A7-83K &nbsp; | &nbsp;
-                A8-91Q &nbsp; | &nbsp;
-                A9-42M
-            </p>
-
-        </div>
-
-        <div class="restaurant-box">
-
-            <div class="restaurant-name">
-                کافه پایتخت
-            </div>
-
-            <div class="restaurant-address">
-                اردبیل، میدان اصلی
-            </div>
-
-            <p class="small">
-                B3-51X &nbsp; | &nbsp;
-                B4-22D &nbsp; | &nbsp;
-                B5-77L
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     MENU
-========================= -->
-
-<section
-    id="menuPage"
-    class="page"
->
-
-    <div class="top-info">
-
-        <strong id="restaurantName">
-            رستوران
-        </strong>
-
-        <span id="restaurantAddress">
-            آدرس
-        </span>
-
-    </div>
-
-
-    <div class="search">
-
-        <span class="search-icon">
-            🔎
-        </span>
-
-        <input
-            id="searchInput"
-            class="input"
-            placeholder="جستجوی غذا..."
-            oninput="renderMenu()"
-        >
-
-    </div>
-
-
-    <div
-        id="categories"
-        class="categories"
-    ></div>
-
-
-    <div
-        id="menuGrid"
-        class="menu-grid"
-    ></div>
-
-</section>
-
-
-<!-- =========================
-     CART
-========================= -->
-
-<section
-    id="cartPage"
-    class="page"
->
-
-    <div class="title">
-        🛒 سبد سفارش
-    </div>
-
-    <div
-        id="cartItems"
-        class="card"
-    ></div>
-
-    <div
-        id="cartSummary"
-        class="total-box"
-    ></div>
-
-    <div style="height:12px"></div>
-
-    <button
-        class="green full"
-        onclick="goToBill()"
-    >
-        ادامه و ثبت سفارش
-    </button>
-
-</section>
-
-
-<!-- =========================
-     BILL / PAYMENT
-========================= -->
-
-<section
-    id="billPage"
-    class="page"
->
-
-    <div class="title">
-        💳 صورتحساب
-    </div>
-
-    <div class="card">
-
-        <div class="total-line">
-
-            <span>
-                رستوران
-            </span>
-
-            <strong
-                id="billRestaurant"
-            >
-                -
-            </strong>
-
-        </div>
-
-        <div class="total-line">
-
-            <span>
-                میز
-            </span>
-
-            <strong
-                id="billTable"
-            >
-                -
-            </strong>
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="billItems"
-        class="card"
-    ></div>
-
-
-    <div
-        id="billTotal"
-        class="total-box"
-    ></div>
-
-
-    <div class="card">
-
-        <div class="title">
-            روش پرداخت
-        </div>
-
-        <label
-            id="onlinePaymentOption"
-            class="payment-option selected"
-        >
-
-            <input
-                type="radio"
-                name="payment"
-                value="online"
-                checked
-                onchange="selectPayment('online')"
-            >
-
-            <div>
-
-                <strong>
-                    💳 پرداخت آنلاین
-                </strong>
-
-                <div class="small">
-                    پرداخت آزمایشی در نسخه فعلی
-                </div>
-
-            </div>
-
-        </label>
-
-
-        <label
-            id="restaurantPaymentOption"
-            class="payment-option"
-        >
-
-            <input
-                type="radio"
-                name="payment"
-                value="restaurant"
-                onchange="selectPayment('restaurant')"
-            >
-
-            <div>
-
-                <strong>
-                    🏪 پرداخت در رستوران
-                </strong>
-
-                <div class="small">
-                    پرداخت هنگام تسویه
-                </div>
-
-            </div>
-
-        </label>
-
-    </div>
-
-
-    <button
-        id="submitOrderBtn"
-        class="green full"
-        onclick="submitOrder()"
-    >
-        ثبت سفارش
-    </button>
-
-</section>
-
-
-<!-- =========================
-     ORDER STATUS
-========================= -->
-
-<section
-    id="orderPage"
-    class="page"
->
-
-    <div class="title">
-        📦 وضعیت سفارش
-    </div>
-
-    <div class="card">
-
-        <div class="total-line">
-
-            <span>
-                شماره سفارش
-            </span>
-
-            <strong id="orderNumber">
-                -
-            </strong>
-
-        </div>
-
-        <div class="total-line">
-
-            <span>
-                مبلغ
-            </span>
-
-            <strong id="orderAmount">
-                -
-            </strong>
-
-        </div>
-
-        <div class="total-line">
-
-            <span>
-                روش پرداخت
-            </span>
-
-            <strong id="orderPayment">
-                -
-            </strong>
-
-        </div>
-
-    </div>
-
-
-    <div id="orderStatuses"></div>
-
-
-    <div class="demo-note">
-
-        ℹ️ وضعیت سفارش در این نسخه برای نمایش عملکرد برنامه
-        به صورت آزمایشی ذخیره می‌شود. در نسخه متصل به رستوران،
-        وضعیت توسط سیستم رستوران و آشپزخانه تغییر خواهد کرد.
-
-    </div>
-
-    <div style="height:12px"></div>
-
-    <button
-        class="dark full"
-        onclick="simulateNextStatus()"
-    >
-        تغییر وضعیت آزمایشی
-    </button>
-
-</section>
-
-
-<!-- =========================
-     WAITER
-========================= -->
-
-<section
-    id="waiterPage"
-    class="page"
->
-
-    <div class="title">
-        🔔 درخواست از گارسون
-    </div>
-
-    <div class="card">
-
-        <p class="small">
-            میز شما:
-            <strong id="waiterTable">
-                -
-            </strong>
-        </p>
-
-    </div>
-
-
-    <div class="waiter-grid">
-
-        <button
-            class="waiter-btn"
-            onclick="callWaiter('گارسون')"
-        >
-            🙋‍♂️<br>
-            گارسون
-        </button>
-
-        <button
-            class="waiter-btn"
-            onclick="callWaiter('آب')"
-        >
-            💧<br>
-            آب
-        </button>
-
-        <button
-            class="waiter-btn"
-            onclick="callWaiter('دستمال')"
-        >
-            🧻<br>
-            دستمال
-        </button>
-
-        <button
-            class="waiter-btn"
-            onclick="callWaiter('صورت‌حساب')"
-        >
-            🧾<br>
-            صورت‌حساب
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FOOD MODAL
-========================= -->
-
-<div
-    id="foodModal"
-    class="modal"
-    onclick="closeFoodModalOutside(event)"
->
-
-    <div
-        class="modal-box"
-        onclick="event.stopPropagation()"
-    >
-
-        <div class="modal-head">
-
-            <strong>
-                جزئیات غذا
-            </strong>
-
-            <button
-                class="close"
-                onclick="closeFoodModal()"
-            >
-                ✕
-            </button>
-
-        </div>
-
-
-        <div
-            id="foodDetailIcon"
-            class="food-detail-icon"
-        >
-            🍔
-        </div>
-
-
-        <div
-            id="foodDetailName"
-            class="title"
-        >
-            -
-        </div>
-
-        <p
-            id="foodDetailDescription"
-            class="small"
-        >
-            -
-        </p>
-
-
-        <div
-            id="foodOptions"
-            class="card"
-        >
-
-            <strong>
-                افزودنی‌ها
-            </strong>
-
-            <label class="option-row">
-
-                <span>
-                    پنیر اضافه
-                </span>
-
-                <span>
-                    +۳۰,۰۰۰ تومان
-                    <input
-                        id="extraCheese"
-                        type="checkbox"
-                    >
-                </span>
-
-            </label>
-
-
-            <label class="option-row">
-
-                <span>
-                    سس اضافه
-                </span>
-
-                <span>
-                    +۱۵,۰۰۰ تومان
-                    <input
-                        id="extraSauce"
-                        type="checkbox"
-                    >
-                </span>
-
-            </label>
-
-        </div>
-
-
-        <div class="quantity-large">
-
-            <button
-                onclick="changeModalQty(-1)"
-            >
-                −
-            </button>
-
-            <strong
-                id="modalQty"
-            >
-                1
-            </strong>
-
-            <button
-                onclick="changeModalQty(1)"
-            >
-                +
-            </button>
-
-        </div>
-
-
-        <button
-            class="green full"
-            onclick="addSelectedFoodToCart()"
-        >
-            افزودن به سبد
-        </button>
-
-    </div>
+<p>
+برای مشاهده منوی رستوران و سفارش غذا،
+QR روی میز را اسکن کنید.
+</p>
 
 </div>
 
 
-<!-- =========================
-     QR MODAL
-========================= -->
+<div class="card">
 
-<div
-    id="qrScannerModal"
-    class="modal qr-modal"
-    onclick="closeQRScannerOutside(event)"
+<div class="title">
+📷 اتصال به میز
+</div>
+
+<p class="small">
+QR مخصوص میز روی میز رستوران قرار دارد.
+آن را اسکن کنید تا رستوران و شماره میز
+به صورت خودکار شناسایی شوند.
+</p>
+
+<button
+class="dark full"
+onclick="openQRScanner()"
 >
+📷 اسکن QR میز
+</button>
 
-    <div
-        class="modal-box"
-        onclick="event.stopPropagation()"
-    >
+<div class="qr-help">
 
-        <div class="modal-head">
+<strong>
+چطور کار می‌کند؟
+</strong>
 
-            <strong>
-                📷 اسکن QR میز
-            </strong>
+<br>
 
-            <button
-                class="close"
-                onclick="closeQRScanner()"
-            >
-                ✕
-            </button>
+QR را داخل کادر دوربین قرار دهید.
+بعد از شناسایی، بدون وارد کردن هیچ کدی
+مستقیماً وارد منوی همان رستوران می‌شوید.
 
-        </div>
-
-
-        <p class="small">
-            QR روی میز را داخل کادر قرار دهید.
-            دوربین به صورت خودکار آن را شناسایی می‌کند.
-        </p>
-
-
-        <div id="qrReader"></div>
-
-
-        <button
-            class="gray full"
-            onclick="closeQRScanner()"
-        >
-            بستن دوربین
-        </button>
-
-    </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<div class="card">
+
+<div class="title">
+⚡ سفارش سریع
+</div>
+
+<p class="small">
+دیگر نیازی به وارد کردن کد میز نیست.
+فقط اسکن کنید، غذا را انتخاب کنید و سفارش دهید.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section id="menuPage" class="page">
+
+<div class="top-info">
+
+<strong id="restaurantName">
+رستوران
+</strong>
+
+<span id="restaurantAddress">
+آدرس
+</span>
+
+</div>
+
+
+<div class="search">
+
+<span class="search-icon">
+🔎
+</span>
+
+<input
+id="searchInput"
+class="input"
+placeholder="جستجوی غذا..."
+oninput="renderMenu()"
+>
+
+</div>
+
+
+<div id="categories" class="categories"></div>
+
+<div id="menuGrid" class="menu-grid"></div>
+
+</section>
+
+
+<!-- CART -->
+
+<section id="cartPage" class="page">
+
+<div class="title">
+🛒 سبد سفارش
+</div>
+
+<div id="cartItems" class="card"></div>
+
+<div id="cartSummary" class="total-box"></div>
+
+<div style="height:12px"></div>
+
+<button
+class="green full"
+onclick="goToBill()"
+>
+ادامه و ثبت سفارش
+</button>
+
+</section>
+
+
+<!-- BILL -->
+
+<section id="billPage" class="page">
+
+<div class="title">
+💳 صورتحساب
+</div>
+
+<div class="card">
+
+<div class="total-line">
+<span>رستوران</span>
+<strong id="billRestaurant">-</strong>
+</div>
+
+<div class="total-line">
+<span>میز</span>
+<strong id="billTable">-</strong>
+</div>
+
+</div>
+
+<div id="billItems" class="card"></div>
+
+<div id="billTotal" class="total-box"></div>
+
+
+<div class="card">
+
+<div class="title">
+روش پرداخت
+</div>
+
+<label
+id="onlinePaymentOption"
+class="payment-option selected"
+>
+
+<input
+type="radio"
+name="payment"
+value="online"
+checked
+onchange="selectPayment('online')"
+>
+
+<div>
+
+<strong>
+💳 پرداخت آنلاین
+</strong>
+
+<div class="small">
+پرداخت آزمایشی در نسخه فعلی
+</div>
+
+</div>
+
+</label>
+
+
+<label
+id="restaurantPaymentOption"
+class="payment-option"
+>
+
+<input
+type="radio"
+name="payment"
+value="restaurant"
+onchange="selectPayment('restaurant')"
+>
+
+<div>
+
+<strong>
+🏪 پرداخت در رستوران
+</strong>
+
+<div class="small">
+پرداخت هنگام تسویه
+</div>
+
+</div>
+
+</label>
+
+</div>
+
+
+<button
+class="green full"
+onclick="submitOrder()"
+>
+ثبت سفارش
+</button>
+
+</section>
+
+
+<!-- ORDER -->
+
+<section id="orderPage" class="page">
+
+<div class="title">
+📦 وضعیت سفارش
+</div>
+
+<div class="card">
+
+<div class="total-line">
+<span>شماره سفارش</span>
+<strong id="orderNumber">-</strong>
+</div>
+
+<div class="total-line">
+<span>مبلغ</span>
+<strong id="orderAmount">-</strong>
+</div>
+
+<div class="total-line">
+<span>روش پرداخت</span>
+<strong id="orderPayment">-</strong>
+</div>
+
+</div>
+
+<div id="orderStatuses"></div>
+
+<div class="card">
+
+<div class="small">
+ℹ️ وضعیت سفارش در این نسخه آزمایشی است.
+در نسخه واقعی، وضعیت توسط رستوران و آشپزخانه
+به‌روزرسانی می‌شود.
+</div>
+
+</div>
+
+<button
+class="dark full"
+onclick="simulateNextStatus()"
+>
+تغییر وضعیت آزمایشی
+</button>
+
+</section>
+
+
+<!-- WAITER -->
+
+<section id="waiterPage" class="page">
+
+<div class="title">
+🔔 درخواست از گارسون
+</div>
+
+<div class="card">
+
+<p class="small">
+میز شما:
+<strong id="waiterTable">-</strong>
+</p>
+
+</div>
+
+<div class="waiter-grid">
+
+<button
+class="waiter-btn"
+onclick="callWaiter('گارسون')"
+>
+🙋‍♂️<br>
+گارسون
+</button>
+
+<button
+class="waiter-btn"
+onclick="callWaiter('آب')"
+>
+💧<br>
+آب
+</button>
+
+<button
+class="waiter-btn"
+onclick="callWaiter('دستمال')"
+>
+🧻<br>
+دستمال
+</button>
+
+<button
+class="waiter-btn"
+onclick="callWaiter('صورت‌حساب')"
+>
+🧾<br>
+صورت‌حساب
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FOOD MODAL -->
+
+<div
+id="foodModal"
+class="modal"
+onclick="closeFoodModalOutside(event)"
+>
+
+<div
+class="modal-box"
+onclick="event.stopPropagation()"
+>
+
+<div class="modal-head">
+
+<strong>
+جزئیات غذا
+</strong>
+
+<button
+class="close"
+onclick="closeFoodModal()"
+>
+✕
+</button>
+
+</div>
+
+<div
+id="foodDetailIcon"
+class="food-detail-icon"
+>
+🍔
+</div>
+
+<div
+id="foodDetailName"
+class="title"
+>
+-
+</div>
+
+<p
+id="foodDetailDescription"
+class="small"
+>
+-
+</p>
+
+<div
+id="foodOptions"
+class="card"
+>
+
+<strong>
+افزودنی‌ها
+</strong>
+
+<label class="option-row">
+
+<span>
+پنیر اضافه
+</span>
+
+<span>
++۳۰,۰۰۰ تومان
+<input
+id="extraCheese"
+type="checkbox"
+>
+</span>
+
+</label>
+
+<label class="option-row">
+
+<span>
+سس اضافه
+</span>
+
+<span>
++۱۵,۰۰۰ تومان
+<input
+id="extraSauce"
+type="checkbox"
+>
+</span>
+
+</label>
+
+</div>
+
+<div class="quantity-large">
+
+<button onclick="changeModalQty(-1)">
+−
+</button>
+
+<strong id="modalQty">
+1
+</strong>
+
+<button onclick="changeModalQty(1)">
++
+</button>
+
+</div>
+
+<button
+class="green full"
+onclick="addSelectedFoodToCart()"
+>
+افزودن به سبد
+</button>
+
+</div>
+
+</div>
+
+
+<!-- QR MODAL -->
+
+<div
+id="qrScannerModal"
+class="modal qr-modal"
+onclick="closeQRScannerOutside(event)"
+>
+
+<div
+class="modal-box"
+onclick="event.stopPropagation()"
+>
+
+<div class="modal-head">
+
+<strong>
+📷 اسکن QR میز
+</strong>
+
+<button
+class="close"
+onclick="closeQRScanner()"
+>
+✕
+</button>
+
+</div>
+
+<p class="small">
+QR روی میز را داخل کادر قرار دهید.
+بعد از شناسایی، رستوران و میز به صورت
+خودکار انتخاب می‌شوند.
+</p>
+
+<div id="qrReader"></div>
+
+<button
+class="gray full"
+onclick="closeQRScanner()"
+>
+بستن دوربین
+</button>
+
+</div>
+
+</div>
+
+
+<!-- NAV -->
 
 <nav
-    id="bottomNav"
-    class="bottom-nav hidden"
+id="bottomNav"
+class="bottom-nav hidden"
 >
 
-    <button
-        class="nav-btn"
-        onclick="showPage('menuPage')"
-    >
-        🍽️
-        <br>
-        منو
-    </button>
+<button
+class="nav-btn"
+onclick="showPage('menuPage')"
+>
+🍽️
+<br>
+منو
+</button>
 
+<button
+class="nav-btn"
+onclick="showPage('cartPage');updateCartUI()"
+>
+🛒
+<span id="cartCount" class="cart-count">
+0
+</span>
+<br>
+سبد
+</button>
 
-    <button
-        class="nav-btn"
-        onclick="showPage('cartPage');updateCartUI()"
-    >
-        🛒
-        <span
-            id="cartCount"
-            class="cart-count"
-        >
-            0
-        </span>
-        <br>
-        سبد
-    </button>
+<button
+class="nav-btn"
+onclick="showPage('orderPage');renderOrderStatus()"
+>
+📦
+<br>
+سفارش
+</button>
 
-
-    <button
-        class="nav-btn"
-        onclick="showPage('orderPage');renderOrderStatus()"
-    >
-        📦
-        <br>
-        سفارش
-    </button>
-
-
-    <button
-        class="nav-btn"
-        onclick="showPage('waiterPage')"
-    >
-        🔔
-        <br>
-        گارسون
-    </button>
+<button
+class="nav-btn"
+onclick="showPage('waiterPage')"
+>
+🔔
+<br>
+گارسون
+</button>
 
 </nav>
 
 
-<div
-    id="toast"
-    class="toast"
-></div>
+<div id="toast" class="toast"></div>
 
 </div>
 
 
-<!-- REAL QR LIBRARY -->
-
 <script
-    src="https://unpkg.com/html5-qrcode"
-    type="text/javascript"
+src="https://unpkg.com/html5-qrcode"
+type="text/javascript"
 ></script>
 
 
 <script>
 
 /* =====================================================
-   TABPAY DATA
+   RESTAURANTS
 ===================================================== */
 
-const restaurants = {
+const restaurants={
 
-    REST_001: {
+REST_001:{
+id:"REST_001",
+name:"رستوران آرمان",
+address:"اردبیل، خیابان امام",
 
-        id:"REST_001",
+tables:{
+"A7-83K":7,
+"A8-91Q":8,
+"A9-42M":9
+},
 
-        name:"رستوران آرمان",
+menu:[
 
-        address:"اردبیل، خیابان امام",
+{
+id:"food_001",
+name:"چیزبرگر ویژه",
+category:"برگر",
+price:285000,
+icon:"🍔",
+description:"برگر گوشت، پنیر، کاهو، گوجه و سس مخصوص."
+},
 
-        tables:{
+{
+id:"food_002",
+name:"برگر کلاسیک",
+category:"برگر",
+price:245000,
+icon:"🍔",
+description:"برگر کلاسیک با پنیر و سبزیجات تازه."
+},
 
-            "A7-83K":7,
-            "A8-91Q":8,
-            "A9-42M":9
+{
+id:"food_003",
+name:"پیتزا مخصوص",
+category:"پیتزا",
+price:390000,
+icon:"🍕",
+description:"پیتزا مخصوص با ترکیب گوشت، قارچ و پنیر."
+},
 
-        },
+{
+id:"food_004",
+name:"مرغ سوخاری",
+category:"سوخاری",
+price:330000,
+icon:"🍗",
+description:"مرغ سوخاری ترد با ادویه مخصوص."
+},
 
-        menu:[
+{
+id:"food_005",
+name:"نوشابه",
+category:"نوشیدنی",
+price:60000,
+icon:"🥤",
+description:"نوشابه خنک."
+},
 
-            {
-                id:"food_001",
-                name:"چیزبرگر ویژه",
-                category:"برگر",
-                price:285000,
-                icon:"🍔",
-                description:"برگر گوشت، پنیر، کاهو، گوجه و سس مخصوص."
-            },
+{
+id:"food_006",
+name:"کیک شکلاتی",
+category:"دسر",
+price:125000,
+icon:"🍰",
+description:"کیک شکلاتی تازه و خوش‌طعم."
+}
 
-            {
-                id:"food_002",
-                name:"برگر کلاسیک",
-                category:"برگر",
-                price:245000,
-                icon:"🍔",
-                description:"برگر کلاسیک با پنیر و سبزیجات تازه."
-            },
+]
+},
 
-            {
-                id:"food_003",
-                name:"پیتزا مخصوص",
-                category:"پیتزا",
-                price:390000,
-                icon:"🍕",
-                description:"پیتزا مخصوص با ترکیب گوشت، قارچ و پنیر."
-            },
+REST_002:{
+id:"REST_002",
+name:"کافه پایتخت",
+address:"اردبیل، میدان اصلی",
 
-            {
-                id:"food_004",
-                name:"مرغ سوخاری",
-                category:"سوخاری",
-                price:330000,
-                icon:"🍗",
-                description:"مرغ سوخاری ترد با ادویه مخصوص."
-            },
+tables:{
+"B3-51X":3,
+"B4-22D":4,
+"B5-77L":5
+},
 
-            {
-                id:"food_005",
-                name:"نوشابه",
-                category:"نوشیدنی",
-                price:60000,
-                icon:"🥤",
-                description:"نوشابه خنک."
-            },
+menu:[
 
-            {
-                id:"food_006",
-                name:"کیک شکلاتی",
-                category:"دسر",
-                price:125000,
-                icon:"🍰",
-                description:"کیک شکلاتی تازه و خوش‌طعم."
-            }
+{
+id:"food_101",
+name:"املت ویژه",
+category:"صبحانه",
+price:170000,
+icon:"🍳",
+description:"املت تازه با گوجه، تخم‌مرغ و ادویه."
+},
 
-        ]
+{
+id:"food_102",
+name:"لاته",
+category:"نوشیدنی",
+price:110000,
+icon:"☕",
+description:"لاته با شیر تازه و اسپرسو."
+}
 
-    },
+]
+},
 
+REST_003:{
+id:"REST_003",
+name:"فست‌فود نوین",
+address:"اردبیل، شهرک کارشناسان",
 
-    REST_002: {
+tables:{
+"C12-92P":12,
+"C13-31R":13
+},
 
-        id:"REST_002",
+menu:[
 
-        name:"کافه پایتخت",
+{
+id:"food_201",
+name:"پیتزا پپرونی",
+category:"پیتزا",
+price:360000,
+icon:"🍕",
+description:"پیتزا پپرونی با پنیر فراوان."
+},
 
-        address:"اردبیل، میدان اصلی",
+{
+id:"food_202",
+name:"برگر دوبل",
+category:"برگر",
+price:350000,
+icon:"🍔",
+description:"دو لایه گوشت با پنیر و سس مخصوص."
+}
 
-        tables:{
-
-            "B3-51X":3,
-            "B4-22D":4,
-            "B5-77L":5
-
-        },
-
-        menu:[
-
-            {
-                id:"food_101",
-                name:"املت ویژه",
-                category:"صبحانه",
-                price:170000,
-                icon:"🍳",
-                description:"املت تازه با گوجه، تخم‌مرغ و ادویه."
-            },
-
-            {
-                id:"food_102",
-                name:"لاته",
-                category:"نوشیدنی",
-                price:110000,
-                icon:"☕",
-                description:"لاته با شیر تازه و اسپرسو."
-            }
-
-        ]
-
-    },
-
-
-    REST_003: {
-
-        id:"REST_003",
-
-        name:"فست‌فود نوین",
-
-        address:"اردبیل، شهرک کارشناسان",
-
-        tables:{
-
-            "C12-92P":12,
-            "C13-31R":13
-
-        },
-
-        menu:[
-
-            {
-                id:"food_201",
-                name:"پیتزا پپرونی",
-                category:"پیتزا",
-                price:360000,
-                icon:"🍕",
-                description:"پیتزا پپرونی با پنیر فراوان."
-            },
-
-            {
-                id:"food_202",
-                name:"برگر دوبل",
-                category:"برگر",
-                price:350000,
-                icon:"🍔",
-                description:"دو لایه گوشت با پنیر و سس مخصوص."
-            }
-
-        ]
-
-    }
+]
+}
 
 };
 
@@ -1656,87 +1377,46 @@ const restaurants = {
    STATE
 ===================================================== */
 
-let currentRestaurant = null;
-
-let currentTable = null;
-
-let currentTableCode = "";
-
-let currentCategory = "همه";
-
-let cart = [];
-
-let selectedFood = null;
-
-let modalQty = 1;
-
-let selectedPayment = "online";
-
-let lastOrder = null;
-
-let qrScanner = null;
-
-let qrScannerRunning = false;
-
-let toastTimer = null;
+let currentRestaurant=null;
+let currentTable=null;
+let currentTableCode="";
+let currentCategory="همه";
+let cart=[];
+let selectedFood=null;
+let modalQty=1;
+let selectedPayment="online";
+let lastOrder=null;
+let qrScanner=null;
+let qrScannerRunning=false;
+let toastTimer=null;
 
 
 /* =====================================================
-   FORMAT
+   HELPERS
 ===================================================== */
 
-function formatPrice(
-    price
-){
+function formatPrice(price){
 
-    return Number(
-        price || 0
-    ).toLocaleString(
-        "fa-IR"
-    ) + " تومان";
+return Number(price||0)
+.toLocaleString("fa-IR")+" تومان";
 
 }
 
 
-/* =====================================================
-   TOAST
-===================================================== */
+function toast(message){
 
-function toast(
-    message
-){
+const el=document.getElementById("toast");
 
-    const el =
-        document.getElementById(
-            "toast"
-        );
+if(!el)return;
 
-    if(!el){
-        return;
-    }
+el.textContent=message;
+el.classList.add("show");
 
-    el.textContent =
-        message;
+clearTimeout(toastTimer);
 
-    el.classList.add(
-        "show"
-    );
-
-    clearTimeout(
-        toastTimer
-    );
-
-    toastTimer =
-        setTimeout(
-            function(){
-
-                el.classList.remove(
-                    "show"
-                );
-
-            },
-            2800
-        );
+toastTimer=setTimeout(()=>{
+el.classList.remove("show");
+},2800);
 
 }
 
@@ -1745,244 +1425,94 @@ function toast(
    NAVIGATION
 ===================================================== */
 
-function showPage(
-    id
-){
+function showPage(id){
 
-    document
-        .querySelectorAll(
-            ".page"
-        )
-        .forEach(
-            page => {
+document.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
 
-                page.classList.remove(
-                    "active"
-                );
+const page=document.getElementById(id);
 
-            }
-        );
+if(page){
+page.classList.add("active");
+}
 
+if(currentRestaurant && id!=="entryPage"){
 
-    const page =
-        document.getElementById(
-            id
-        );
+document.getElementById("bottomNav")
+.classList.remove("hidden");
 
-    if(page){
+}
 
-        page.classList.add(
-            "active"
-        );
-
-    }
-
-
-    if(
-        currentRestaurant &&
-        id !== "entryPage"
-    ){
-
-        document
-            .getElementById(
-                "bottomNav"
-            )
-            .classList.remove(
-                "hidden"
-            );
-
-    }
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
 /* =====================================================
-   ENTER BY CODE
-===================================================== */
-
-function enterByCode(){
-
-    const input =
-        document.getElementById(
-            "tableCodeInput"
-        );
-
-    const code =
-        input.value
-            .trim()
-            .toUpperCase();
-
-    if(!code){
-
-        toast(
-            "کد میز را وارد کنید."
-        );
-
-        return;
-
-    }
-
-
-    for(
-        const key in restaurants
-    ){
-
-        const restaurant =
-            restaurants[key];
-
-        if(
-            restaurant.tables &&
-            restaurant.tables[code]
-        ){
-
-            connectCustomer(
-
-                restaurant,
-
-                restaurant.tables[code],
-
-                code
-
-            );
-
-            return;
-
-        }
-
-    }
-
-
-    toast(
-        "❌ کد میز پیدا نشد."
-    );
-
-}
-
-
-/* =====================================================
-   CONNECT CUSTOMER
+   CONNECT
 ===================================================== */
 
 function connectCustomer(
-    restaurant,
-    table,
-    code
+restaurant,
+table,
+code=""
 ){
 
-    if(
-        !restaurant ||
-        !table
-    ){
+if(!restaurant || !table){
 
-        toast(
-            "اطلاعات میز معتبر نیست."
-        );
+toast("اطلاعات میز معتبر نیست.");
+return;
 
-        return;
+}
 
-    }
+currentRestaurant=restaurant;
+currentTable=Number(table);
+currentTableCode=code||"";
 
+localStorage.setItem(
+"tabpay_session",
+JSON.stringify({
+restaurantId:restaurant.id,
+tableId:currentTable,
+tableCode:currentTableCode,
+connectedAt:new Date().toISOString()
+})
+);
 
-    currentRestaurant =
-        restaurant;
+document.getElementById("restaurantName")
+.textContent=restaurant.name;
 
-    currentTable =
-        Number(table);
+document.getElementById("restaurantAddress")
+.textContent=restaurant.address;
 
-    currentTableCode =
-        code || "";
+document.getElementById("tableBadge")
+.textContent="میز "+currentTable;
 
+document.getElementById("waiterTable")
+.textContent=currentTable;
 
-    localStorage.setItem(
+document.getElementById("billTable")
+.textContent=currentTable;
 
-        "tabpay_session",
+document.getElementById("billRestaurant")
+.textContent=restaurant.name;
 
-        JSON.stringify({
+currentCategory="همه";
 
-            restaurantId:
-                restaurant.id,
+renderCategories();
+renderMenu();
+updateCartUI();
+renderOrderStatus();
 
-            tableId:
-                currentTable,
+document.getElementById("bottomNav")
+.classList.remove("hidden");
 
-            tableCode:
-                currentTableCode,
-
-            connectedAt:
-                new Date().toISOString()
-
-        })
-
-    );
-
-
-    document.getElementById(
-        "restaurantName"
-    ).textContent =
-        restaurant.name;
-
-
-    document.getElementById(
-        "restaurantAddress"
-    ).textContent =
-        restaurant.address;
-
-
-    document.getElementById(
-        "tableBadge"
-    ).textContent =
-        "میز " +
-        currentTable;
-
-
-    document.getElementById(
-        "waiterTable"
-    ).textContent =
-        currentTable;
-
-
-    document.getElementById(
-        "billTable"
-    ).textContent =
-        currentTable;
-
-
-    document.getElementById(
-        "billRestaurant"
-    ).textContent =
-        restaurant.name;
-
-
-    currentCategory =
-        "همه";
-
-
-    renderCategories();
-
-    renderMenu();
-
-    updateCartUI();
-
-    renderOrderStatus();
-
-    showPage(
-        "menuPage"
-    );
-
-
-    document
-        .getElementById(
-            "bottomNav"
-        )
-        .classList.remove(
-            "hidden"
-        );
+showPage("menuPage");
 
 }
 
@@ -1993,72 +1523,37 @@ function connectCustomer(
 
 function renderCategories(){
 
-    const box =
-        document.getElementById(
-            "categories"
-        );
+const box=document.getElementById("categories");
 
-    if(
-        !box ||
-        !currentRestaurant
-    ){
+if(!box||!currentRestaurant)return;
 
-        return;
+const categories=[
+"همه",
+...new Set(
+currentRestaurant.menu.map(food=>food.category)
+)
+];
 
-    }
+box.innerHTML=categories.map(category=>`
 
+<button
+class="category ${currentCategory===category?"active":""}"
+onclick='selectCategory(${JSON.stringify(category)})'
+>
+${category}
+</button>
 
-    const categories =
-        [
-            "همه",
-            ...new Set(
-                currentRestaurant.menu.map(
-                    food =>
-                        food.category
-                )
-            )
-        ];
-
-
-    box.innerHTML =
-        categories
-            .map(
-                category => `
-
-                    <button
-                        class="category ${
-                            currentCategory === category
-                            ? "active"
-                            : ""
-                        }"
-                        onclick="selectCategory(
-                            ${JSON.stringify(category)}
-                        )"
-                    >
-                        ${category}
-                    </button>
-
-                `
-            )
-            .join("");
+`).join("");
 
 }
 
 
-/* =====================================================
-   SELECT CATEGORY
-===================================================== */
+function selectCategory(category){
 
-function selectCategory(
-    category
-){
+currentCategory=category;
 
-    currentCategory =
-        category;
-
-    renderCategories();
-
-    renderMenu();
+renderCategories();
+renderMenu();
 
 }
 
@@ -2069,122 +1564,82 @@ function selectCategory(
 
 function renderMenu(){
 
-    const grid =
-        document.getElementById(
-            "menuGrid"
-        );
+const grid=document.getElementById("menuGrid");
 
-    if(
-        !grid ||
-        !currentRestaurant
-    ){
+if(!grid||!currentRestaurant)return;
 
-        return;
+const search=(
+document.getElementById("searchInput")?.value||""
+).trim().toLowerCase();
 
-    }
+const foods=currentRestaurant.menu.filter(food=>{
 
+const categoryMatch=
+currentCategory==="همه"||
+food.category===currentCategory;
 
-    const search =
-        (
-            document.getElementById(
-                "searchInput"
-            )?.value || ""
-        )
-        .trim()
-        .toLowerCase();
+const searchMatch=
+!search||
+food.name.toLowerCase().includes(search)||
+food.description.toLowerCase().includes(search);
 
+return categoryMatch&&searchMatch;
 
-    let foods =
-        currentRestaurant.menu
-            .filter(
-                food => {
+});
 
-                    const categoryMatch =
-                        currentCategory === "همه" ||
-                        food.category ===
-                        currentCategory;
+if(!foods.length){
 
-                    const searchMatch =
-                        !search ||
-                        food.name
-                            .toLowerCase()
-                            .includes(search) ||
-                        food.description
-                            .toLowerCase()
-                            .includes(search);
+grid.innerHTML=`
+<div
+class="empty"
+style="grid-column:1/-1"
+>
+غذایی پیدا نشد.
+</div>
+`;
 
-                    return (
-                        categoryMatch &&
-                        searchMatch
-                    );
+return;
 
-                }
-            );
+}
 
+grid.innerHTML=foods.map(food=>`
 
-    if(
-        foods.length === 0
-    ){
+<div class="food-card">
 
-        grid.innerHTML = `
+<div class="food-image">
+${food.icon}
+</div>
 
-            <div
-                class="empty"
-                style="grid-column:1/-1"
-            >
-                غذایی پیدا نشد.
-            </div>
+<div class="food-body">
 
-        `;
+<div class="food-name">
+${food.name}
+</div>
 
-        return;
+<div class="food-description">
+${food.description}
+</div>
 
-    }
+<div class="food-bottom">
 
+<div class="price">
+${formatPrice(food.price)}
+</div>
 
-    grid.innerHTML =
-        foods
-            .map(
-                food => `
+<button
+class="add-btn"
+onclick="openFoodModal('${food.id}')"
+>
++
+</button>
 
-                    <div class="food-card">
+</div>
 
-                        <div class="food-image">
-                            ${food.icon}
-                        </div>
+</div>
 
-                        <div class="food-body">
+</div>
 
-                            <div class="food-name">
-                                ${food.name}
-                            </div>
-
-                            <div class="food-description">
-                                ${food.description}
-                            </div>
-
-                            <div class="food-bottom">
-
-                                <div class="price">
-                                    ${formatPrice(food.price)}
-                                </div>
-
-                                <button
-                                    class="add-btn"
-                                    onclick="openFoodModal('${food.id}')"
-                                >
-                                    +
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `
-            )
-            .join("");
+`).join("");
 
 }
 
@@ -2193,137 +1648,77 @@ function renderMenu(){
    FOOD MODAL
 ===================================================== */
 
-function openFoodModal(
-    foodId
-){
+function openFoodModal(foodId){
 
-    if(
-        !currentRestaurant
-    ){
+if(!currentRestaurant){
 
-        toast(
-            "ابتدا میز را انتخاب کنید."
-        );
+toast("ابتدا QR میز را اسکن کنید.");
+return;
 
-        return;
+}
 
-    }
+selectedFood=currentRestaurant.menu.find(
+food=>food.id===foodId
+);
 
+if(!selectedFood){
 
-    selectedFood =
-        currentRestaurant.menu.find(
-            food =>
-                food.id === foodId
-        );
+toast("غذا پیدا نشد.");
+return;
 
+}
 
-    if(
-        !selectedFood
-    ){
+modalQty=1;
 
-        toast(
-            "غذا پیدا نشد."
-        );
+document.getElementById("modalQty")
+.textContent="1";
 
-        return;
+document.getElementById("foodDetailIcon")
+.textContent=selectedFood.icon;
 
-    }
+document.getElementById("foodDetailName")
+.textContent=selectedFood.name;
 
+document.getElementById("foodDetailDescription")
+.textContent=selectedFood.description;
 
-    modalQty =
-        1;
+document.getElementById("extraCheese")
+.checked=false;
 
+document.getElementById("extraSauce")
+.checked=false;
 
-    document.getElementById(
-        "modalQty"
-    ).textContent =
-        "1";
-
-
-    document.getElementById(
-        "foodDetailIcon"
-    ).textContent =
-        selectedFood.icon;
-
-
-    document.getElementById(
-        "foodDetailName"
-    ).textContent =
-        selectedFood.name;
-
-
-    document.getElementById(
-        "foodDetailDescription"
-    ).textContent =
-        selectedFood.description;
-
-
-    document.getElementById(
-        "extraCheese"
-    ).checked =
-        false;
-
-
-    document.getElementById(
-        "extraSauce"
-    ).checked =
-        false;
-
-
-    document.getElementById(
-        "foodModal"
-    ).classList.add(
-        "show"
-    );
+document.getElementById("foodModal")
+.classList.add("show");
 
 }
 
 
-function changeModalQty(
-    amount
-){
+function changeModalQty(amount){
 
-    modalQty =
-        Math.max(
-            1,
-            modalQty + amount
-        );
+modalQty=Math.max(1,modalQty+amount);
 
-
-    document.getElementById(
-        "modalQty"
-    ).textContent =
-        modalQty;
+document.getElementById("modalQty")
+.textContent=modalQty;
 
 }
 
 
 function closeFoodModal(){
 
-    document.getElementById(
-        "foodModal"
-    ).classList.remove(
-        "show"
-    );
+document.getElementById("foodModal")
+.classList.remove("show");
 
-    selectedFood =
-        null;
+selectedFood=null;
 
 }
 
 
-function closeFoodModalOutside(
-    event
-){
+function closeFoodModalOutside(event){
 
-    if(
-        event.target.id ===
-        "foodModal"
-    ){
-
-        closeFoodModal();
-
-    }
+if(event.target.id==="foodModal"){
+closeFoodModal();
+}
 
 }
 
@@ -2334,116 +1729,57 @@ function closeFoodModalOutside(
 
 function addSelectedFoodToCart(){
 
-    if(
-        !selectedFood
-    ){
+if(!selectedFood)return;
 
-        return;
+const cheese=document.getElementById("extraCheese").checked;
+const sauce=document.getElementById("extraSauce").checked;
 
-    }
+let unitPrice=selectedFood.price;
+const options=[];
 
+if(cheese){
+unitPrice+=30000;
+options.push("پنیر اضافه");
+}
 
-    const cheese =
-        document.getElementById(
-            "extraCheese"
-        ).checked;
+if(sauce){
+unitPrice+=15000;
+options.push("سس اضافه");
+}
 
-    const sauce =
-        document.getElementById(
-            "extraSauce"
-        ).checked;
+const optionKey=options.join("|");
 
+const existing=cart.find(item=>
+item.foodId===selectedFood.id &&
+item.optionKey===optionKey
+);
 
-    let unitPrice =
-        selectedFood.price;
+if(existing){
 
+existing.qty+=modalQty;
 
-    const options = [];
+}else{
 
+cart.push({
 
-    if(cheese){
+foodId:selectedFood.id,
+name:selectedFood.name,
+icon:selectedFood.icon,
+basePrice:selectedFood.price,
+unitPrice:unitPrice,
+qty:modalQty,
+options:options,
+optionKey:optionKey
 
-        unitPrice += 30000;
+});
 
-        options.push(
-            "پنیر اضافه"
-        );
+}
 
-    }
+saveCart();
+updateCartUI();
+closeFoodModal();
 
-
-    if(sauce){
-
-        unitPrice += 15000;
-
-        options.push(
-            "سس اضافه"
-        );
-
-    }
-
-
-    const optionKey =
-        options.join("|");
-
-
-    const existing =
-        cart.find(
-            item =>
-                item.foodId ===
-                selectedFood.id &&
-                item.optionKey ===
-                optionKey
-        );
-
-
-    if(existing){
-
-        existing.qty +=
-            modalQty;
-
-    }else{
-
-        cart.push({
-
-            foodId:
-                selectedFood.id,
-
-            name:
-                selectedFood.name,
-
-            icon:
-                selectedFood.icon,
-
-            basePrice:
-                selectedFood.price,
-
-            unitPrice:
-                unitPrice,
-
-            qty:
-                modalQty,
-
-            options:
-                options,
-
-            optionKey:
-                optionKey
-
-        });
-
-    }
-
-
-    saveCart();
-
-    updateCartUI();
-
-    closeFoodModal();
-
-    toast(
-        "✅ غذا به سبد اضافه شد."
-    );
+toast("✅ غذا به سبد اضافه شد.");
 
 }
 
@@ -2454,286 +1790,179 @@ function addSelectedFoodToCart(){
 
 function getCartTotal(){
 
-    return cart.reduce(
-        (
-            total,
-            item
-        ) => {
-
-            return total +
-                (
-                    item.unitPrice *
-                    item.qty
-                );
-
-        },
-        0
-    );
+return cart.reduce(
+(total,item)=>
+total+(item.unitPrice*item.qty),
+0
+);
 
 }
 
 
 function getCartCount(){
 
-    return cart.reduce(
-        (
-            total,
-            item
-        ) =>
-            total +
-            item.qty,
-        0
-    );
+return cart.reduce(
+(total,item)=>total+item.qty,
+0
+);
 
 }
 
 
 function renderCart(){
 
-    const box =
-        document.getElementById(
-            "cartItems"
-        );
+const box=document.getElementById("cartItems");
 
-    if(
-        !box
-    ){
+if(!box)return;
 
-        return;
+if(!cart.length){
 
-    }
+box.innerHTML=`
+<div class="empty">
+🛒<br><br>
+سبد سفارش خالی است.
+</div>
+`;
 
+return;
 
-    if(
-        cart.length === 0
-    ){
+}
 
-        box.innerHTML = `
+box.innerHTML=cart.map((item,index)=>`
 
-            <div class="empty">
-                🛒<br><br>
-                سبد سفارش خالی است.
-            </div>
+<div class="cart-item">
 
-        `;
+<div class="cart-info">
 
-        return;
+<div class="cart-name">
+${item.icon} ${item.name}
+</div>
 
-    }
+${
+item.options.length
+?`
+<div class="cart-options">
+${item.options.join("، ")}
+</div>
+`
+:""
+}
 
+<div class="cart-price">
+${formatPrice(item.unitPrice*item.qty)}
+</div>
 
-    box.innerHTML =
-        cart
-            .map(
-                (
-                    item,
-                    index
-                ) => `
+</div>
 
-                    <div class="cart-item">
+<div class="qty">
 
-                        <div class="cart-info">
+<button onclick="changeCartQty(${index},1)">
++
+</button>
 
-                            <div class="cart-name">
-                                ${item.icon}
-                                ${item.name}
-                            </div>
+<span>${item.qty}</span>
 
-                            ${
-                                item.options.length
-                                ? `
-                                    <div class="cart-options">
-                                        ${item.options.join("، ")}
-                                    </div>
-                                  `
-                                : ""
-                            }
+<button onclick="changeCartQty(${index},-1)">
+−
+</button>
 
-                            <div class="cart-price">
-                                ${formatPrice(
-                                    item.unitPrice *
-                                    item.qty
-                                )}
-                            </div>
+</div>
 
-                        </div>
+</div>
 
-
-                        <div class="qty">
-
-                            <button
-                                onclick="changeCartQty(
-                                    ${index},
-                                    1
-                                )"
-                            >
-                                +
-                            </button>
-
-                            <span>
-                                ${item.qty}
-                            </span>
-
-                            <button
-                                onclick="changeCartQty(
-                                    ${index},
-                                    -1
-                                )"
-                            >
-                                −
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `
-            )
-            .join("");
+`).join("");
 
 }
 
 
-function changeCartQty(
-    index,
-    amount
-){
+function changeCartQty(index,amount){
 
-    if(
-        !cart[index]
-    ){
+if(!cart[index])return;
 
-        return;
+cart[index].qty+=amount;
 
-    }
+if(cart[index].qty<=0){
+cart.splice(index,1);
+}
 
-
-    cart[index].qty +=
-        amount;
-
-
-    if(
-        cart[index].qty <= 0
-    ){
-
-        cart.splice(
-            index,
-            1
-        );
-
-    }
-
-
-    saveCart();
-
-    updateCartUI();
+saveCart();
+updateCartUI();
 
 }
 
 
 function updateCartUI(){
 
-    renderCart();
+renderCart();
 
-    const count =
-        document.getElementById(
-            "cartCount"
-        );
+const count=document.getElementById("cartCount");
 
-    if(count){
+if(count){
+count.textContent=getCartCount();
+}
 
-        count.textContent =
-            getCartCount();
+const summary=document.getElementById("cartSummary");
 
-    }
+if(summary){
 
+summary.innerHTML=`
 
-    const summary =
-        document.getElementById(
-            "cartSummary"
-        );
+<div class="total-line">
 
-    if(summary){
+<span>
+تعداد
+</span>
 
-        const total =
-            getCartTotal();
+<strong>
+${getCartCount()}
+</strong>
 
-        summary.innerHTML = `
+</div>
 
-            <div class="total-line">
+<div class="total-line final">
 
-                <span>
-                    تعداد
-                </span>
+<span>
+مبلغ نهایی
+</span>
 
-                <strong>
-                    ${getCartCount()}
-                </strong>
+<strong>
+${formatPrice(getCartTotal())}
+</strong>
 
-            </div>
+</div>
 
-            <div class="total-line final">
+`;
 
-                <span>
-                    مبلغ نهایی
-                </span>
-
-                <strong>
-                    ${formatPrice(total)}
-                </strong>
-
-            </div>
-
-        `;
-
-    }
+}
 
 }
 
 
-/* =====================================================
-   STORAGE CART
-===================================================== */
-
 function saveCart(){
 
-    localStorage.setItem(
-        "tabpay_cart",
-        JSON.stringify(cart)
-    );
+localStorage.setItem(
+"tabpay_cart",
+JSON.stringify(cart)
+);
 
 }
 
 
 function loadCart(){
 
-    try{
+try{
 
-        const saved =
-            JSON.parse(
-                localStorage.getItem(
-                    "tabpay_cart"
-                )
-            );
+const saved=JSON.parse(
+localStorage.getItem("tabpay_cart")
+);
 
-        if(
-            Array.isArray(saved)
-        ){
+cart=Array.isArray(saved)?saved:[];
 
-            cart =
-                saved;
+}catch(e){
 
-        }else{
+cart=[];
 
-            cart = [];
-
-        }
-
-    }catch(error){
-
-        cart = [];
-
-    }
+}
 
 }
 
@@ -2744,137 +1973,95 @@ function loadCart(){
 
 function goToBill(){
 
-    if(
-        cart.length === 0
-    ){
+if(!cart.length){
 
-        toast(
-            "سبد سفارش خالی است."
-        );
+toast("سبد سفارش خالی است.");
+return;
 
-        return;
+}
 
-    }
+if(!currentRestaurant||!currentTable){
 
+toast("ابتدا QR میز را اسکن کنید.");
+return;
 
-    if(
-        !currentRestaurant ||
-        !currentTable
-    ){
+}
 
-        toast(
-            "ابتدا میز را انتخاب کنید."
-        );
-
-        return;
-
-    }
-
-
-    renderBill();
-
-    showPage(
-        "billPage"
-    );
+renderBill();
+showPage("billPage");
 
 }
 
 
 function renderBill(){
 
-    const items =
-        document.getElementById(
-            "billItems"
-        );
+const items=document.getElementById("billItems");
 
-    if(!items){
-        return;
-    }
+if(!items)return;
 
+items.innerHTML=cart.map(item=>`
 
-    items.innerHTML =
-        cart
-            .map(
-                item => `
+<div class="bill-item">
 
-                    <div class="bill-item">
+<span>
+${item.name} × ${item.qty}
+</span>
 
-                        <span>
-                            ${item.name}
-                            × ${item.qty}
-                        </span>
+<strong>
+${formatPrice(item.unitPrice*item.qty)}
+</strong>
 
-                        <strong>
-                            ${formatPrice(
-                                item.unitPrice *
-                                item.qty
-                            )}
-                        </strong>
+</div>
 
-                    </div>
+`).join("");
 
-                `
-            )
-            .join("");
+const total=getCartTotal();
 
+document.getElementById("billTotal").innerHTML=`
 
-    const total =
-        getCartTotal();
+<div class="total-line">
 
+<span>
+مبلغ سفارش
+</span>
 
-    document.getElementById(
-        "billTotal"
-    ).innerHTML = `
+<strong>
+${formatPrice(total)}
+</strong>
 
-        <div class="total-line">
+</div>
 
-            <span>
-                مبلغ سفارش
-            </span>
+<div class="total-line">
 
-            <strong>
-                ${formatPrice(total)}
-            </strong>
+<span>
+هزینه خدمات
+</span>
 
-        </div>
+<strong>
+۰ تومان
+</strong>
 
-        <div class="total-line">
+</div>
 
-            <span>
-                هزینه خدمات
-            </span>
+<div class="total-line final">
 
-            <strong>
-                ۰ تومان
-            </strong>
+<span>
+قابل پرداخت
+</span>
 
-        </div>
+<strong>
+${formatPrice(total)}
+</strong>
 
-        <div class="total-line final">
+</div>
 
-            <span>
-                قابل پرداخت
-            </span>
+`;
 
-            <strong>
-                ${formatPrice(total)}
-            </strong>
+document.getElementById("billRestaurant")
+.textContent=currentRestaurant.name;
 
-        </div>
-
-    `;
-
-
-    document.getElementById(
-        "billRestaurant"
-    ).textContent =
-        currentRestaurant.name;
-
-
-    document.getElementById(
-        "billTable"
-    ).textContent =
-        currentTable;
+document.getElementById("billTable")
+.textContent=currentTable;
 
 }
 
@@ -2883,164 +2070,103 @@ function renderBill(){
    PAYMENT
 ===================================================== */
 
-function selectPayment(
-    method
-){
+function selectPayment(method){
 
-    selectedPayment =
-        method;
+selectedPayment=method;
 
+document.getElementById("onlinePaymentOption")
+.classList.toggle(
+"selected",
+method==="online"
+);
 
-    document.getElementById(
-        "onlinePaymentOption"
-    ).classList.toggle(
-        "selected",
-        method === "online"
-    );
-
-
-    document.getElementById(
-        "restaurantPaymentOption"
-    ).classList.toggle(
-        "selected",
-        method === "restaurant"
-    );
+document.getElementById("restaurantPaymentOption")
+.classList.toggle(
+"selected",
+method==="restaurant"
+);
 
 }
 
 
 /* =====================================================
-   SUBMIT ORDER
+   ORDER
 ===================================================== */
 
 function submitOrder(){
 
-    if(
-        cart.length === 0
-    ){
+if(!cart.length){
 
-        toast(
-            "سبد سفارش خالی است."
-        );
+toast("سبد سفارش خالی است.");
+return;
 
-        return;
+}
 
-    }
+if(!currentRestaurant||!currentTable){
 
+toast("اطلاعات میز کامل نیست.");
+return;
 
-    if(
-        !currentRestaurant ||
-        !currentTable
-    ){
+}
 
-        toast(
-            "اطلاعات میز کامل نیست."
-        );
+if(selectedPayment==="online"){
+fakePayment();
+}
 
-        return;
+const orderNumber=
+"TP-"+Date.now().toString().slice(-8);
 
-    }
+const order={
 
+id:orderNumber,
 
-    if(
-        selectedPayment ===
-        "online"
-    ){
+restaurantId:currentRestaurant.id,
 
-        fakePayment();
+restaurantName:currentRestaurant.name,
 
-    }
+tableId:currentTable,
 
+tableCode:currentTableCode,
 
-    const orderNumber =
-        "TP-" +
-        Date.now()
-            .toString()
-            .slice(-8);
+items:JSON.parse(JSON.stringify(cart)),
 
+total:getCartTotal(),
 
-    const order = {
+payment:selectedPayment,
 
-        id:
-            orderNumber,
+paymentStatus:
+selectedPayment==="online"
+?"paid_demo"
+:"pay_at_restaurant",
 
-        restaurantId:
-            currentRestaurant.id,
+status:"received",
 
-        restaurantName:
-            currentRestaurant.name,
+createdAt:new Date().toISOString()
 
-        tableId:
-            currentTable,
+};
 
-        tableCode:
-            currentTableCode,
+localStorage.setItem(
+"tabpay_last_order",
+JSON.stringify(order)
+);
 
-        items:
-            JSON.parse(
-                JSON.stringify(cart)
-            ),
+lastOrder=order;
 
-        total:
-            getCartTotal(),
+cart=[];
 
-        payment:
-            selectedPayment,
+saveCart();
+updateCartUI();
+renderOrderStatus();
+showPage("orderPage");
 
-        paymentStatus:
-            selectedPayment === "online"
-                ? "paid_demo"
-                : "pay_at_restaurant",
-
-        status:
-            "received",
-
-        createdAt:
-            new Date()
-                .toISOString()
-
-    };
-
-
-    localStorage.setItem(
-        "tabpay_last_order",
-        JSON.stringify(order)
-    );
-
-
-    lastOrder =
-        order;
-
-
-    cart = [];
-
-    saveCart();
-
-    updateCartUI();
-
-    renderOrderStatus();
-
-    showPage(
-        "orderPage"
-    );
-
-
-    toast(
-        "✅ سفارش با موفقیت ثبت شد."
-    );
+toast("✅ سفارش با موفقیت ثبت شد.");
 
 }
 
 
-/* =====================================================
-   FAKE PAYMENT
-===================================================== */
-
 function fakePayment(){
 
-    toast(
-        "💳 پرداخت آزمایشی انجام شد."
-    );
+toast("💳 پرداخت آزمایشی انجام شد.");
 
 }
 
@@ -3049,233 +2175,158 @@ function fakePayment(){
    ORDER STATUS
 ===================================================== */
 
-const orderStatuses = [
+const orderStatuses=[
 
-    {
-        key:"received",
-        title:"سفارش ثبت شد",
-        description:"سفارش شما با موفقیت دریافت شد.",
-        icon:"✓"
-    },
+{
+key:"received",
+title:"سفارش ثبت شد",
+description:"سفارش شما با موفقیت دریافت شد.",
+icon:"✓"
+},
 
-    {
-        key:"preparing",
-        title:"در حال آماده‌سازی",
-        description:"آشپزخانه در حال آماده کردن سفارش است.",
-        icon:"👨‍🍳"
-    },
+{
+key:"preparing",
+title:"در حال آماده‌سازی",
+description:"آشپزخانه در حال آماده کردن سفارش است.",
+icon:"👨‍🍳"
+},
 
-    {
-        key:"ready",
-        title:"آماده تحویل",
-        description:"سفارش شما آماده است.",
-        icon:"🍽️"
-    },
+{
+key:"ready",
+title:"آماده تحویل",
+description:"سفارش شما آماده است.",
+icon:"🍽️"
+},
 
-    {
-        key:"delivered",
-        title:"تحویل داده شد",
-        description:"سفارش تحویل داده شده است.",
-        icon:"✓"
-    }
+{
+key:"delivered",
+title:"تحویل داده شد",
+description:"سفارش تحویل داده شده است.",
+icon:"✓"
+}
 
 ];
 
 
-function getStatusIndex(
-    status
-){
+function getStatusIndex(status){
 
-    const index =
-        orderStatuses.findIndex(
-            item =>
-                item.key === status
-        );
+const index=orderStatuses.findIndex(
+item=>item.key===status
+);
 
-    return index >= 0
-        ? index
-        : 0;
+return index>=0?index:0;
 
 }
 
 
 function renderOrderStatus(){
 
-    const box =
-        document.getElementById(
-            "orderStatuses"
-        );
+const box=document.getElementById("orderStatuses");
 
-    if(!box){
-        return;
-    }
+if(!box)return;
 
+if(!lastOrder){
 
-    if(
-        !lastOrder
-    ){
+box.innerHTML=`
+<div class="empty">
+هنوز سفارشی ثبت نشده است.
+</div>
+`;
 
-        box.innerHTML = `
+return;
 
-            <div class="empty">
-                هنوز سفارشی ثبت نشده است.
-            </div>
+}
 
-        `;
+document.getElementById("orderNumber")
+.textContent=lastOrder.id;
 
-        return;
+document.getElementById("orderAmount")
+.textContent=formatPrice(lastOrder.total);
 
-    }
+document.getElementById("orderPayment")
+.textContent=
+lastOrder.payment==="online"
+?"پرداخت آنلاین"
+:"پرداخت در رستوران";
 
+const currentIndex=getStatusIndex(
+lastOrder.status
+);
 
-    document.getElementById(
-        "orderNumber"
-    ).textContent =
-        lastOrder.id;
+box.innerHTML=orderStatuses.map(
+(item,index)=>{
 
+let className="status";
 
-    document.getElementById(
-        "orderAmount"
-    ).textContent =
-        formatPrice(
-            lastOrder.total
-        );
+if(index<currentIndex){
+className+=" done";
+}
 
+if(index===currentIndex){
+className+=" active";
+}
 
-    document.getElementById(
-        "orderPayment"
-    ).textContent =
-        lastOrder.payment ===
-        "online"
-            ? "پرداخت آنلاین"
-            : "پرداخت در رستوران";
+return`
 
+<div class="${className}">
 
-    const currentIndex =
-        getStatusIndex(
-            lastOrder.status
-        );
+<div class="status-icon">
+${item.icon}
+</div>
 
+<div class="status-text">
 
-    box.innerHTML =
-        orderStatuses
-            .map(
-                (
-                    item,
-                    index
-                ) => {
+<strong>
+${item.title}
+</strong>
 
-                    let className =
-                        "status";
+<span>
+${item.description}
+</span>
 
-                    if(
-                        index <
-                        currentIndex
-                    ){
+</div>
 
-                        className +=
-                            " done";
+</div>
 
-                    }
+`;
 
-                    if(
-                        index ===
-                        currentIndex
-                    ){
-
-                        className +=
-                            " active";
-
-                    }
-
-
-                    return `
-
-                        <div class="${className}">
-
-                            <div class="status-icon">
-                                ${item.icon}
-                            </div>
-
-                            <div class="status-text">
-
-                                <strong>
-                                    ${item.title}
-                                </strong>
-
-                                <span>
-                                    ${item.description}
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join("");
+}
+).join("");
 
 }
 
 
-/* =====================================================
-   DEMO STATUS
-===================================================== */
-
 function simulateNextStatus(){
 
-    if(
-        !lastOrder
-    ){
+if(!lastOrder){
 
-        toast(
-            "هنوز سفارشی ثبت نشده است."
-        );
+toast("هنوز سفارشی ثبت نشده است.");
+return;
 
-        return;
+}
 
-    }
+const currentIndex=getStatusIndex(
+lastOrder.status
+);
 
+if(currentIndex>=orderStatuses.length-1){
 
-    const currentIndex =
-        getStatusIndex(
-            lastOrder.status
-        );
+toast("سفارش در آخرین وضعیت قرار دارد.");
+return;
 
+}
 
-    if(
-        currentIndex >=
-        orderStatuses.length - 1
-    ){
+lastOrder.status=
+orderStatuses[currentIndex+1].key;
 
-        toast(
-            "سفارش در آخرین وضعیت قرار دارد."
-        );
+localStorage.setItem(
+"tabpay_last_order",
+JSON.stringify(lastOrder)
+);
 
-        return;
+renderOrderStatus();
 
-    }
-
-
-    lastOrder.status =
-        orderStatuses[
-            currentIndex + 1
-        ].key;
-
-
-    localStorage.setItem(
-        "tabpay_last_order",
-        JSON.stringify(lastOrder)
-    );
-
-
-    renderOrderStatus();
-
-    toast(
-        "وضعیت سفارش تغییر کرد."
-    );
+toast("وضعیت سفارش تغییر کرد.");
 
 }
 
@@ -3284,412 +2335,249 @@ function simulateNextStatus(){
    WAITER
 ===================================================== */
 
-function callWaiter(
-    request
-){
+function callWaiter(request){
 
-    if(
-        !currentRestaurant ||
-        !currentTable
-    ){
+if(!currentRestaurant||!currentTable){
 
-        toast(
-            "ابتدا میز را انتخاب کنید."
-        );
+toast("ابتدا QR میز را اسکن کنید.");
+return;
 
-        return;
+}
 
-    }
-
-
-    toast(
-        "🔔 درخواست «" +
-        request +
-        "» برای میز " +
-        currentTable +
-        " ثبت شد."
-    );
+toast(
+"🔔 درخواست «"+request+
+"» برای میز "+currentTable+
+" ثبت شد."
+);
 
 }
 
 
 /* =====================================================
-   REAL QR SCANNER
+   QR SCANNER
 ===================================================== */
-
-function demoQR(){
-
-    openQRScanner();
-
-}
-
 
 function openQRScanner(){
 
-    const modal =
-        document.getElementById(
-            "qrScannerModal"
-        );
+const modal=document.getElementById(
+"qrScannerModal"
+);
 
-    if(!modal){
-        return;
-    }
+if(!modal)return;
 
+modal.classList.add("show");
 
-    modal.classList.add(
-        "show"
-    );
-
-
-    setTimeout(
-        function(){
-
-            startQRScanner();
-
-        },
-        250
-    );
+setTimeout(()=>{
+startQRScanner();
+},250);
 
 }
 
 
 function startQRScanner(){
 
-    if(
-        typeof Html5Qrcode ===
-        "undefined"
-    ){
+if(typeof Html5Qrcode==="undefined"){
 
-        toast(
-            "❌ اسکنر QR بارگذاری نشده است. اینترنت را بررسی کنید."
-        );
+toast(
+"❌ اسکنر QR بارگذاری نشده است. اینترنت را بررسی کنید."
+);
 
-        return;
+return;
 
-    }
+}
 
+if(qrScanner)return;
 
-    if(
-        qrScanner
-    ){
+const reader=document.getElementById("qrReader");
 
-        return;
+if(!reader)return;
 
-    }
+reader.innerHTML="";
 
+qrScanner=new Html5Qrcode("qrReader");
 
-    const reader =
-        document.getElementById(
-            "qrReader"
-        );
+qrScanner.start(
 
-    if(!reader){
-        return;
-    }
+{
+facingMode:{
+ideal:"environment"
+}
+},
 
+{
+fps:10,
 
-    qrScanner =
-        new Html5Qrcode(
-            "qrReader"
-        );
+qrbox:{
+width:250,
+height:250
+},
 
+aspectRatio:1
 
-    qrScanner.start(
+},
 
-        {
-            facingMode:{
-                ideal:"environment"
-            }
-        },
+function(decodedText){
 
-        {
-            fps:10,
+if(!qrScannerRunning)return;
 
-            qrbox:{
-                width:250,
-                height:250
-            },
+qrScannerRunning=false;
 
-            aspectRatio:1
+handleScannedQR(decodedText);
 
-        },
+},
 
-        function(decodedText){
+function(){
 
-            if(
-                !qrScannerRunning
-            ){
+}
 
-                return;
+)
+.then(()=>{
 
-            }
+qrScannerRunning=true;
 
+})
+.catch(error=>{
 
-            qrScannerRunning =
-                false;
+console.error(error);
 
+qrScanner=null;
+qrScannerRunning=false;
 
-            handleScannedQR(
-                decodedText
-            );
+toast(
+"❌ دوربین باز نشد. اجازه دسترسی دوربین را فعال کنید."
+);
 
-        },
-
-        function(){
-
-            /*
-                خطاهای معمول هنگام
-                پیدا نشدن QR نادیده گرفته می‌شوند.
-            */
-
-        }
-
-    )
-    .then(
-        function(){
-
-            qrScannerRunning =
-                true;
-
-        }
-    )
-    .catch(
-        function(error){
-
-            console.error(
-                "Camera error:",
-                error
-            );
-
-
-            qrScanner =
-                null;
-
-            qrScannerRunning =
-                false;
-
-
-            toast(
-                "❌ دوربین باز نشد. اجازه دسترسی دوربین را فعال کنید."
-            );
-
-        }
-    );
+});
 
 }
 
 
 /* =====================================================
-   HANDLE SCANNED QR
+   SCANNED QR
 ===================================================== */
 
-function handleScannedQR(
-    decodedText
+function handleScannedQR(decodedText){
+
+const text=String(decodedText).trim();
+
+stopQRScanner();
+
+if(/^https?:\/\//i.test(text)){
+
+handleQRUrl(text);
+return;
+
+}
+
+try{
+
+const data=JSON.parse(text);
+
+if(data&&data.restaurant){
+
+const restaurant=
+restaurants[data.restaurant];
+
+if(!restaurant){
+
+toast("❌ رستوران پیدا نشد.");
+return;
+
+}
+
+if(!data.table){
+
+toast("❌ شماره میز در QR وجود ندارد.");
+return;
+
+}
+
+closeQRScanner();
+
+connectCustomer(
+restaurant,
+Number(data.table),
+data.token||""
+);
+
+return;
+
+}
+
+}catch(e){}
+
+
+/*
+QR مستقیم مثل:
+A7-83K
+*/
+
+const code=text.toUpperCase();
+
+for(const key in restaurants){
+
+const restaurant=restaurants[key];
+
+if(
+restaurant.tables &&
+restaurant.tables[code]
 ){
 
-    const text =
-        String(
-            decodedText
-        )
-        .trim();
+closeQRScanner();
 
+connectCustomer(
+restaurant,
+restaurant.tables[code],
+code
+);
 
-    stopQRScanner();
+toast("✅ QR میز شناسایی شد.");
 
+return;
 
-    /*
-       URL
-    */
+}
 
-    if(
-        /^https?:\/\//i.test(
-            text
-        )
-    ){
+}
 
-        handleQRUrl(
-            text
-        );
 
-        return;
+/*
+QR مثل:
+TABLE-7
+TABLE 7
+TABLE_7
+table=7
+*/
 
-    }
+const match=text.match(
+/table[\s_\-=:\/]*(\d+)/i
+);
 
+if(match){
 
-    /*
-       JSON
-    */
+connectByTableNumber(
+Number(match[1])
+);
 
-    try{
+return;
 
-        const data =
-            JSON.parse(
-                text
-            );
+}
 
 
-        if(
-            data &&
-            data.restaurant
-        ){
+/*
+فقط شماره میز
+*/
 
-            const restaurant =
-                restaurants[
-                    data.restaurant
-                ];
+if(/^\d{1,2}$/.test(text)){
 
+connectByTableNumber(
+Number(text)
+);
 
-            if(!restaurant){
+return;
 
-                toast(
-                    "❌ رستوران پیدا نشد."
-                );
+}
 
-                return;
-
-            }
-
-
-            if(
-                !data.table
-            ){
-
-                toast(
-                    "❌ شماره میز در QR وجود ندارد."
-                );
-
-                return;
-
-            }
-
-
-            closeQRScanner();
-
-
-            connectCustomer(
-
-                restaurant,
-
-                Number(
-                    data.table
-                ),
-
-                data.token ||
-                ""
-
-            );
-
-            return;
-
-        }
-
-    }catch(error){
-
-        /*
-            QR JSON نبود.
-            ادامه می‌دهیم.
-        */
-
-    }
-
-
-    /*
-       کد مستقیم میز
-       A7-83K
-    */
-
-    const code =
-        text
-            .toUpperCase();
-
-
-    for(
-        const key in restaurants
-    ){
-
-        const restaurant =
-            restaurants[key];
-
-
-        if(
-            restaurant.tables &&
-            restaurant.tables[code]
-        ){
-
-            closeQRScanner();
-
-
-            connectCustomer(
-
-                restaurant,
-
-                restaurant.tables[code],
-
-                code
-
-            );
-
-
-            toast(
-                "✅ QR میز شناسایی شد."
-            );
-
-            return;
-
-        }
-
-    }
-
-
-    /*
-       TABLE-7
-       TABLE 7
-       TABLE_7
-       table=7
-       table/7
-    */
-
-    const match =
-        text.match(
-            /table[\s_\-=:\/]*(\d+)/i
-        );
-
-
-    if(match){
-
-        connectByTableNumber(
-            Number(
-                match[1]
-            )
-        );
-
-        return;
-
-    }
-
-
-    /*
-       فقط شماره میز
-    */
-
-    if(
-        /^\d{1,2}$/.test(
-            text
-        )
-    ){
-
-        connectByTableNumber(
-            Number(text)
-        );
-
-        return;
-
-    }
-
-
-    toast(
-        "❌ QR معتبر TabPay نیست."
-    );
+toast("❌ QR معتبر TabPay نیست.");
 
 }
 
@@ -3698,250 +2586,156 @@ function handleScannedQR(
    QR URL
 ===================================================== */
 
-function handleQRUrl(
-    url
+function handleQRUrl(url){
+
+try{
+
+const parsed=new URL(url);
+
+const restaurantId=
+parsed.searchParams.get("restaurant");
+
+const table=
+parsed.searchParams.get("table");
+
+const token=
+parsed.searchParams.get("token")||"";
+
+if(!restaurantId||!table){
+
+toast(
+"❌ QR اطلاعات رستوران و میز را ندارد."
+);
+
+return;
+
+}
+
+const restaurant=
+restaurants[restaurantId];
+
+if(!restaurant){
+
+toast("❌ رستوران پیدا نشد.");
+return;
+
+}
+
+const tableNumber=Number(table);
+
+if(
+!Number.isInteger(tableNumber)||
+tableNumber<=0
 ){
 
-    try{
+toast("❌ شماره میز معتبر نیست.");
+return;
 
-        const parsed =
-            new URL(
-                url
-            );
+}
 
+closeQRScanner();
 
-        const restaurantId =
-            parsed.searchParams.get(
-                "restaurant"
-            );
+connectCustomer(
 
+restaurant,
 
-        const table =
-            parsed.searchParams.get(
-                "table"
-            );
+tableNumber,
 
+token||
+findTableCode(
+restaurant,
+tableNumber
+)
 
-        const token =
-            parsed.searchParams.get(
-                "token"
-            ) || "";
+);
 
+toast("✅ QR با موفقیت شناسایی شد.");
 
-        if(
-            !restaurantId ||
-            !table
-        ){
+}catch(error){
 
-            toast(
-                "❌ QR اطلاعات رستوران و میز را ندارد."
-            );
+console.error(error);
 
-            return;
+toast("❌ آدرس QR معتبر نیست.");
 
-        }
-
-
-        const restaurant =
-            restaurants[
-                restaurantId
-            ];
-
-
-        if(
-            !restaurant
-        ){
-
-            toast(
-                "❌ رستوران پیدا نشد."
-            );
-
-            return;
-
-        }
-
-
-        const tableNumber =
-            Number(
-                table
-            );
-
-
-        if(
-            !Number.isInteger(
-                tableNumber
-            ) ||
-            tableNumber <= 0
-        ){
-
-            toast(
-                "❌ شماره میز معتبر نیست."
-            );
-
-            return;
-
-        }
-
-
-        closeQRScanner();
-
-
-        connectCustomer(
-
-            restaurant,
-
-            tableNumber,
-
-            token ||
-            findTableCode(
-                restaurant,
-                tableNumber
-            )
-
-        );
-
-
-        toast(
-            "✅ QR با موفقیت شناسایی شد."
-        );
-
-
-    }catch(error){
-
-        console.error(
-            "QR URL Error:",
-            error
-        );
-
-
-        toast(
-            "❌ آدرس QR معتبر نیست."
-        );
-
-    }
+}
 
 }
 
 
 /* =====================================================
-   FIND TABLE CODE
+   FIND TABLE
 ===================================================== */
 
 function findTableCode(
-    restaurant,
-    tableNumber
+restaurant,
+tableNumber
 ){
 
-    if(
-        !restaurant ||
-        !restaurant.tables
-    ){
+if(!restaurant||!restaurant.tables){
+return "";
+}
 
-        return "";
+for(const code in restaurant.tables){
 
-    }
+if(
+Number(restaurant.tables[code])===
+Number(tableNumber)
+){
 
+return code;
 
-    for(
-        const code in restaurant.tables
-    ){
+}
 
-        if(
-            Number(
-                restaurant.tables[code]
-            ) ===
-            Number(tableNumber)
-        ){
+}
 
-            return code;
-
-        }
-
-    }
-
-
-    return "";
+return "";
 
 }
 
 
-/* =====================================================
-   CONNECT BY TABLE NUMBER
-===================================================== */
+function connectByTableNumber(tableNumber){
 
-function connectByTableNumber(
-    tableNumber
-){
+let foundRestaurant=null;
+let foundCode="";
 
-    let foundRestaurant =
-        null;
+for(const key in restaurants){
 
-    let foundCode =
-        "";
+const restaurant=restaurants[key];
 
+const code=findTableCode(
+restaurant,
+tableNumber
+);
 
-    for(
-        const key in restaurants
-    ){
+if(code){
 
-        const restaurant =
-            restaurants[key];
+foundRestaurant=restaurant;
+foundCode=code;
 
+break;
 
-        const code =
-            findTableCode(
-                restaurant,
-                tableNumber
-            );
+}
 
+}
 
-        if(code){
+if(!foundRestaurant){
 
-            foundRestaurant =
-                restaurant;
+toast("❌ این شماره میز پیدا نشد.");
+return;
 
-            foundCode =
-                code;
+}
 
-            break;
+closeQRScanner();
 
-        }
+connectCustomer(
+foundRestaurant,
+tableNumber,
+foundCode
+);
 
-    }
-
-
-    if(
-        !foundRestaurant
-    ){
-
-        toast(
-            "❌ این شماره میز پیدا نشد."
-        );
-
-        return;
-
-    }
-
-
-    closeQRScanner();
-
-
-    connectCustomer(
-
-        foundRestaurant,
-
-        tableNumber,
-
-        foundCode
-
-    );
-
-
-    toast(
-        "✅ میز " +
-        tableNumber +
-        " شناسایی شد."
-    );
+toast(
+"✅ میز "+tableNumber+" شناسایی شد."
+);
 
 }
 
@@ -3952,55 +2746,29 @@ function connectByTableNumber(
 
 function stopQRScanner(){
 
-    if(
-        !qrScanner
-    ){
+if(!qrScanner){
 
-        qrScannerRunning =
-            false;
+qrScannerRunning=false;
+return;
 
-        return;
+}
 
-    }
+const scanner=qrScanner;
 
+qrScanner=null;
+qrScannerRunning=false;
 
-    const scanner =
-        qrScanner;
+scanner.stop()
+.then(()=>scanner.clear())
+.catch(error=>{
 
+console.log("QR stop:",error);
 
-    qrScanner =
-        null;
+try{
+scanner.clear();
+}catch(e){}
 
-    qrScannerRunning =
-        false;
-
-
-    scanner.stop()
-
-        .then(
-            function(){
-
-                return scanner.clear();
-
-            }
-        )
-
-        .catch(
-            function(error){
-
-                console.log(
-                    "QR stop:",
-                    error
-                );
-
-                try{
-
-                    scanner.clear();
-
-                }catch(e){}
-
-            }
-        );
+});
 
 }
 
@@ -4011,38 +2779,26 @@ function stopQRScanner(){
 
 function closeQRScanner(){
 
-    stopQRScanner();
+stopQRScanner();
 
+const modal=document.getElementById(
+"qrScannerModal"
+);
 
-    const modal =
-        document.getElementById(
-            "qrScannerModal"
-        );
-
-
-    if(modal){
-
-        modal.classList.remove(
-            "show"
-        );
-
-    }
+if(modal){
+modal.classList.remove("show");
+}
 
 }
 
 
-function closeQRScannerOutside(
-    event
-){
+function closeQRScannerOutside(event){
 
-    if(
-        event.target.id ===
-        "qrScannerModal"
-    ){
+if(event.target.id==="qrScannerModal"){
 
-        closeQRScanner();
+closeQRScanner();
 
-    }
+}
 
 }
 
@@ -4053,212 +2809,167 @@ function closeQRScannerOutside(
 
 function loadSession(){
 
-    loadCart();
+loadCart();
+
+try{
+
+const savedOrder=JSON.parse(
+localStorage.getItem(
+"tabpay_last_order"
+)
+);
+
+if(savedOrder&&savedOrder.id){
+
+lastOrder=savedOrder;
+
+}
+
+}catch(e){
+
+lastOrder=null;
+
+}
 
 
-    try{
+try{
 
-        const savedOrder =
-            JSON.parse(
-                localStorage.getItem(
-                    "tabpay_last_order"
-                )
-            );
+const session=JSON.parse(
+localStorage.getItem(
+"tabpay_session"
+)
+);
 
+if(
+session &&
+session.restaurantId &&
+session.tableId
+){
 
-        if(
-            savedOrder &&
-            savedOrder.id
-        ){
+const restaurant=
+restaurants[session.restaurantId];
 
-            lastOrder =
-                savedOrder;
+if(restaurant){
 
-        }
+currentRestaurant=restaurant;
 
-    }catch(error){
+currentTable=
+Number(session.tableId);
 
-        lastOrder =
-            null;
+currentTableCode=
+session.tableCode||
+findTableCode(
+restaurant,
+currentTable
+);
 
-    }
+document.getElementById(
+"restaurantName"
+).textContent=
+restaurant.name;
 
+document.getElementById(
+"restaurantAddress"
+).textContent=
+restaurant.address;
 
-    try{
+document.getElementById(
+"tableBadge"
+).textContent=
+"میز "+currentTable;
 
-        const session =
-            JSON.parse(
-                localStorage.getItem(
-                    "tabpay_session"
-                )
-            );
+document.getElementById(
+"waiterTable"
+).textContent=
+currentTable;
 
+document.getElementById(
+"billTable"
+).textContent=
+currentTable;
 
-        if(
-            session &&
-            session.restaurantId &&
-            session.tableId
-        ){
+document.getElementById(
+"billRestaurant"
+).textContent=
+restaurant.name;
 
-            const restaurant =
-                restaurants[
-                    session.restaurantId
-                ];
+renderCategories();
+renderMenu();
+updateCartUI();
+renderOrderStatus();
 
+document.getElementById(
+"bottomNav"
+).classList.remove("hidden");
 
-            if(
-                restaurant
-            ){
+}
 
-                currentRestaurant =
-                    restaurant;
+}
 
-                currentTable =
-                    Number(
-                        session.tableId
-                    );
+}catch(e){
 
-                currentTableCode =
-                    session.tableCode ||
-                    findTableCode(
-                        restaurant,
-                        currentTable
-                    );
+console.log("No valid session");
 
-
-                document.getElementById(
-                    "restaurantName"
-                ).textContent =
-                    restaurant.name;
-
-
-                document.getElementById(
-                    "restaurantAddress"
-                ).textContent =
-                    restaurant.address;
-
-
-                document.getElementById(
-                    "tableBadge"
-                ).textContent =
-                    "میز " +
-                    currentTable;
-
-
-                document.getElementById(
-                    "waiterTable"
-                ).textContent =
-                    currentTable;
-
-
-                document.getElementById(
-                    "billTable"
-                ).textContent =
-                    currentTable;
-
-
-                document.getElementById(
-                    "billRestaurant"
-                ).textContent =
-                    restaurant.name;
-
-
-                renderCategories();
-
-                renderMenu();
-
-                updateCartUI();
-
-                renderOrderStatus();
-
-
-                document
-                    .getElementById(
-                        "bottomNav"
-                    )
-                    .classList.remove(
-                        "hidden"
-                    );
-
-            }
-
-        }
-
-    }catch(error){
-
-        console.log(
-            "No valid session"
-        );
-
-    }
+}
 
 }
 
 
 /* =====================================================
-   INITIALIZE
+   INIT
 ===================================================== */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+"DOMContentLoaded",
+function(){
 
-        loadSession();
+loadSession();
 
-        updateCartUI();
+updateCartUI();
 
-    }
+}
 );
 
 
 /* =====================================================
-   ESC KEY
+   ESC
 ===================================================== */
 
 document.addEventListener(
-    "keydown",
-    function(event){
+"keydown",
+function(event){
 
-        if(
-            event.key ===
-            "Escape"
-        ){
+if(event.key==="Escape"){
 
-            closeFoodModal();
+closeFoodModal();
+closeQRScanner();
 
-            closeQRScanner();
+}
 
-        }
-
-    }
+}
 );
 
 
 /* =====================================================
-   PAGE VISIBILITY CLEANUP
+   CLEAN CAMERA
 ===================================================== */
 
 window.addEventListener(
-    "beforeunload",
-    function(){
+"beforeunload",
+function(){
 
-        if(
-            qrScanner
-        ){
+if(qrScanner){
 
-            try{
+try{
+qrScanner.stop();
+}catch(e){}
 
-                qrScanner.stop();
+}
 
-            }catch(e){}
-
-        }
-
-    }
+}
 );
 
 </script>
 
 </body>
-
 </html>
