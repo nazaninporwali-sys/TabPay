@@ -58,6 +58,15 @@ let R, T, cart = {}, cat = "", tm;
 
 /* لایه داده: Firebase (REST) یا حافظه مرورگر برای دمو */
 const DB = {
+  async menu(rid) {
+    const d = !FIREBASE_URL ? JSON.parse(localStorage.getItem("m_" + rid) || "null")
+      : await (await fetch(`${FIREBASE_URL}/menus/${rid}.json`)).json();
+    return d || RESTAURANTS[rid].menu;
+  },
+  async saveMenu(rid, m) {
+    if (!FIREBASE_URL) return localStorage.setItem("m_" + rid, JSON.stringify(m));
+    await fetch(`${FIREBASE_URL}/menus/${rid}.json`, { method: "PUT", body: JSON.stringify(m) });
+  },
   async all(rid) {
     if (!FIREBASE_URL) return JSON.parse(localStorage.getItem("o_" + rid) || "{}");
     return (await (await fetch(`${FIREBASE_URL}/orders/${rid}.json`)).json()) || {};
@@ -97,14 +106,14 @@ function menu() {
   ${cur ? `<button class="o w" style="margin-bottom:12px" onclick="track()">📦 پیگیری سفارش قبلی</button>` : ""}
   <div class="cats">${cats.map(c => `<button class="${c == cat ? "on" : ""}" onclick="cat='${c}';menu()">${c}</button>`).join("")}</div>
   ${R.menu.filter(m => m.cat == cat).map(m => `<div class="card row">
-    <div>${m.icon} <b>${m.name}</b><br><small>${fmt(m.price)}</small></div>
+    <div>${esc(m.icon)} <b>${esc(m.name)}</b><br><small>${fmt(m.price)}</small></div>
     <div class="row">${cart[m.id] ? `<button class="o" onclick="chg(${m.id},-1)">−</button><b>${cart[m.id]}</b>` : ""}
     <button class="g" onclick="chg(${m.id},1)">+</button></div></div>`).join("")}</div>
   ${n ? `<div class="bar"><button class="g w" onclick="checkout()">مشاهده سبد (${n}) · ${fmt(total())}</button></div>` : ""}`;
 }
 function checkout() {
   const rows = R.menu.filter(m => cart[m.id]).map(m =>
-    `<div class="row"><span>${m.name} × ${cart[m.id]}</span><span>${fmt(m.price * cart[m.id])}</span></div>`).join("");
+    `<div class="row"><span>${esc(m.name)} × ${cart[m.id]}</span><span>${fmt(m.price * cart[m.id])}</span></div>`).join("");
   $("v").innerHTML = `<div class="p"><div class="card">${rows}<hr><div class="row"><b>جمع</b><b>${fmt(total())}</b></div></div>
   <input id="nm" maxlength="40" placeholder="نام (اختیاری)">
   <textarea id="nt" maxlength="200" placeholder="یادداشت برای آشپزخانه"></textarea>
@@ -130,7 +139,7 @@ function track() {
   const draw = async () => {
     const o = await DB.one(c.rid, c.id);
     if (!o) return;
-    $("v").innerHTML = `<div class="p"><div class="card">سفارش <b>${esc(o.id)}</b> · میز ${esc(o.t)}</div>
+    $("v").innerHTML = `<div class="p"><div class="card">سفارش <b>${esc(o.id)}</b> · میز ${esc(o.t)}<hr>${o.items.map(i => `<div class="row"><span>${esc(i.n)} × ${i.q}</span><span>${fmt(i.p * i.q)}</span></div>`).join("")}<hr><div class="row"><b>صورتحساب</b><b>${fmt(o.total)}</b></div></div>
     ${ST.map((s, i) => `<div class="card row"><span>${s}</span><span class="tag">${i < o.st ? "✓" : i == o.st ? "●" : "–"}</span></div>`).join("")}
     <button class="o w" onclick="menu()">بازگشت به منو</button></div>`;
   };
@@ -147,18 +156,40 @@ async function adv(rid, id) {
   const o = await DB.one(rid, id);
   if (o && o.st < 3) { o.st++; await DB.put(o); }
 }
-function panel(rid) {
-  $("who").textContent = "پنل · " + RESTAURANTS[rid].name;
+function panelOrders(rid) {
   const draw = async () => {
     const a = Object.values(await DB.all(rid)).sort((x, y) => y.at - x.at);
-    $("v").innerHTML = `<div class="p">${a.length ? a.map(o => `<div class="card">
+    $("pc").innerHTML = `<div class="p">${a.length ? a.map(o => `<div class="card">
       <div class="row"><b>میز ${esc(o.t)}</b><span class="tag">${ST[o.st]}</span></div>
       ${o.items.map(i => `<div>${esc(i.n)} × ${i.q}</div>`).join("")}
       ${o.name ? `<small>👤 ${esc(o.name)}</small><br>` : ""}${o.note ? `<small>📝 ${esc(o.note)}</small>` : ""}
       <div class="row" style="margin-top:8px"><b>${fmt(o.total)}</b>
       ${o.st < 3 ? `<button class="g" onclick="adv('${rid}','${o.id}')">${ST[o.st + 1]}</button>` : ""}</div></div>`).join("") : "هنوز سفارشی نیست."}</div>`;
   };
-  draw(); setInterval(draw, 4000);
+  clearInterval(tm); draw(); tm = setInterval(draw, 4000);
+}
+function panel(rid) {
+  $("who").textContent = "پنل · " + RESTAURANTS[rid].name;
+  $("v").innerHTML = `<div class="p row" style="padding-bottom:0"><button class="w" onclick="panelOrders('${rid}')">📋 سفارش‌ها</button><button class="o w" onclick="panelMenu('${rid}')">🍽️ منو</button></div><div id="pc"></div>`;
+  panelOrders(rid);
+}
+async function panelMenu(rid) {
+  clearInterval(tm);
+  const m = await DB.menu(rid);
+  $("pc").innerHTML = `<div class="p">
+  ${m.map((x, i) => `<div class="card row"><span>${esc(x.icon)} ${esc(x.name)} · ${fmt(+x.price)}</span><button class="o" onclick="delItem('${rid}',${i})">🗑️</button></div>`).join("")}
+  <div class="card"><b>غذای جدید</b><br><br><input id="fn" placeholder="نام غذا"><input id="fp" type="number" placeholder="قیمت (تومان)"><input id="fc" placeholder="دسته‌بندی (مثلا غذا)"><input id="fi" placeholder="ایموجی مثلا 🍝"><button class="g w" onclick="addItem('${rid}')">افزودن به منو</button></div></div>`;
+}
+async function addItem(rid) {
+  const m = await DB.menu(rid), n = $("fn").value.trim(), p = +$("fp").value;
+  if (!n || !p) return alert("نام و قیمت را وارد کنید");
+  const c = $("fc").value.replace(/[<>"'&\\]/g, "").trim() || "غذا";
+  m.push({ id: Date.now(), cat: c, name: n, price: p, icon: $("fi").value.trim() || "🍽️" });
+  await DB.saveMenu(rid, m); panelMenu(rid);
+}
+async function delItem(rid, i) {
+  const m = await DB.menu(rid); m.splice(i, 1);
+  await DB.saveMenu(rid, m); panelMenu(rid);
 }
 
 /* ---------- شروع ---------- */
@@ -171,7 +202,7 @@ function panel(rid) {
   if (!RESTAURANTS[rid] || !/^\d{1,3}$/.test(t || "")) return landing();
   R = { ...RESTAURANTS[rid], id: rid }; T = t;
   $("who").textContent = R.name + " · میز " + T;
-  menu();
+  DB.menu(rid).then(m => { R.menu = m; menu(); }).catch(menu);
 })();
 </script>
 </body>
